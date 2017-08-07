@@ -50,5 +50,11 @@ public class TaskProcessor extends Estruct{
         }
         
     }
-    
+    public String toString(){
+        String task = "";
+        for(TaskData tkda: this.tkda){
+            task += tkda;
+        }
+        return task;
+    }
 }
