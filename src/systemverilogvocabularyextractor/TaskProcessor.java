@@ -41,7 +41,7 @@ public class TaskProcessor extends Estruct{
         
     }
     @Override
-    void setVariableAndCommentlocal(String linha) {
+    public void setVariableAndCommentlocal(String linha) {
         if(beginStruct && !endStruct){
             this.tkda.get(tkda.size()-1).setLocalField(linha);
             this.tkda.get(tkda.size()-1).setCommentLocal(linha);
