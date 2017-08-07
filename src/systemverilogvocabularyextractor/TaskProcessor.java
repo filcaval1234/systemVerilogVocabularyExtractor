@@ -38,8 +38,6 @@ public class TaskProcessor extends Estruct{
         }
         this.setVariableAndCommentlocal(originalLinha);
     }
-        
-    }
     @Override
     public void setVariableAndCommentlocal(String linha) {
         if(beginStruct && !endStruct){
