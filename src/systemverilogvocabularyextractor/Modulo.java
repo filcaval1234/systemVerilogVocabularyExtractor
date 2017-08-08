@@ -11,13 +11,13 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-abstract class Estruct {
+abstract class Modulo {
     protected boolean beginStruct;
     protected boolean endStruct;
     protected String BEGINSTRUCT;
     protected String ENDSTRUCT;
     
-    public Estruct(String begin, String end){
+    public Modulo(String begin, String end){
         this.BEGINSTRUCT = begin;
         this.ENDSTRUCT = end;
         this.beginStruct = false;

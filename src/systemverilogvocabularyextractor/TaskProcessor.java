@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class TaskProcessor extends Estruct{
+public class TaskProcessor extends Modulo{
     ArrayList<TaskData> tkda;
     String delay;
     

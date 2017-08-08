@@ -16,7 +16,7 @@ public class FileAnalyst {
     SearchPackage srpkg;
     FieldProcessor anlv;
     CommentProcessor cmt;
-    Estruct mtps;
+    Modulo mtps;
     
     /**
      * O construtor da classe recebe um argumento e inicializa o campo srpkg

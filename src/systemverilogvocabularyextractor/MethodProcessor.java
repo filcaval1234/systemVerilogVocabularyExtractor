@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class MethodProcessor extends Estruct{
+public class MethodProcessor extends Modulo{
     private ArrayList<MethodData> mtsd;
     
     public MethodProcessor(){
