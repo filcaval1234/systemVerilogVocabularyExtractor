@@ -27,7 +27,7 @@ public class FileAnalyst {
         srpkg = new SearchPackage(diretorio); 
         anlv = new FieldProcessor();
         cmt = new CommentProcessor();
-        clpr = new ClassProcessor();
+        clpr = new MethodProcessor();
         
     }
     /**
@@ -64,7 +64,8 @@ public class FileAnalyst {
         }
     }
     public static void main(String[] args) {
-        FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
+        FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
+        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
         fa.toStringFiles();
     }
 }

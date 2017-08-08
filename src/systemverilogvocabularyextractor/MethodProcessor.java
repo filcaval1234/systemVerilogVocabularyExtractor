@@ -28,7 +28,7 @@ public class MethodProcessor extends Modulo{
         MethodData methodData = null;
         String linha = this.filterIndentation(originalLinha);
         linha = this.filterAccessMode(linha);
-        if(isFunction(linha)){
+        if(isModule(linha)){
             linha = linha.substring(0, linha.indexOf(PARENTESES));
             listWord = linha.split(SPACE);
             if(listWord.length == 3){
@@ -39,6 +39,11 @@ public class MethodProcessor extends Modulo{
         }
         this.setVariableAndCommentlocal(originalLinha);
     }
+    /**
+     *
+     * @param linha
+     */
+    @Override
     public void setVariableAndCommentlocal(String linha){
         if(beginStruct && !endStruct){
             this.mtsd.get(mtsd.size()-1).setLocalField(linha);
@@ -55,19 +60,6 @@ public class MethodProcessor extends Modulo{
             returnOfFunction += listWord[i];
         }
         return returnOfFunction;
-    }
-    public boolean isFunction(String linha){
-        boolean state = false;
-        if(linha.startsWith(BEGINSTRUCT)){
-            state = true;
-            beginStruct = true;
-            endStruct = false;
-        }
-        else if(linha.startsWith(ENDSTRUCT)){
-            beginStruct = false;
-            endStruct = true;
-        }
-        return state;
     }
     public String toString(){
         String methodProcessor = "";
