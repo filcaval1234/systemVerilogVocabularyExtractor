@@ -16,7 +16,7 @@ public class FileAnalyst {
     SearchPackage srpkg;
     FieldProcessor anlv;
     CommentProcessor cmt;
-    Modulo mtps;
+    Modulo clpr;
     
     /**
      * O construtor da classe recebe um argumento e inicializa o campo srpkg
@@ -27,7 +27,7 @@ public class FileAnalyst {
         srpkg = new SearchPackage(diretorio); 
         anlv = new FieldProcessor();
         cmt = new CommentProcessor();
-        mtps = new TaskProcessor();
+        clpr = new ClassProcessor();
         
     }
     /**
@@ -50,7 +50,7 @@ public class FileAnalyst {
                 try {
                     while(fileInPackage.ready()){
                     lineInFile.add(fileInPackage.readLine());
-                    mtps.setFields(lineInFile.get(i));
+                    clpr.setFields(lineInFile.get(i));
                     //anlv.setListVariaveis(lineInFile.get(i));
                     //cmt.setComments(lineInFile.get(i));
                     i++;
@@ -60,7 +60,7 @@ public class FileAnalyst {
                     ioe.printStackTrace();
                 }
             }
-            System.out.println(mtps);
+            System.out.println(clpr);
         }
     }
     public static void main(String[] args) {

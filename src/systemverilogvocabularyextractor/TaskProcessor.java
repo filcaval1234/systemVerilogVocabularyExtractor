@@ -27,7 +27,7 @@ public class TaskProcessor extends Modulo{
         TaskData taskdata = null;
         String linha = this.filterIndentation(originalLinha);
         linha = this.filterAccessMode(linha);
-        if(isStruct(linha)){
+        if(isModule(linha)){
             linha = linha.substring(0, linha.indexOf(PARENTESES));
             listWord = linha.split(SPACE);
             if(listWord.length == 2){

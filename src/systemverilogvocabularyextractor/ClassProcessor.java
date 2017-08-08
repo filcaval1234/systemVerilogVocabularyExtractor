@@ -26,11 +26,19 @@ public class ClassProcessor extends Modulo{
     }
     @Override
     public void setFields(String originalLinha) {
+        mdpr.setFields(originalLinha);
+        tkpr.setFields(originalLinha);
+        //fields.setListVariaveis(originalLinha);
+        //comments.setComments(originalLinha);
         
     }
-
     @Override
     public void setVariableAndCommentlocal(String linha) {
         
+    }
+    public String toString(){
+        String classPro = mdpr.toString();
+        classPro += tkpr.toString();
+        return classPro;
     }
 }

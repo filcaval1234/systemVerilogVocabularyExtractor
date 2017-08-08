@@ -27,7 +27,7 @@ abstract class Modulo {
     
     abstract void setVariableAndCommentlocal(String linha);
     
-    protected boolean isStruct(String linha){
+    protected boolean isModule(String linha){
         boolean state = false;
         if(linha.startsWith(BEGINSTRUCT)){
             state = true;
