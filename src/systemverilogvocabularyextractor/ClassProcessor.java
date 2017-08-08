@@ -12,23 +12,25 @@ import java.util.ArrayList;
  * @author fc.corporation
  */
 public class ClassProcessor extends Modulo{
-    ArrayList<Modulo> classModules;
-    FieldProcessor fields;
-    CommentProcessor comments;
+    private MethodProcessor mdpr;
+    private TaskProcessor tkpr;
+    private FieldProcessor fields;
+    private CommentProcessor comments;
     
     public ClassProcessor(){
         super("class", "endclass");
+        mdpr = new MethodProcessor();
+        tkpr = new TaskProcessor();
+        fields = new FieldProcessor();
+        comments = new CommentProcessor();
     }
-    
+    @Override
+    public void setFields(String originalLinha) {
+        
+    }
 
     @Override
-    void setFields(String originalLinha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setVariableAndCommentlocal(String linha) {
+        
     }
-
-    @Override
-    void setVariableAndCommentlocal(String linha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * @author fc.corporation
  */
 public class TaskProcessor extends Modulo{
-    ArrayList<TaskData> tkda;
-    String delay;
+    private ArrayList<TaskData> tkda;
+    private String delay;
     
     public TaskProcessor() {
         super("task", "endtask");
@@ -47,8 +47,9 @@ public class TaskProcessor extends Modulo{
         else if(endStruct){
             beginStruct = false;
             endStruct = false;
-        }
-        
+        } 
+    }
+    public void setTkda(String linha){
     }
     public String toString(){
         String task = "";
