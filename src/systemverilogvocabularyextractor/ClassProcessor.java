@@ -12,24 +12,21 @@ import java.util.ArrayList;
  * @author fc.corporation
  */
 public class ClassProcessor extends Modulo{
-    private MethodProcessor mdpr;
-    private TaskProcessor tkpr;
-    private FieldProcessor fields;
-    private CommentProcessor comments;
-    
+    ArrayList<ClassData> csdt;
+    private static final String BEGINCLASS = "class";
+    private static final String ENDCLASS = "endclass";
     public ClassProcessor(){
-        super("class", "endclass");
-        mdpr = new MethodProcessor();
-        tkpr = new TaskProcessor();
-        fields = new FieldProcessor();
-        comments = new CommentProcessor();
+        super(BEGINCLASS, ENDCLASS);
+        this.csdt = new ArrayList<ClassData>();
     }
     @Override
-    public void setFields(String originalLinha) {
-        mdpr.setFields(originalLinha);
-        tkpr.setFields(originalLinha);
-        //fields.setListVariaveis(originalLinha);
-        //comments.setComments(originalLinha);
+    public void setFields(String lineOrigin) {
+        lineOrigin = this.filterAccessMode(lineOrigin);
+        lineOrigin = this.filterIndentation(lineOrigin);
+        ClassData csdt;
+        if(this.isModule(lineOrigin)){
+            
+        }
         
     }
     @Override
@@ -37,8 +34,6 @@ public class ClassProcessor extends Modulo{
         
     }
     public String toString(){
-        String classPro = mdpr.toString();
-        classPro += tkpr.toString();
-        return classPro;
+        return "";
     }
 }

@@ -16,6 +16,7 @@ public class ClassData {
     private MethodProcessor mdpr;
     private TaskProcessor tkpr;
     private CommentProcessor ctpr;
+    private ParamProcessor pmpr;
     
     ClassData(String name, String superclass){
         this.name = name;
@@ -24,6 +25,22 @@ public class ClassData {
         this.mdpr = new MethodProcessor();
         this.tkpr = new TaskProcessor();
         this.ctpr = new CommentProcessor();
+        this.pmpr = new ParamProcessor();
+    }
+    public FieldProcessor getFdpr() {
+        return fdpr;
+    }
+    public MethodProcessor getMdpr() {
+        return mdpr;
+    }
+    public TaskProcessor getTkpr() {
+        return tkpr;
+    }
+    public CommentProcessor getCtpr() {
+        return ctpr;
+    }
+    public ParamProcessor getPmpr() {
+        return pmpr;
     }
     public void setFdpr(String linha) {
         this.fdpr.setListVariaveis(linha);
