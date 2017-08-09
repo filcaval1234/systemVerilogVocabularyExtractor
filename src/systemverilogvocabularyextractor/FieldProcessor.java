@@ -34,6 +34,7 @@ public class FieldProcessor {
      */
     public void setListVariaveis(String linha){
         linha = this.filterValuesReturnedFunctions(linha);
+        linha = this.filterComments(linha);
         if(this.isVariable(linha)){
             ArrayList<String> wordsFiltrade = this.filtragem(linha);
             for(int i=1;i < wordsFiltrade.size();i++){
@@ -54,6 +55,7 @@ public class FieldProcessor {
      * @return um array só com tipos e nomes de variáveis
      */
     private ArrayList<String> filtragem(String linha){
+        //linha = this.filterComments(linha);
         String filtradeWord = this.filtroPontoVirgula(this.filtroValores(linha));
         ArrayList<String> listFiltradeWord = this.filtroIdentacao(filtradeWord);
         return this.filterComman(listFiltradeWord);
@@ -142,7 +144,7 @@ public class FieldProcessor {
      */
     private boolean isVariable(String linha){
         boolean state = true;
-        String[] isNotVariable = {"(", "{", "+", "-", "/", "*", ":", "}", ")","<"};
+        String[] isNotVariable = {"(", "{", "+", "-", "/", "*", "}", ")","<","#"};
         if(linha.equals(" ")){
             return false;
         }
@@ -168,6 +170,12 @@ public class FieldProcessor {
             withoutValuesReturnedOfFunctions = linha.substring(0, linha.indexOf(EQUALS)-1)+";";
         }
         return withoutValuesReturnedOfFunctions;
+    }
+    public String filterComments(String linha){
+        final String ILLEGALCHARSEQUENCE = "//";
+        if(linha.contains(ILLEGALCHARSEQUENCE))
+            linha = linha.substring(0,linha.indexOf(ILLEGALCHARSEQUENCE));
+        return linha;
     }
     public String toString(){
         String AnalystVariable = "";

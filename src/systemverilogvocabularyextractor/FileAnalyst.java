@@ -51,8 +51,8 @@ public class FileAnalyst {
                     while(fileInPackage.ready()){
                     lineInFile.add(fileInPackage.readLine());
                     //clpr.setFields(lineInFile.get(i));
-                    //anlv.setListVariaveis(lineInFile.get(i));
-                    cmt.setComments(lineInFile.get(i));
+                    anlv.setListVariaveis(lineInFile.get(i));
+                    //cmt.setComments(lineInFile.get(i));
                     i++;
                     }
                     fileInPackage.close();
@@ -60,10 +60,13 @@ public class FileAnalyst {
                     ioe.printStackTrace();
                 }
             }
-            System.out.println(cmt);
+            System.out.println(anlv);
         }
     }
     public static void main(String[] args) {
+        /*String nome = "filipe";
+        nome = nome.substring(nome.indexOf("a"));
+        System.err.println(nome);*/
         FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
         fa.toStringFiles();
