@@ -73,7 +73,7 @@ public class CommentProcessor {
      */
     private void setCommentLine(String linha){
         if(linha.contains(this.LINECOMMENT)){
-            this.commentLine += linha.substring(linha.indexOf(LINECOMMENT));
+            this.commentLine += linha.substring(linha.indexOf(LINECOMMENT))+"\n";
         }
     }    
     public String toString(){

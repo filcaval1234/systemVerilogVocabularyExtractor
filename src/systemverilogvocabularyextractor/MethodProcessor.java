@@ -39,6 +39,21 @@ public class MethodProcessor extends Modulo{
         }
         this.setVariableAndCommentlocal(originalLinha);
     }
+    @Override
+    public boolean isModule(String linha){
+        final String ISNOTFUNCTION = "new";
+        boolean state = false;
+        if(linha.startsWith(BEGINSTRUCT)){
+            state = true;
+            beginStruct = true;
+            endStruct = false;
+        }
+        else if(linha.startsWith(ENDSTRUCT)){
+            beginStruct = false;
+            endStruct = true;
+        }
+        return state;
+    }
     /**
      *
      * @param linha

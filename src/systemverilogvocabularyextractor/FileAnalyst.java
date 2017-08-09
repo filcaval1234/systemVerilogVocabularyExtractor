@@ -50,9 +50,9 @@ public class FileAnalyst {
                 try {
                     while(fileInPackage.ready()){
                     lineInFile.add(fileInPackage.readLine());
-                    clpr.setFields(lineInFile.get(i));
+                    //clpr.setFields(lineInFile.get(i));
                     //anlv.setListVariaveis(lineInFile.get(i));
-                    //cmt.setComments(lineInFile.get(i));
+                    cmt.setComments(lineInFile.get(i));
                     i++;
                     }
                     fileInPackage.close();
@@ -60,7 +60,7 @@ public class FileAnalyst {
                     ioe.printStackTrace();
                 }
             }
-            System.out.println(clpr);
+            System.out.println(cmt);
         }
     }
     public static void main(String[] args) {
