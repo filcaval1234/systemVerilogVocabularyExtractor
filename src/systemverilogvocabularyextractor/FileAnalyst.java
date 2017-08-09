@@ -50,8 +50,8 @@ public class FileAnalyst {
                 try {
                     while(fileInPackage.ready()){
                     lineInFile.add(fileInPackage.readLine());
-                    //clpr.setFields(lineInFile.get(i));
-                    anlv.setListVariaveis(lineInFile.get(i));
+                    clpr.setFields(lineInFile.get(i));
+                    //anlv.setListVariaveis(lineInFile.get(i));
                     //cmt.setComments(lineInFile.get(i));
                     i++;
                     }
@@ -60,15 +60,17 @@ public class FileAnalyst {
                     ioe.printStackTrace();
                 }
             }
-            System.out.println(anlv);
+            System.out.println(clpr);
         }
     }
     public static void main(String[] args) {
-        /*String nome = "filipe";
-        nome = nome.substring(nome.indexOf("a"));
-        System.err.println(nome);*/
-        FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
+        //D:\Nova pasta (2)\Testes_Extractor\apb_test
+        //D:\Nova pasta (2)\Testes_Extractor\ahb2_uvm_tb
+        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
+        FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
+        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\apb_test");
+        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb2_uvm_tb");
+        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
         fa.toStringFiles();
     }
 }

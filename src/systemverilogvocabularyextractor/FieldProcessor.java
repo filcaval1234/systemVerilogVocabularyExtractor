@@ -35,16 +35,24 @@ public class FieldProcessor {
     public void setListVariaveis(String linha){
         linha = this.filterValuesReturnedFunctions(linha);
         linha = this.filterComments(linha);
-        if(this.isVariable(linha)){
+        if(this.isVariable(linha) || this.isTypeWithVector(linha)){
             ArrayList<String> wordsFiltrade = this.filtragem(linha);
             for(int i=1;i < wordsFiltrade.size();i++){
-                String tiposConcatenados = wordsFiltrade.get(0);
-                while(vfs.sytemVerilogSintax(wordsFiltrade.get(i)) == true){
-                    tiposConcatenados += " "+wordsFiltrade.get(i);
-                    i++;
+                try{
+                    String tiposConcatenados = wordsFiltrade.get(0);
+                    while(vfs.sytemVerilogSintax(wordsFiltrade.get(i)) == true){
+                        tiposConcatenados += " "+wordsFiltrade.get(i);
+                        i++;
+                    }
+                    if(wordsFiltrade.get(i).contains("[")){
+                        tiposConcatenados +=" "+wordsFiltrade.get(i);
+                        i+=1;
+                    }
+                    Variavel tempVar = new Variavel(tiposConcatenados, wordsFiltrade.get(i));
+                    this.listVariaveis.add(tempVar);
+                }catch(IndexOutOfBoundsException ioe){
+                    break;
                 }
-                Variavel tempVar = new Variavel(tiposConcatenados, wordsFiltrade.get(i));
-                this.listVariaveis.add(tempVar);
             }
         }
     }
@@ -55,7 +63,7 @@ public class FieldProcessor {
      * @return um array só com tipos e nomes de variáveis
      */
     private ArrayList<String> filtragem(String linha){
-        //linha = this.filterComments(linha);
+        linha = this.filterIdentation(linha);
         String filtradeWord = this.filtroPontoVirgula(this.filtroValores(linha));
         ArrayList<String> listFiltradeWord = this.filtroIdentacao(filtradeWord);
         return this.filterComman(listFiltradeWord);
@@ -99,6 +107,10 @@ public class FieldProcessor {
             }
         }
         return withoutIndentation;
+    }
+    private String filterIdentation(String linha){
+        final String IDENTATION = "  ";
+        return linha.replace(IDENTATION, "");
     }
     /**
      * O método filtroPontoVirgula retira o ";" do final de cada linha
@@ -144,7 +156,7 @@ public class FieldProcessor {
      */
     private boolean isVariable(String linha){
         boolean state = true;
-        String[] isNotVariable = {"(", "{", "+", "-", "/", "*", "}", ")","<","#"};
+        String[] isNotVariable = {"return","(", "{", "+", "-", "/", "*","-",":", "}", ")", "<", "#"};
         if(linha.equals(" ")){
             return false;
         }
@@ -171,11 +183,33 @@ public class FieldProcessor {
         }
         return withoutValuesReturnedOfFunctions;
     }
-    public String filterComments(String linha){
+    private String filterComments(String linha){
         final String ILLEGALCHARSEQUENCE = "//";
         if(linha.contains(ILLEGALCHARSEQUENCE))
             linha = linha.substring(0,linha.indexOf(ILLEGALCHARSEQUENCE));
         return linha;
+    }
+    public String getTypeWithVector(String linha){
+        final String ISVECTOR = "]";
+        linha = this.filterIdentation(linha);
+        String typeWithVector = linha.substring(0, linha.indexOf("]"));
+        String nome = linha.substring(linha.indexOf("]"));
+        
+        return typeWithVector;
+    }
+    private boolean isTypeWithVector(String linha){
+        boolean state = false;
+        linha = this.filterIdentation(linha);
+        final String ILLEGALCHAR = "=";
+        final String[] VECTOR = {"[", "]"};
+        if(linha.contains(VECTOR[0]) && linha.contains(VECTOR[1])){
+            String subLine = linha.substring(linha.indexOf(VECTOR[1]));
+            if(!subLine.startsWith("] ") || !subLine.startsWith("]")){
+                return false;
+            }
+            else return true;
+        }
+        return state;
     }
     public String toString(){
         String AnalystVariable = "";

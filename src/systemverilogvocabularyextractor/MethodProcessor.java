@@ -21,6 +21,7 @@ public class MethodProcessor extends Modulo{
     public void isCommentFunction(String linha){
         //funçao que tera um finalidade uma hora ou outra
     }
+    @Override
     public void setFields(String originalLinha){
         final String SPACE = " ";
         final String PARENTESES = "(";
@@ -43,7 +44,7 @@ public class MethodProcessor extends Modulo{
     public boolean isModule(String linha){
         final String ISNOTFUNCTION = "new";
         boolean state = false;
-        if(linha.startsWith(BEGINSTRUCT)){
+        if(linha.startsWith(BEGINSTRUCT) && !linha.contains(ISNOTFUNCTION)){
             state = true;
             beginStruct = true;
             endStruct = false;
