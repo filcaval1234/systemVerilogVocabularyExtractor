@@ -50,5 +50,4 @@ abstract class Modulo {
         String identation = "  ";
         return linha.replace(identation, "");
     }
-    
 }

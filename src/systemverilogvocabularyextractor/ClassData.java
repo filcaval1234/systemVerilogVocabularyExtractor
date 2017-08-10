@@ -27,6 +27,13 @@ public class ClassData {
         this.ctpr = new CommentProcessor();
         this.pmpr = new ParamProcessor();
     }
+    ClassData(){
+        this.fdpr = new FieldProcessor();
+        this.mdpr = new MethodProcessor();
+        this.tkpr = new TaskProcessor();
+        this.ctpr = new CommentProcessor();
+        this.pmpr = new ParamProcessor();
+    }
     public FieldProcessor getFdpr() {
         return fdpr;
     }
@@ -42,6 +49,9 @@ public class ClassData {
     public ParamProcessor getPmpr() {
         return pmpr;
     }
+    public void setName(String nome){
+        this.name = name;
+    }
     public void setFdpr(String linha) {
         this.fdpr.setListVariaveis(linha);
     }
@@ -53,5 +63,8 @@ public class ClassData {
     }
     public void setCtpr(String linha) {
         this.ctpr.setComments(linha);
+    }
+    public void setPmpr(String linha){
+        this.pmpr.setParametersFormal(linha);
     }
 }
