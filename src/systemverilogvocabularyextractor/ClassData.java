@@ -49,8 +49,11 @@ public class ClassData {
     public ParamProcessor getPmpr() {
         return pmpr;
     }
-    public void setName(String nome){
+    public void setName(String name){
         this.name = name;
+    }
+    public void setSuperClasse(String superClasse){
+        this.superclass = superClasse;
     }
     public void setFdpr(String linha) {
         this.fdpr.setListVariaveis(linha);
@@ -67,4 +70,7 @@ public class ClassData {
     public void setPmpr(String linha){
         this.pmpr.setParametersFormal(linha);
     }
+    public String toString(){
+           return "class :"+this.name+" classExtends :"+this.superclass+"\n";
+    }            
 }

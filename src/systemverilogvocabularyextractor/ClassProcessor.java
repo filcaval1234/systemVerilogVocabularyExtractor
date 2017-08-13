@@ -27,22 +27,38 @@ public class ClassProcessor extends Modulo{
     public void setFields(String lineOrigin) {
         lineOrigin = this.filterAccessMode(lineOrigin);
         lineOrigin = this.filterIndentation(lineOrigin);
-        ClassData csdt = new ClassData();;
+        ClassData csdt = new ClassData();
+        ArrayList<String> properties = new ArrayList<String>();
         if(this.isModule(lineOrigin)){
             String[] wordsInLine = lineOrigin.split(" ");
             int index=0;
+            properties.add(wordsInLine[1]);
             for(;index < wordsInLine.length;index++){
-                if(vfs.sytemVerilogSintax(wordsInLine[index]) || wordsInLine[index].contains("#"))
-                    index += 1;
-                csdt.setName(wordsInLine[index]);
+            try{
+                if(wordsInLine[index].equals("extends")){
+                    properties.add(wordsInLine[index+1]);
+                    break;
+                }
+            }catch(ArrayIndexOutOfBoundsException aio){
             }
+            }
+            csdt.setName(properties.get(0));
+            csdt.setSuperClasse(properties.get(properties.size()-1));
+            this.csdt.add(csdt);
         }
     }
     @Override
     public void setVariableAndCommentlocal(String linha) {
         
     }
+    public void filterParameter(String linha){
+        linha.subSequence(linha.indexOf("#"), linha.indexOf(")"));
+    }
     public String toString(){
-        return "";
+        String classProc = "";
+        for(ClassData str: this.csdt){
+            classProc += str+"\n";
+        }
+        return classProc;
     }
 }
