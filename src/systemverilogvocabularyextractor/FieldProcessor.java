@@ -99,11 +99,19 @@ public class FieldProcessor {
      * @return um array com nomes sem espaços
      */
     private ArrayList<String> filtroIdentacao(String linha){
+        int i=0;
+        for(;i < linha.length(); i++){
+            char teste = linha.charAt(i);
+            if(linha.charAt(i) == ' ' || linha.charAt(i) == 9) {
+                continue;
+            }else break;
+        }
+        linha = linha.substring(i);
         String[] listStrline = linha.split(" ");
         ArrayList<String> withoutIndentation = new ArrayList<String>();
-        for(String i: listStrline){
-            if(!i.equals("")){
-                withoutIndentation.add(i);
+        for(String str: listStrline){
+            if(!str.equals("")){
+                withoutIndentation.add(str);
             }
         }
         return withoutIndentation;

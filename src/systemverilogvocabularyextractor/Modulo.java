@@ -41,14 +41,19 @@ abstract class Modulo {
         return state;
     }
     protected String filterAccessMode(String linha){
-        if(linha.contains(BEGINSTRUCT) && !linha.contains(ENDSTRUCT)&& !linha.contains("=")){
+        if(linha.contains(BEGINSTRUCT+" ") && !linha.contains(ENDSTRUCT)&& !linha.contains("=")){
             linha = linha.substring(linha.indexOf(BEGINSTRUCT));
         }
         return linha;
     }
     protected String filterIndentation(String linha){
-        String identation = "  ";
-        return linha.replace(identation, "");
+        int i=0;
+        for(;i < linha.length(); i++){
+            char teste = linha.charAt(i);
+            if(linha.charAt(i) == ' ' || linha.charAt(i) == 9) {
+                continue;
+            }else break;
+        }
+        return linha.substring(i);
     }
-    
 }
