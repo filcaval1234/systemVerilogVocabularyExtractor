@@ -57,14 +57,16 @@ public class CommentProcessor {
      * ou se o comentário terminou
      * @param linha trecho do código a ser analisado
      */
-    private void isCommentBlock(String linha){
+    public boolean isCommentBlock(String linha){
         if(linha.contains(BEGINCOMMENTSBLOCK)){
             this.beginComments = true;
             this.endsComments = false;
         }
         else if(linha.endsWith(ENDSCOMMENTSBLOCK)){
             this.endsComments = true;
+            this.beginComments = false;
         }
+        return this.beginComments;
     }
     /**
      * O método setCommentLine averigua se a linha de código é um comentário de 
@@ -75,7 +77,13 @@ public class CommentProcessor {
         if(linha.contains(this.LINECOMMENT)){
             this.commentLine += linha.substring(linha.indexOf(LINECOMMENT))+"\n";
         }
-    }    
+    }
+    public boolean getBeginComments(){
+        return this.beginComments;
+    }
+    public boolean getEndCommens(){
+        return this.endsComments;
+    }
     public String toString(){
         return this.commentBlock+"\n"+commentLine+"\n";
     }

@@ -55,6 +55,9 @@ public class MethodProcessor extends Modulo{
         }
         return state;
     }
+    public boolean isModule(){
+        return this.beginStruct;
+    }
     /**
      *
      * @param linha

@@ -10,5 +10,7 @@ package systemverilogvocabularyextractor;
  * @author fc.corporation
  */
 public class SystemVerilogVocabularyExtractor {
+    private FileAnalyst fileAnalyst;
+    
     
 }

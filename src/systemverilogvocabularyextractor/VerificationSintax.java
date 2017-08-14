@@ -31,7 +31,7 @@ public class VerificationSintax {
         String[] wordsKeys = new String[QUANTWORDSKEYS];
         int i = 0;
         try {
-            FileReader file = new FileReader("C:\\Users\\fc.corporation\\Documents\\NetBeansProjects\\systemVerilogVocabularyExtractor\\wordKeys\\keysWordsSystemverilog.txt");
+            FileReader file = new FileReader("D:\\netBeansProjects\\systemVerilogVocabularyExtractor\\wordKeys\\keysWordsSystemverilog.txt");
             BufferedReader arq = new BufferedReader(file);
             while(arq.ready()){
                 wordsKeys[i] = arq.readLine();

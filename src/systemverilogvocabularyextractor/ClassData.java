@@ -58,19 +58,31 @@ public class ClassData {
     public void setFdpr(String linha) {
         this.fdpr.setListVariaveis(linha);
     }
-    public void setMdpr(String linha) {
+    public void setMdpr(String linha){
         this.mdpr.setFields(linha);
+    }
+    public void setMdpr(MethodProcessor mdpr) {
+        this.mdpr = mdpr; 
     }
     public void setTkpr(String linha) {
         this.tkpr.setFields(linha);
     }
-    public void setCtpr(String linha) {
-        this.ctpr.setComments(linha);
+    public void setCtpr(CommentProcessor comments) {
+        this.ctpr = comments;
     }
     public void setPmpr(String linha){
         this.pmpr.setParametersFormal(linha);
     }
     public String toString(){
-           return "class :"+this.name+" classExtends :"+this.superclass+"\n";
+           String classData = "class :"+this.name+" classExtends :"+this.superclass+"\n";
+           classData += "----------------Fields----------------\n";
+           classData += this.fdpr+"\n";
+           classData += "----------------Comments----------------\n";
+           classData += this.ctpr+"\n";
+           classData += "----------------Methods------------------\n";
+           classData += this.mdpr+"\n";
+           classData += "------------tasks---------------------\n";
+           classData += this.tkpr;
+           return classData;
     }            
 }

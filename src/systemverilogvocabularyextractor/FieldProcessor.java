@@ -100,9 +100,12 @@ public class FieldProcessor {
      */
     private ArrayList<String> filtroIdentacao(String linha){
         int i=0;
+        final char TAB = 9;
+        final char SPACE = 32;
+        linha = linha.replace(TAB, SPACE);
         for(;i < linha.length(); i++){
             char teste = linha.charAt(i);
-            if(linha.charAt(i) == ' ' || linha.charAt(i) == 9) {
+            if(linha.charAt(i) == TAB) {
                 continue;
             }else break;
         }
@@ -164,7 +167,7 @@ public class FieldProcessor {
      */
     private boolean isVariable(String linha){
         boolean state = true;
-        String[] isNotVariable = {"return","(", "{", "+", "-", "/", "*","-",":", "}", ")", "<", "#"};
+        String[] isNotVariable = {"class","#","return","(", "{", "+", "-", "/", "*","-",":", "}", ")", "<"};
         if(linha.equals(" ")){
             return false;
         }

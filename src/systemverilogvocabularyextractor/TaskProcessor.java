@@ -49,6 +49,9 @@ public class TaskProcessor extends Modulo{
             endStruct = false;
         } 
     }
+    public boolean isModule(){
+        return this.beginStruct;
+    }
     public void setTkda(String linha){
     }
     public String toString(){

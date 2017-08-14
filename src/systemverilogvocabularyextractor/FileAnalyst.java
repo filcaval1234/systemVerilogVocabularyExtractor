@@ -25,9 +25,9 @@ public class FileAnalyst {
      */
     public FileAnalyst(String diretorio){
         srpkg = new SearchPackage(diretorio); 
-        anlv = new FieldProcessor();
-        cmt = new CommentProcessor();
-        clpr = new TaskProcessor();
+        //anlv = new FieldProcessor();
+        //cmt = new CommentProcessor();
+        //clpr = new ClassProcessor(diretorio);
         
     }
     /**
@@ -35,24 +35,21 @@ public class FileAnalyst {
      * pacotes daí então lê o arquivo linha por linha e chama as entidades que analisam
      * essas linhas modelando esses dados.
      */
-    public void toStringFiles(){
-        this.toStringFiles(srpkg.getPackage());
+    public ArrayList<String> toStringFiles(){
+        return this.toStringFiles(srpkg.getPackage());
     }
     //possivelmente a função toStringFiles poderá retornar Strings com o conteúdo
     //dos arquivos ou não( analisar com calma isso mais tarde) DATTEBAYO!!!!!
-    private void toStringFiles(Package[] pkg){
+    private ArrayList<String> toStringFiles(Package[] pkg){
         String strFile;
+        ArrayList<String> lineInFile = new ArrayList<String>();
         int i=0;
         for(Package pacote: pkg){
             ArrayList<BufferedReader> listArq = pacote.getFile();
-            ArrayList<String> lineInFile = new ArrayList<String>();
             for(BufferedReader fileInPackage: listArq){
                 try {
                     while(fileInPackage.ready()){
                     lineInFile.add(fileInPackage.readLine());
-                    clpr.setFields(lineInFile.get(i));
-                    //anlv.setListVariaveis(lineInFile.get(i));
-                    //cmt.setComments(lineInFile.get(i));
                     i++;
                     }
                     fileInPackage.close();
@@ -60,19 +57,22 @@ public class FileAnalyst {
                     ioe.printStackTrace();
                 }
             }
-            System.out.println(clpr);
         }
+        return lineInFile;
     }
     public static void main(String[] args) {
         //D:\Nova pasta (2)\Testes_Extractor\apb_test
         //D:\Nova pasta (2)\Testes_Extractor\ahb2_uvm_tb
         //D:\Nova pasta (2)\Testes_Extractor\sha3_uvm_tb
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
+        FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\apb_test");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb2_uvm_tb");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
-        FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
-        fa.toStringFiles();
+        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
+        //ClassProcessor clpr = new ClassProcessor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
+        ClassProcessor clpr = new ClassProcessor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
+        clpr.setClassesProperties();
+        System.out.println(clpr);
     }
 }
