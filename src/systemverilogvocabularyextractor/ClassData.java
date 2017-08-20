@@ -75,13 +75,13 @@ public class ClassData {
     }
     public String toString(){
            String classData = "class :"+this.name+" classExtends :"+this.superclass+"\n";
-           classData += "----------------Fields----------------\n";
+           classData += "----------------ClassFields----------------\n";
            classData += this.fdpr+"\n";
-           classData += "----------------Comments----------------\n";
+           classData += "----------------ClassComments----------------\n";
            classData += this.ctpr+"\n";
-           classData += "----------------Methods------------------\n";
+           classData += "----------------ClassMethods------------------\n";
            classData += this.mdpr+"\n";
-           classData += "------------tasks---------------------\n";
+           classData += "------------Classtasks---------------------\n";
            classData += this.tkpr;
            return classData;
     }            

@@ -61,15 +61,16 @@ public class FileAnalyst {
         return lineInFile;
     }
     public static void main(String[] args) {
-        //D:\Nova pasta (2)\Testes_Extractor\apb_test
-        //D:\Nova pasta (2)\Testes_Extractor\ahb2_uvm_tb
-        //D:\Nova pasta (2)\Testes_Extractor\sha3_uvm_tb
+        //D:\\Nova pasta (2)\\Testes_Extractor\\apb_test
+        //D:\\Nova pasta (2)\\Testes_Extractor\\ahb2_uvm_tb
+        //D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb
         FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\apb_test");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb2_uvm_tb");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
+        //ClassProcessor clpr = new ClassProcessor("D:\\Nova pasta (2)\\result (9)");
         //ClassProcessor clpr = new ClassProcessor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         ClassProcessor clpr = new ClassProcessor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         clpr.setClassesProperties();

@@ -13,47 +13,34 @@ import java.util.ArrayList;
  */
 public class ClassProcessor extends Modulo{
     private ArrayList<ClassData> csdt;
-    private ArrayList<String> UVMsource;
     private VerificationSintax vfs;
-    private FileAnalyst fileAnalyst;
+    private CommentProcessor commentsFunction;
     private static final String BEGINCLASS = "class";
     private static final String ENDCLASS = "endclass";
     
-    public ClassProcessor(String diretorio){
+    public ClassProcessor(){
         super(BEGINCLASS, ENDCLASS);
         this.csdt = new ArrayList<ClassData>();
-        this.fileAnalyst = new FileAnalyst(diretorio);
-        this.UVMsource = this.fileAnalyst.toStringFiles();
+        this.commentsFunction = new CommentProcessor();
         vfs = new VerificationSintax();
         vfs.setAvlTreeSintax(vfs.setWordsKeys());
     }
-    public void print(){
-        for(String str: UVMsource){
-            System.err.println(str);
-        }
-    }
-    public void setClassesProperties(){
+    public void setClassesProperties(String sourceLine){
         CommentProcessor comments = new CommentProcessor();
         MethodProcessor methods = new MethodProcessor();
-        for(int index=0;index < this.UVMsource.size();index++){
-            String line = this.UVMsource.get(index);
-            if(comments.isCommentBlock(this.UVMsource.get(index)) && !this.isModule(this.UVMsource.get(index)))
-                comments.setComments(this.UVMsource.get(index));
-            else if(this.isModule(line)){
-                this.setFields(this.UVMsource.get(index), index);
-                if(!csdt.isEmpty()){
-                    this.csdt.get(csdt.size()-1).setCtpr(comments);
-                }
-                comments = new CommentProcessor();
+        if(comments.isCommentBlock(sourceLine) && !this.isModule())
+            comments.setComments(sourceLine);
+        else if(this.isModule(sourceLine)){
+            this.setFields(sourceLine);
+            if(!csdt.isEmpty()){
+                this.csdt.get(csdt.size()-1).setCtpr(comments);
             }
-            this.setVariableAndCommentlocal(line);
+            comments = new CommentProcessor();
         }
-    }
-    
+        this.setVariableAndCommentlocal(sourceLine);
+    }    
     @Override
-    public void setFields(String lineOrigin){}
-    
-    public void setFields(String lineOrigin, int index_UVM) {
+    public void setFields(String lineOrigin) {
         lineOrigin = this.filterAccessMode(lineOrigin);
         lineOrigin = this.filterIndentation(lineOrigin);
         ClassData csdt = new ClassData();
@@ -68,7 +55,7 @@ public class ClassProcessor extends Modulo{
                 break;
             }
             else{
-                String superClass = this.UVMsource.get(index_UVM+1);
+                String superClass = this.getSuperClass(lineOrigin);
                 superClass = this.filterIndentation(superClass);
                 try{
                 superClass = superClass.substring(0, superClass.indexOf(" "));
@@ -85,17 +72,39 @@ public class ClassProcessor extends Modulo{
     public void setVariableAndCommentlocal(String linha) {
         if(beginStruct && !endStruct){
             ClassData classTemp = this.csdt.get(this.csdt.size()-1);
-            classTemp.setMdpr(linha);
-            classTemp.setTkpr(linha);
-            if(!classTemp.getMdpr().isModule() && 
-                    !classTemp.getTkpr().isModule())
-                classTemp.setFdpr(linha);
+            if(this.commentsFunction.isCommentBlock(linha))
+                this.commentsFunction.setComments(linha);
+            else{
+                classTemp.setMdpr(linha);
+                classTemp.setTkpr(linha);
+                if(!classTemp.getMdpr().isModule() && 
+                        !classTemp.getTkpr().isModule())
+                    classTemp.setFdpr(linha);
+                if(classTemp.getMdpr().isModule(linha)){
+                    this.commentsFunction.setBeginComments(false);
+                    this.commentsFunction.setEndComments(false);
+                    classTemp.getMdpr().getUltimateClass().setCommentLocal(this.commentsFunction);
+                    this.commentsFunction = new CommentProcessor();
+                }
+            }
         }
         else if(endStruct){
             beginStruct = false;
             endStruct = false;
         }
-        
+    }
+    public String getSuperClass(String linha){
+        final String EXTENDS = "extends";
+        final int SIZEEXTENDS = EXTENDS.length();
+        final char BEGINPARAM = 35; //in ascii 35 = #
+        final String STRINGBEGINPARAM = "#";
+        String superClass;
+        if(linha.contains(STRINGBEGINPARAM))
+            superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS, 
+                linha.indexOf(BEGINPARAM));
+        else
+            superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS);
+        return superClass;
     }
     public void filterParameter(String linha){
         linha.subSequence(linha.indexOf("#"), linha.indexOf(")"));

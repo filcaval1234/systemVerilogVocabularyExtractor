@@ -40,6 +40,9 @@ abstract class Modulo {
         }
         return state;
     }
+    protected boolean isModule(){
+        return this.beginStruct;
+    }
     protected String filterAccessMode(String linha){
         if(linha.contains(BEGINSTRUCT+" ") && !linha.contains(ENDSTRUCT)&& !linha.contains("=")){
             linha = linha.substring(linha.indexOf(BEGINSTRUCT));
@@ -48,6 +51,8 @@ abstract class Modulo {
     }
     protected String filterIndentation(String linha){
         int i=0;
+        final char TAB = 9;
+        linha = linha.replace(TAB, ' ');
         for(;i < linha.length(); i++){
             char teste = linha.charAt(i);
             if(linha.charAt(i) == ' ' || linha.charAt(i) == 9) {

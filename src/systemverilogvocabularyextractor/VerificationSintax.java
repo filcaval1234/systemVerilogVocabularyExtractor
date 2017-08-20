@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import avltree.*;
-import java.net.URL;
 
 /**
  *
@@ -31,7 +30,7 @@ public class VerificationSintax {
         String[] wordsKeys = new String[QUANTWORDSKEYS];
         int i = 0;
         try {
-            FileReader file = new FileReader("D:\\netBeansProjects\\systemVerilogVocabularyExtractor\\wordKeys\\keysWordsSystemverilog.txt");
+            FileReader file = new FileReader("wordKeys\\keysWordsSystemverilog.txt");
             BufferedReader arq = new BufferedReader(file);
             while(arq.ready()){
                 wordsKeys[i] = arq.readLine();

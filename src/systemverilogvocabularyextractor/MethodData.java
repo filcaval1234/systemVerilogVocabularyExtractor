@@ -40,13 +40,16 @@ public class MethodData {
     public void setCommentLocal(String linha){
         commentsFunction.setComments(linha);
     }
+    public void setCommentLocal(CommentProcessor commentsFunction){
+        this.commentsFunction = commentsFunction;
+    }
     public String toString(){
         String metodo ="nome da função: "+this.name+" retorno: "+ this.retorno+"\n";
-        metodo += "----------------parametros----------------------------+\n";
+        metodo += "----------------Functionparameters----------------------------+\n";
         metodo += this.param;
-        metodo += "--------------variaveis Locais----------------------\n";
+        metodo += "--------------functionLocalFields----------------------\n";
         metodo += this.localField+"\n";
-        metodo += "--------------Comentarios----------------------\n";
+        metodo += "--------------functionComentarios----------------------\n";
         metodo += this.commentsFunction;
         metodo += "-----------------------------------------------------\n";
         return metodo;

@@ -12,10 +12,12 @@ import java.util.ArrayList;
  */
 public class MethodProcessor extends Modulo{
     private ArrayList<MethodData> mtsd;
+    private int size;
     
     public MethodProcessor(){
         super("function", "endfunction");
         this.mtsd = new ArrayList<MethodData>();
+        this.size = 0;
     }
     
     public void isCommentFunction(String linha){
@@ -36,12 +38,14 @@ public class MethodProcessor extends Modulo{
                 methodData = new MethodData(listWord[listWord.length-1], this.getReturn(listWord));
                 methodData.setParam(originalLinha);
                 this.mtsd.add(methodData);
+                this.size= this.mtsd.size()-1;
             }
         }
         this.setVariableAndCommentlocal(originalLinha);
     }
     @Override
     public boolean isModule(String linha){
+        linha = this.filterIdentation(linha);
         final String ISNOTFUNCTION = "new";
         boolean state = false;
         if(linha.startsWith(BEGINSTRUCT) && !linha.contains(ISNOTFUNCTION)){
@@ -54,6 +58,12 @@ public class MethodProcessor extends Modulo{
             endStruct = true;
         }
         return state;
+    }
+    public int getSize(){
+        return this.size;
+    }
+    public MethodData getUltimateClass(){
+        return this.mtsd.get(size);
     }
     public boolean isModule(){
         return this.beginStruct;
@@ -86,5 +96,8 @@ public class MethodProcessor extends Modulo{
             methodProcessor += mtd+"\n";
         }
         return methodProcessor;
+    }
+    public String filterIdentation(String linha){
+        return linha.trim();
     }
 }

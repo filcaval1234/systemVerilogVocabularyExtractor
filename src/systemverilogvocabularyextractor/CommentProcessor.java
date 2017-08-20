@@ -25,6 +25,12 @@ public class CommentProcessor {
         this.commentBlock = "";
         this.commentLine = "";
     }
+    public void setBeginComments(boolean beginComments){
+        this.beginComments = beginComments;
+    }
+    public void setEndComments(boolean endComments){
+        this.endsComments = endComments;
+    }
     /**
      * O método setComments recebe um argumento analisando se é um comentário de
      * bloco ou comentário de linha
@@ -52,10 +58,17 @@ public class CommentProcessor {
             this.commentBlock += linha.replace(this.ENDSCOMMENTSBLOCK, "")+"\n";
         }
     }
+    /*public boolean isComment(String linha){
+        boolean state = false;
+        if(state = this.isCommentBlock(linha)){  
+        }
+        return
+    }*/
     /**
      * O método isCommentBlock verifica se no código iniciou um comentário de bloco
      * ou se o comentário terminou
      * @param linha trecho do código a ser analisado
+     * @return 
      */
     public boolean isCommentBlock(String linha){
         if(linha.contains(BEGINCOMMENTSBLOCK)){
