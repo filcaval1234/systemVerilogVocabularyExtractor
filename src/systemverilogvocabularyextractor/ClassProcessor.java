@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author fc.corporation
  */
 public class ClassProcessor extends Modulo{
+    private int size;
     private ArrayList<ClassData> csdt;
     private VerificationSintax vfs;
     private CommentProcessor commentsFunction;
@@ -25,17 +26,13 @@ public class ClassProcessor extends Modulo{
         vfs = new VerificationSintax();
         vfs.setAvlTreeSintax(vfs.setWordsKeys());
     }
+    public void setClassComents(CommentProcessor classComments){
+        this.csdt.get(size).setCtpr(classComments);
+    }
     public void setClassesProperties(String sourceLine){
-        CommentProcessor comments = new CommentProcessor();
-        MethodProcessor methods = new MethodProcessor();
-        if(comments.isCommentBlock(sourceLine) && !this.isModule())
-            comments.setComments(sourceLine);
-        else if(this.isModule(sourceLine)){
+        if(this.isModule(sourceLine)){
             this.setFields(sourceLine);
-            if(!csdt.isEmpty()){
-                this.csdt.get(csdt.size()-1).setCtpr(comments);
-            }
-            comments = new CommentProcessor();
+            size = this.csdt.size()-1;
         }
         this.setVariableAndCommentlocal(sourceLine);
     }    
@@ -46,7 +43,7 @@ public class ClassProcessor extends Modulo{
         ClassData csdt = new ClassData();
         ArrayList<String> properties = new ArrayList<String>();
         String[] wordsInLine = lineOrigin.split(" ");
-        int index=0;
+        int index=1;
         properties.add(wordsInLine[1]);
         for(;index < wordsInLine.length;index++){
         try{
@@ -54,18 +51,11 @@ public class ClassProcessor extends Modulo{
                 properties.add(wordsInLine[index+1]);
                 break;
             }
-            else{
-                String superClass = this.getSuperClass(lineOrigin);
-                superClass = this.filterIndentation(superClass);
-                try{
-                superClass = superClass.substring(0, superClass.indexOf(" "));
-                }catch(StringIndexOutOfBoundsException sio){}
-                properties.add(superClass);
-            }
         }catch(ArrayIndexOutOfBoundsException aio){}
         }
         csdt.setName(properties.get(0));
-        csdt.setSuperClasse(properties.get(properties.size()-1));
+        if(properties.size()== 2)
+            csdt.setSuperClasse(properties.get(properties.size()-1));
         this.csdt.add(csdt);
     }
     @Override
@@ -93,18 +83,23 @@ public class ClassProcessor extends Modulo{
             endStruct = false;
         }
     }
-    public String getSuperClass(String linha){
+    public void setSuperClass(String linha){
         final String EXTENDS = "extends";
         final int SIZEEXTENDS = EXTENDS.length();
         final char BEGINPARAM = 35; //in ascii 35 = #
         final String STRINGBEGINPARAM = "#";
-        String superClass;
-        if(linha.contains(STRINGBEGINPARAM))
-            superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS, 
-                linha.indexOf(BEGINPARAM));
-        else
-            superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS);
-        return superClass;
+        String superClass = null;
+        if(linha.contains(EXTENDS)){
+            //if(linha.contains(STRINGBEGINPARAM))
+                //superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS, 
+                    //linha.indexOf(BEGINPARAM));
+            //else
+                superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS);
+        }
+        this.csdt.get(this.size).setSuperClasse(superClass);
+    }
+    public String getSuperClass(){
+        return this.csdt.get(size).getSuperClass();
     }
     public void filterParameter(String linha){
         linha.subSequence(linha.indexOf("#"), linha.indexOf(")"));

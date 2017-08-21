@@ -49,6 +49,9 @@ public class ClassData {
     public ParamProcessor getPmpr() {
         return pmpr;
     }
+    public String getSuperClass(){
+        return this.superclass;
+    }
     public void setName(String name){
         this.name = name;
     }
