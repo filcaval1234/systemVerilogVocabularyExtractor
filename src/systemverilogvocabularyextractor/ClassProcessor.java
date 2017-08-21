@@ -84,18 +84,16 @@ public class ClassProcessor extends Modulo{
         }
     }
     public void setSuperClass(String linha){
+        linha = this.filterIndentation(linha);
         final String EXTENDS = "extends";
         final int SIZEEXTENDS = EXTENDS.length();
         final char BEGINPARAM = 35; //in ascii 35 = #
         final String STRINGBEGINPARAM = "#";
         String superClass = null;
         if(linha.contains(EXTENDS)){
-            //if(linha.contains(STRINGBEGINPARAM))
-                //superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS, 
-                    //linha.indexOf(BEGINPARAM));
-            //else
-                superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS);
+            superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS);
         }
+        else superClass = linha.substring(0, linha.indexOf(" "));
         this.csdt.get(this.size).setSuperClasse(superClass);
     }
     public String getSuperClass(){
