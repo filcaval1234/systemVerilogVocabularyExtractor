@@ -26,10 +26,22 @@ public class ModuleProcessor extends Modulo{
         String nameModule = sourceLine.substring(sourceLine.indexOf(" "));
         ModuleData tempModuleData = new ModuleData(nameModule);
         this.arrayModuleData.add(tempModuleData);
+        this.size+=1;
     }
 
     @Override
-    void setVariableAndCommentlocal(String linha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }   
+    void setVariableAndCommentlocal(String sourceLine) {
+        if(this.beginStruct && !this.endStruct){
+            ModuleData referenceModule = this.arrayModuleData.get(size);
+            referenceModule.setMdpr(sourceLine);
+            if(!referenceModule.getMdpr().isModule())
+                referenceModule.setFdpr(sourceLine);
+            
+        }
+        else if(this.endStruct){
+            this.beginStruct = false;
+            this.endStruct = false;
+        }
+    }
+    
 }

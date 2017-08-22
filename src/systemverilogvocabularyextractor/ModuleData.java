@@ -32,11 +32,17 @@ public class ModuleData {
     public void setMdpr(MethodProcessor mdpr) {
         this.mdpr = mdpr;
     }
+    public void setMdpr(String sourceLine){
+        this.mdpr.setFields(sourceLine);
+    }
     public FieldProcessor getFdpr() {
         return fdpr;
     }
     public void setFdpr(FieldProcessor fdpr) {
         this.fdpr = fdpr;
+    }
+    public void setFdpr(String sourceLine){
+        this.fdpr.setListVariaveis(sourceLine);
     }
     public CommentProcessor getCtpr() {
         return ctpr;
