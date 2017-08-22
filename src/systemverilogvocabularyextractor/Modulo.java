@@ -61,4 +61,20 @@ abstract class Modulo {
         }
         return linha.substring(i);
     }
+    protected String filterParameter(String sourceLine){
+        final String INITIALPARAM = "#";
+        final String OTHERINITIALPARAM = "(";
+        if(sourceLine.contains(INITIALPARAM))
+            sourceLine = sourceLine.substring(0,sourceLine.indexOf(INITIALPARAM));
+        else 
+            sourceLine = sourceLine.substring(0, sourceLine.indexOf(OTHERINITIALPARAM));
+        return sourceLine;
+    }
+    protected String filtration(String sourceLine, boolean makeFilterParam){
+        sourceLine = this.filterAccessMode(sourceLine);
+        sourceLine = this.filterIndentation(sourceLine);
+        if(makeFilterParam)
+            sourceLine = this.filterParameter(sourceLine);
+        return sourceLine;
+    }
 }

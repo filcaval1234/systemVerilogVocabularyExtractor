@@ -99,9 +99,6 @@ public class ClassProcessor extends Modulo{
     public String getSuperClass(){
         return this.csdt.get(size).getSuperClass();
     }
-    public void filterParameter(String linha){
-        linha.subSequence(linha.indexOf("#"), linha.indexOf(")"));
-    }
     public String toString(){
         String classProc = "";
         for(ClassData str: this.csdt){
