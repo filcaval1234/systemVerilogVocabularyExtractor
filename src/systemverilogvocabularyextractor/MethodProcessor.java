@@ -62,7 +62,7 @@ public class MethodProcessor extends Modulo{
     public int getSize(){
         return this.size;
     }
-    public MethodData getUltimateClass(){
+    public MethodData getUltimateMethod(){
         return this.mtsd.get(size);
     }
     public boolean isModule(){

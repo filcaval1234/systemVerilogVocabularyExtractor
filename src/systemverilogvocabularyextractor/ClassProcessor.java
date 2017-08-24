@@ -73,7 +73,7 @@ public class ClassProcessor extends Modulo{
                 if(classTemp.getMdpr().isModule(linha)){
                     this.commentsFunction.setBeginComments(false);
                     this.commentsFunction.setEndComments(false);
-                    classTemp.getMdpr().getUltimateClass().setCommentLocal(this.commentsFunction);
+                    classTemp.getMdpr().getUltimateMethod().setCommentLocal(this.commentsFunction);
                     this.commentsFunction = new CommentProcessor();
                 }
             }
