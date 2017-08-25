@@ -24,10 +24,9 @@ public class Package {
      * @param nome nome do arquivo com final .sv ou .svh para facilatar o processo
      * @param caminhoAbsoluto caminho absoluto do pacote
      */
-    public Package(String nome, String caminhoAbsoluto){
-        this.nome = nome;
-        this.caminhoAbsoluto = caminhoAbsoluto;
-        this.arquivosDoPacote = new ArrayList<BufferedReader>();
+    public Package( ArrayList<BufferedReader> arquivosDoPacote){
+        this.nome = "";
+        this.arquivosDoPacote = arquivosDoPacote;
         this.vfs = new VerificationSintax();
         vfs.setAvlTreeSintax(vfs.setWordsKeys());
     }

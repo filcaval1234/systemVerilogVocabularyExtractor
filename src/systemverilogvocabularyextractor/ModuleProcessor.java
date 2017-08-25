@@ -34,7 +34,6 @@ public class ModuleProcessor extends Modulo{
         this.arrayModuleData.add(tempModuleData);
         this.size+=1;
     }
-
     @Override
     void setVariableAndCommentlocal(String sourceLine) {
         if(this.beginStruct && !this.endStruct){
