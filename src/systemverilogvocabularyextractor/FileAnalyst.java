@@ -49,8 +49,13 @@ public class FileAnalyst {
             for(BufferedReader fileInPackage: listArq){
                 try {
                     while(fileInPackage.ready()){
-                    lineInFile.add(fileInPackage.readLine());
-                    i++;
+                        //if(fileInPackage.readLine().equals("")){
+                        //    continue;
+                        //}
+                        //else{
+                        lineInFile.add(fileInPackage.readLine());
+                        i++;
+                        //}
                     }
                     fileInPackage.close();
                 } catch(IOException ioe){

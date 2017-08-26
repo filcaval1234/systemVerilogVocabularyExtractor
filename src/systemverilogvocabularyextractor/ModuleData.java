@@ -50,4 +50,16 @@ public class ModuleData {
     public void setCtpr(CommentProcessor ctpr) {
         this.ctpr = ctpr;
     }
+    public String toString(){
+        String module = "---------nameModule-------------\n";
+        module += this.nome;
+        module += "------------FieldsModule--------------\n";
+        module += this.fdpr;
+        module += "---------ModuleFunctions-------------\n";
+        module += this.mdpr;
+        module += "----------commentsModule--------------\n";
+        module += "----------commentsModule---------------\n";
+        module += this.ctpr;
+        return module;
+    }
 }

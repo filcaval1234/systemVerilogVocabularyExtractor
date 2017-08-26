@@ -14,6 +14,7 @@ public class InterfaceData {
     private CommentProcessor commentsProcessorInterface;
     private FieldProcessor fieldProcessorInterface;
     private ParamProcessor paramProcessorInterface;
+    //private ModPortProcessor arrayModPort
     
     public InterfaceData(String nome){
         this.nome = nome;

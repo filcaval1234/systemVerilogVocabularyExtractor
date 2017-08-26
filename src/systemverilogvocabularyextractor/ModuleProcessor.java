@@ -28,7 +28,7 @@ public class ModuleProcessor extends Modulo{
     }
     @Override
     void setFields(String sourceLine) {
-        sourceLine = this.filtration(sourceLine, true);
+        sourceLine = this.filtration(sourceLine, false);
         String nameModule = sourceLine.substring(sourceLine.indexOf(" "));
         ModuleData tempModuleData = new ModuleData(nameModule);
         this.arrayModuleData.add(tempModuleData);
@@ -37,7 +37,7 @@ public class ModuleProcessor extends Modulo{
     @Override
     void setVariableAndCommentlocal(String sourceLine) {
         if(this.beginStruct && !this.endStruct){
-            ModuleData referenceModule = this.arrayModuleData.get(this.size);
+            ModuleData referenceModule = this.arrayModuleData.get(this.size-1);
             if(this.commentsFunction.isCommentBlock(sourceLine))
                 this.commentsFunction.setComments(sourceLine);
             else{
@@ -52,5 +52,16 @@ public class ModuleProcessor extends Modulo{
                 }
             }
         }
+    }
+    public void setModuleComments(CommentProcessor comments){
+        this.arrayModuleData.get(size-1).setCtpr(comments);
+    }
+    @Override
+    public String toString(){
+        String modules = "";
+        for(ModuleData mdl: arrayModuleData){
+            modules += mdl;
+        }
+        return modules;
     }
 }
