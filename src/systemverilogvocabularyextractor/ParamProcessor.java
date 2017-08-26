@@ -13,9 +13,13 @@ import java.util.ArrayList;
  */
 public class ParamProcessor {
    private FieldProcessor  parametersFormal;
+   private boolean beginParam;
+   private boolean endParam;
+   private static String BEGINPARAM = "(";
+   private static String ENDPARAM = ")";
     
     public ParamProcessor(){
-        this.parametersFormal = new FieldProcessor();
+        this.parametersFormal = new FieldProcessor();        
     }
     public void setParametersFormal(String linha){
         final char BEGINPARAM = '(';
@@ -25,6 +29,12 @@ public class ParamProcessor {
         listString = linha.split(",");
         for(String str: listString){
             this.parametersFormal.setListVariaveis(str);
+        }
+    }
+    public void ParametersMoreThanOneLine(String linha){
+        this.beginParam = true;
+        if(linha.contains(ParamProcessor.ENDPARAM)){
+            
         }
     }
     public void isParamFormal(String linha){

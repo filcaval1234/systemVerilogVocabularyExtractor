@@ -21,12 +21,18 @@ public class ModPortProcessor extends Modulo{
     }
 
     @Override
-    void setFields(String originalLinha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void setFields(String sourceLine) {
+        ModPortData TempModPort;
+        if(this.isModule(sourceLine)){
+            String name = sourceLine.substring(sourceLine.indexOf(" "), 
+                    sourceLine.indexOf("("));
+            TempModPort = new ModPortData(name);
+        }
+        
     }
 
     @Override
     void setVariableAndCommentlocal(String linha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }
