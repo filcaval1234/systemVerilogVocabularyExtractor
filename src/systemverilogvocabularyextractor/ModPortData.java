@@ -12,12 +12,12 @@ package systemverilogvocabularyextractor;
 public class ModPortData {
     private String nome;
     private CommentProcessor commentsProcesorModPort;
-    private ParamProcessor paramModport;
+    private FieldProcessor fieldsModPort;
     
     public ModPortData(String nome){
         this.nome = nome;
         this.commentsProcesorModPort = new CommentProcessor();
-        this.paramModport = new ParamProcessor();
+        this.fieldsModPort = new FieldProcessor();
     }
 
     public CommentProcessor getCommentsProcesorModPort() {
@@ -26,10 +26,17 @@ public class ModPortData {
     public void setCommentsProcesorModPort(CommentProcessor commentsProcesorModPort) {
         this.commentsProcesorModPort = commentsProcesorModPort;
     }
-    public ParamProcessor getParamModport() {
-        return paramModport;
+    public FieldProcessor getFieldsModPort() {
+        return fieldsModPort;
     }
-    public void setParamModport(ParamProcessor paramModport) {
-        this.paramModport = paramModport;
+    public void setFieldsModPort(FieldProcessor fieldsModPort) {
+        this.fieldsModPort = fieldsModPort;
+    }
+    
+    public String toString(){
+        String modPort = "name modPort: "+ this.nome+"\n";
+        modPort += "---------param modPort----------\n";
+        modPort += this.fieldsModPort;
+        return modPort;
     }
 }

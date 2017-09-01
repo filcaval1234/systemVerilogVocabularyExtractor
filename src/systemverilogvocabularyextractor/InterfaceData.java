@@ -14,13 +14,33 @@ public class InterfaceData {
     private CommentProcessor commentsProcessorInterface;
     private FieldProcessor fieldProcessorInterface;
     private ParamProcessor paramProcessorInterface;
+    private MethodProcessor methodProcessorInterface;
+    private TaskProcessor taskProcessorInterface;
     //private ModPortProcessor arrayModPort
+
+    public MethodProcessor getMethodProcessorInterface() {
+        return methodProcessorInterface;
+    }
+
+    public void setMethodProcessorInterface(MethodProcessor methodProcessorInterface) {
+        this.methodProcessorInterface = methodProcessorInterface;
+    }
+
+    public TaskProcessor getTaskProcessorInterface() {
+        return taskProcessorInterface;
+    }
+
+    public void setTaskProcessorInterface(TaskProcessor taskProcessorInterface) {
+        this.taskProcessorInterface = taskProcessorInterface;
+    }
     
     public InterfaceData(String nome){
         this.nome = nome;
         this.commentsProcessorInterface = new CommentProcessor();
         this.fieldProcessorInterface = new FieldProcessor();
         this.paramProcessorInterface = new ParamProcessor();
+        this.methodProcessorInterface = new MethodProcessor();
+        this.taskProcessorInterface = new TaskProcessor();
     }
 
     public CommentProcessor getCommentsProcessorInterface() {
