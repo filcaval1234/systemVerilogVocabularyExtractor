@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A classe ClassProcessor tem atributos e métodos suficientes para todo o processamento
+ * há partir de linhas de codigos montar tudo de relativo a uma classe de 
+ * systemVerilog.
  */
 package systemverilogvocabularyextractor;
 
@@ -13,29 +13,48 @@ import java.util.ArrayList;
  */
 public class ClassProcessor extends Modulo{
     private int size;
-    private ArrayList<ClassData> csdt;
+    private ArrayList<ClassData> arrayClassData;
     private VerificationSintax vfs;
     private CommentProcessor commentsFunction;
     private static final String BEGINCLASS = "class";
     private static final String ENDCLASS = "endclass";
     
+    /**
+     * O construtor da classe que inicializa todos os campos e chama o método
+     * setAvlTreeSintax de vfs passando como argumento o retorno da função
+     * setWordsKeys também de vfs.
+     */
     public ClassProcessor(){
         super(BEGINCLASS, ENDCLASS);
-        this.csdt = new ArrayList<ClassData>();
+        this.arrayClassData = new ArrayList<ClassData>();
         this.commentsFunction = new CommentProcessor();
         vfs = new VerificationSintax();
         vfs.setAvlTreeSintax(vfs.setWordsKeys());
     }
+    /**
+     * O método setClassComents recebe um argumento do tipo CommentProcessor
+     * e então passa sua referencia para o ultimo elemento de arrayClassData
+     * @param classComments referencia do processador de commentarios 
+     */
     public void setClassComents(CommentProcessor classComments){
-        this.csdt.get(size).setCtpr(classComments);
+        this.arrayClassData.get(size).setCommentProcessorClassData(classComments);
     }
+    /**
+     * O método setClassesProperties verifica se inicio uma classe iniciando-a
+     * chama o método setFields e apos isso incrementa o tamanho
+     * @param sourceLine linha de codigo que será analisada
+     */
     public void setClassesProperties(String sourceLine){
         if(this.isModule(sourceLine)){
             this.setFields(sourceLine);
-            size = this.csdt.size()-1;
+            size = this.arrayClassData.size()-1;
         }
         this.setVariableAndCommentlocal(sourceLine);
-    }    
+    }
+    /**
+     * 
+     * @param lineOrigin 
+     */
     @Override
     public void setFields(String lineOrigin) {
         lineOrigin = this.filterAccessMode(lineOrigin);
@@ -56,24 +75,24 @@ public class ClassProcessor extends Modulo{
         csdt.setName(properties.get(0));
         if(properties.size()== 2)
             csdt.setSuperClasse(properties.get(properties.size()-1));
-        this.csdt.add(csdt);
+        this.arrayClassData.add(csdt);
     }
     @Override
     public void setVariableAndCommentlocal(String linha) {
         if(beginStruct && !endStruct){
-            ClassData classTemp = this.csdt.get(this.csdt.size()-1);
+            ClassData classTemp = this.arrayClassData.get(this.arrayClassData.size()-1);
             if(this.commentsFunction.isCommentBlock(linha))
                 this.commentsFunction.setComments(linha);
             else{
-                classTemp.setMdpr(linha);
-                classTemp.setTkpr(linha);
-                if(!classTemp.getMdpr().isModule() && 
-                        !classTemp.getTkpr().isModule())
-                    classTemp.setFdpr(linha);
-                if(classTemp.getMdpr().isModule(linha)){
+                classTemp.setMethodProcessorClassData(linha);
+                classTemp.setTaskProcessorClassData(linha);
+                if(!classTemp.getMethodProcessorClassData().isModule() && 
+                        !classTemp.getTaskProcessorClassData().isModule())
+                    classTemp.setFieldProcessorClassData(linha);
+                if(classTemp.getMethodProcessorClassData().isModule(linha)){
                     this.commentsFunction.setBeginComments(false);
                     this.commentsFunction.setEndComments(false);
-                    classTemp.getMdpr().getUltimateMethod().setCommentLocal(this.commentsFunction);
+                    classTemp.getMethodProcessorClassData().getUltimateMethod().setCommentLocal(this.commentsFunction);
                     this.commentsFunction = new CommentProcessor();
                 }
             }
@@ -94,14 +113,14 @@ public class ClassProcessor extends Modulo{
             superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS);
         }
         else superClass = linha.substring(0, linha.indexOf(" "));
-        this.csdt.get(this.size).setSuperClasse(superClass);
+        this.arrayClassData.get(this.size).setSuperClasse(superClass);
     }
     public String getSuperClass(){
-        return this.csdt.get(size).getSuperClass();
+        return this.arrayClassData.get(size).getSuperClass();
     }
     public String toString(){
         String classProc = "";
-        for(ClassData str: this.csdt){
+        for(ClassData str: this.arrayClassData){
             classProc += str+"\n";
         }
         return classProc;
