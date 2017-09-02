@@ -33,18 +33,14 @@ public class SearchPackage {
      * @param diretorio diretório do projeto, sendo este o caminho absoluto
      */
     public void setPackages(String diretorio){
-        //ArrayList<File> absolutePathPackage = new ArrayList<File>();
         ArrayList<String> namePackage = new ArrayList<String>();
         this.setPackages(diretorio, namePackage);
-        //this.packages = new Package[absolutePathPackage.size()];
         this.inBufferFiles();
         this.packages[0] = new Package(bufferFiles);
-        /*for(int i=0;i < this.allFilesProject.size();i++){
-            this.inBufferFiles();
-            this.packages[i] = new Package(this.bufferFiles);
-            //this.packages[i].setArquivosDoPacote();
-        }*/
     }
+    /**
+     * O método inBufferFiles coloca em buffer todos os arquivos do projeto.
+     */
     public void inBufferFiles(){
         for(int i=0;i<allFilesProject.size();i++){
             BufferedReader bufferFile = null;
@@ -53,6 +49,11 @@ public class SearchPackage {
         }
         this.allFilesProject = null;
     }
+    /**
+     * O método setPackages recebe dois argumentos que é o diretorio do projeto
+     * @param diretorio
+     * @param namePackage 
+     */
     private void setPackages(String diretorio, ArrayList<String> namePackage){
         File dirProject = new File(diretorio);
         File[] aFile = dirProject.listFiles();
@@ -63,7 +64,6 @@ public class SearchPackage {
                     FileReader file = new FileReader(aFile[i]);
                     allFilesProject.add(file);
                 } catch (FileNotFoundException ex) {
-                    //Logger.getLogger(SearchPackage.class.getName()).log(Level.SEVERE, null, ex);
                     continue;
                 }
                 namePackage.add(aFile[i].getName());

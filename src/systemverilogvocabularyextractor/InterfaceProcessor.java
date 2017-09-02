@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A classe InterfaceProcessor encapsula os campos e os método necessarios para
+ * a modelagem de um processador de interface extendendo da classe abstrata Modulo.
  */
 package systemverilogvocabularyextractor;
 import java.util.ArrayList;
@@ -16,17 +15,27 @@ public class InterfaceProcessor extends Modulo{
     private static final String ENDINTERFACE = "endinterface";
     private int size;
     
+    /**
+     * O construtor da classe que não recebe nemhum argumento e instacia 
+     * seus objetos.
+     */
     public InterfaceProcessor(){
         super(InterfaceProcessor.BEGIMINTERFACE, InterfaceProcessor.ENDINTERFACE);
         this.arrayInterface = new ArrayList<InterfaceData>();
         this.genericCommentProcessorInterface = new CommentProcessor();
     }   
-
+    /**
+     * O método
+     * @param originalLinha 
+     */
     @Override
     void setFields(String originalLinha) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * 
+     * @param linha 
+     */
     @Override
     void setVariableAndCommentlocal(String linha) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

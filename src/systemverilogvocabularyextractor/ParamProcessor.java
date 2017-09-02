@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A classe ParamProcessor encapsula os dados e os métodos para poder processar
+ * parâmetros em modulos de systemverilog
  */
 package systemverilogvocabularyextractor;
 
@@ -18,28 +17,28 @@ public class ParamProcessor {
    private static String BEGINPARAM = "(";
    private static String ENDPARAM = ")";
     
+   /**
+    * O construtor da classe não recebe argumento.
+    */
     public ParamProcessor(){
         this.parametersFormal = new FieldProcessor();        
     }
-    public void setParametersFormal(String linha){
+    /**
+     * O método setParametersFormal recebe um argumento que é a linha que será 
+     * retirada apenas os parâmetros formais de funções, tasks, modules, interfaces
+     * classes
+     * @param sourceLine linha de código que será processada 
+     */
+    public void setParametersFormal(String sourceLine){
         final char BEGINPARAM = '(';
         final String ENDPARAM = ")";
         String[] listString;
-        linha = linha.substring(linha.indexOf(BEGINPARAM)+1).replace(ENDPARAM, "");
-        listString = linha.split(",");
+        sourceLine = sourceLine.substring(sourceLine.indexOf(BEGINPARAM)+1).replace(ENDPARAM, "");
+        listString = sourceLine.split(",");
         for(String str: listString){
             this.parametersFormal.setListVariaveis(str);
         }
-    }
-    public void ParametersMoreThanOneLine(String linha){
-        this.beginParam = true;
-        if(linha.contains(ParamProcessor.ENDPARAM)){
-            
-        }
-    }
-    public void isParamFormal(String linha){
-        
-    }
+    }  
     public String toString(){
         return this.parametersFormal.toString();
     }   

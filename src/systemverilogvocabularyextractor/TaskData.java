@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A classe TaskData encapsula os dados e os métodos necessarios para a modelagem
+ * de uma task em systemverilog extendo de MethodData
  */
 package systemverilogvocabularyextractor;
 
@@ -10,12 +9,13 @@ package systemverilogvocabularyextractor;
  * @author fc.corporation
  */
 public class TaskData extends MethodData{
-    private String dalay;
+    
+    /**
+     * O construtor da classe que recebe um argumento que é o nome da task
+     * @param name nome da task
+     */
     public TaskData(String name) {
         super(name);
-    }
-    public void setDelay(String delay){
-        this.dalay = delay;
     }
     @Override
     public String toString(){

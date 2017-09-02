@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A classe SystemVerilogVocabularyExtractor é a classe  pricipal do projeto
+ * é há partir dela que é executado todas as partes do projeto.
  */
 package systemverilogvocabularyextractor;
 
@@ -19,6 +18,11 @@ public class SystemVerilogVocabularyExtractor {
     private ArrayList<String> projectSource;
     //private PackageProcessor packageProcessor;
     
+    /**
+     * O construtor da classe recebe um argumento que é o diretorio do projeto
+     * daí é instanciado os objetos que fazem parte do SystemVerilogVocabularyExtractor
+     * @param diretorio diretorio do projeto
+     */
     public SystemVerilogVocabularyExtractor(String diretorio){
         this.fileAnalyst = new FileAnalyst(diretorio);
         this.genericsComments = new CommentProcessor();
@@ -28,6 +32,9 @@ public class SystemVerilogVocabularyExtractor {
         this.run();
         //this.packageProcessor = new PackageProcessor();
     }
+    /**
+     * O métedo run, é nele que é executado tudo.
+     */
     public void run(){
         int index = 0;
         for(;index < this.projectSource.size();index++){
@@ -55,6 +62,10 @@ public class SystemVerilogVocabularyExtractor {
         //svve += packageProcessor.toString();
         return svve;
     }
+    /**
+     * O main do projeto
+     * @param args argumentos caso o projeto for executado da linha de comando
+     */
     public static void main(String[] args) {
         /*if(args.length != 1){
             System.err.println("built.: java SystemVerilogVocabularyExtractor"

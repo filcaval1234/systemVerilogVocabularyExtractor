@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A classe abstrata Modulo reuni caracteristicas de um modulo genirico
+ * de systemverilog, ou seja, um modulo de código que começo e fim comentários
+ * relativos à tal modulo suas variaveis locais.
  */
 package systemverilogvocabularyextractor;
-
-import java.util.ArrayList;
 
 /**
  *
@@ -17,50 +15,99 @@ abstract class Modulo {
     protected String BEGINSTRUCT;
     protected String ENDSTRUCT;
     
+    /**
+     * O construtor da classe recebe dois parâmetros que são o começo do modulo
+     * e o fin do modulo.
+     * @param begin começo do modulo
+     * @param end fim do modulo
+     */
     public Modulo(String begin, String end){
         this.BEGINSTRUCT = begin;
         this.ENDSTRUCT = end;
         this.beginStruct = false;
         this.endStruct = false;
     }
-    abstract void setFields(String originalLinha);
+    /**
+     * O método abstrato setFields será o principal da classe, então ha partir
+     * dele que será invocado os outros métodos
+     * @param sourceLine linha de código que será analisada 
+     */
+    abstract void setFields(String sourceLine);
     
-    abstract void setVariableAndCommentlocal(String linha);
+    /**
+     * O métedo setVariableAndCommentlocal vai processar tudo dentro do modulo
+     * que não seja o seu nome, ou seja, as variaveis locais, comentarios, varia
+     * de modulo para modulo.
+     * @param sourceline linha de código que será analisada 
+     */
+    abstract void setVariableAndCommentlocal(String sourceline);
     
-    protected boolean isModule(String linha){
+    /**
+     * O método isModule verifica se inicio-se um novo modulo systemverilog
+     * daí retorna true, caso contrário retorna false
+     * @param sourceLine linha de código que será analisada
+     * @return um boolean que será true se inicio-se um novo modulo, do contrário
+     * será retornado false
+     */
+    protected boolean isModule(String sourceLine){
         boolean state = false;
-        if(linha.startsWith(BEGINSTRUCT)){
+        if(sourceLine.startsWith(BEGINSTRUCT)){
             state = true;
             beginStruct = true;
             endStruct = false;
         }
-        else if(linha.startsWith(ENDSTRUCT)){
+        else if(sourceLine.startsWith(ENDSTRUCT)){
             beginStruct = false;
             endStruct = true;
         }
         return state;
     }
+    /**
+     * O método isModule sem argumento é uma sobrecarga do método isModule
+     * a finalidade deste é retornar true enquanto o modulo não encerrar
+     * @return true se o modulo não terminou, e false se o modulo terminou.
+     */
     protected boolean isModule(){
         return this.beginStruct;
     }
-    protected String filterAccessMode(String linha){
-        if(linha.contains(BEGINSTRUCT+" ") && !linha.contains(ENDSTRUCT)&& !linha.contains("=")){
-            linha = linha.substring(linha.indexOf(BEGINSTRUCT));
+    /**
+     * O método filterAccessMode filtra os modificadores de acesso dos modulos
+     * por enquanto a modelagem do extrator não importa o modo de acesso dos
+     * modulos
+     * @param sourceLine linha de código que será analisada
+     * @return uma Sting que é o codigo ssystemverilog agora sem modificadores de
+     * acesso
+     */
+    protected String filterAccessMode(String sourceLine){
+        if(sourceLine.contains(BEGINSTRUCT+" ") && !sourceLine.contains(ENDSTRUCT)&& !sourceLine.contains("=")){
+            sourceLine = sourceLine.substring(sourceLine.indexOf(BEGINSTRUCT));
         }
-        return linha;
+        return sourceLine;
     }
-    protected String filterIndentation(String linha){
+    /**
+     * O método filterIdentation filtra toda a identação dos modulos systemverilog
+     * começo, meio ou  fim.
+     * @param sourceLine linha de código que será retirada a identação
+     * @return retorna a linha de código sem identação
+     */
+    protected String filterIndentation(String sourceLine){
         int i=0;
         final char TAB = 9;
-        linha = linha.replace(TAB, ' ');
-        for(;i < linha.length(); i++){
-            char teste = linha.charAt(i);
-            if(linha.charAt(i) == ' ' || linha.charAt(i) == 9) {
+        sourceLine = sourceLine.replace(TAB, ' ');
+        for(;i < sourceLine.length(); i++){
+            char teste = sourceLine.charAt(i);
+            if(sourceLine.charAt(i) == ' ' || sourceLine.charAt(i) == 9) {
                 continue;
             }else break;
         }
-        return linha.substring(i);
+        return sourceLine.substring(i);
     }
+    /**
+     * O método filterParameter filtra todo tipo de parâmtros na declaração dos
+     * modulos systemverilo
+     * @param sourceLine linha de código que será retirada os parâmetros
+     * @return uma linha de código sem parâmetros
+     */
     protected String filterParameter(String sourceLine){
         final String INITIALPARAM = "#";
         final String OTHERINITIALPARAM = "(";
@@ -70,6 +117,15 @@ abstract class Modulo {
             sourceLine = sourceLine.substring(0, sourceLine.indexOf(OTHERINITIALPARAM));
         return sourceLine;
     }
+    /**
+     * O método filtration junta todos os filtros em um só ligar para facilar
+     * no processamento do código que será extraido, dependendo de makeFilterParam
+     * a filtragem filtra ou não os parâmetros
+     * @param sourceLine linha de código que será filtrada
+     * @param makeFilterParam se true é feito a filtragem dos parâmetros se
+     * false não será feito
+     * @return a String filtrada
+     */
     protected String filtration(String sourceLine, boolean makeFilterParam){
         sourceLine = this.filterAccessMode(sourceLine);
         sourceLine = this.filterIndentation(sourceLine);

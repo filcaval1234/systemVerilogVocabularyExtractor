@@ -52,8 +52,10 @@ public class ClassProcessor extends Modulo{
         this.setVariableAndCommentlocal(sourceLine);
     }
     /**
-     * 
-     * @param lineOrigin 
+     * O método setFields é sobrescrito, este método recebe uma string e 
+     * retira dela o nome da classe junto com sua herança caso ela exista
+     * também retira os parâmetros da classe.
+     * @param lineOrigin linha de código que será analisada.
      */
     @Override
     public void setFields(String lineOrigin) {
@@ -77,19 +79,25 @@ public class ClassProcessor extends Modulo{
             csdt.setSuperClasse(properties.get(properties.size()-1));
         this.arrayClassData.add(csdt);
     }
+    /**
+     * O método setVariableAndCommentlocal modela todo interior de uma classe
+     * systemverilog, ou seja, há partir de outros métodos ele modela
+     * funções tastks e seus respctivos comentários.
+     * @param sourceLine linha de código que será analisada.
+     */
     @Override
-    public void setVariableAndCommentlocal(String linha) {
+    public void setVariableAndCommentlocal(String sourceLine) {
         if(beginStruct && !endStruct){
             ClassData classTemp = this.arrayClassData.get(this.arrayClassData.size()-1);
-            if(this.commentsFunction.isCommentBlock(linha))
-                this.commentsFunction.setComments(linha);
+            if(this.commentsFunction.isCommentBlock(sourceLine))
+                this.commentsFunction.setComments(sourceLine);
             else{
-                classTemp.setMethodProcessorClassData(linha);
-                classTemp.setTaskProcessorClassData(linha);
+                classTemp.setMethodProcessorClassData(sourceLine);
+                classTemp.setTaskProcessorClassData(sourceLine);
                 if(!classTemp.getMethodProcessorClassData().isModule() && 
                         !classTemp.getTaskProcessorClassData().isModule())
-                    classTemp.setFieldProcessorClassData(linha);
-                if(classTemp.getMethodProcessorClassData().isModule(linha)){
+                    classTemp.setFieldProcessorClassData(sourceLine);
+                if(classTemp.getMethodProcessorClassData().isModule(sourceLine)){
                     this.commentsFunction.setBeginComments(false);
                     this.commentsFunction.setEndComments(false);
                     classTemp.getMethodProcessorClassData().getUltimateMethod().setCommentLocal(this.commentsFunction);
@@ -102,22 +110,37 @@ public class ClassProcessor extends Modulo{
             endStruct = false;
         }
     }
-    public void setSuperClass(String linha){
-        linha = this.filterIndentation(linha);
+    /**
+     * O método setSuperClass recebe um argumento e então retira a superClass
+     * da classe que será analisada
+     * @param sourceLine linha de código.
+     */
+    public void setSuperClass(String sourceLine){
+        sourceLine = this.filterIndentation(sourceLine);
         final String EXTENDS = "extends";
         final int SIZEEXTENDS = EXTENDS.length();
         final char BEGINPARAM = 35; //in ascii 35 = #
         final String STRINGBEGINPARAM = "#";
         String superClass = null;
-        if(linha.contains(EXTENDS)){
-            superClass = linha.substring(linha.indexOf(EXTENDS)+SIZEEXTENDS);
+        if(sourceLine.contains(EXTENDS)){
+            superClass = sourceLine.substring(sourceLine.indexOf(EXTENDS)+SIZEEXTENDS);
         }
-        else superClass = linha.substring(0, linha.indexOf(" "));
+        else superClass = sourceLine.substring(0, sourceLine.indexOf(" "));
         this.arrayClassData.get(this.size).setSuperClasse(superClass);
     }
+    /**
+     * O método getSuperClass retorna a superClass da ultima classe extraida 
+     * até o momento da chamada desta função.
+     * @return uma String que é a superClass da ultima classe extráida
+     */
     public String getSuperClass(){
         return this.arrayClassData.get(size).getSuperClass();
     }
+    /**
+     * O método toString retorna uma string formatada de acordo com a necessidade
+     * atual
+     * @return uma String que é tudo das classes que foi extraida. 
+     */
     public String toString(){
         String classProc = "";
         for(ClassData str: this.arrayClassData){

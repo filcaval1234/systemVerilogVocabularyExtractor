@@ -41,20 +41,20 @@ public class ModuleProcessor extends Modulo{
             if(this.commentsFunction.isCommentBlock(sourceLine))
                 this.commentsFunction.setComments(sourceLine);
             else{
-                referenceModule.setMdpr(sourceLine);
-                if(!referenceModule.getMdpr().isModule())
-                    referenceModule.setFdpr(sourceLine);
-                if(referenceModule.getMdpr().isModule(sourceLine)){
+                referenceModule.setMethodProcessorModuleData(sourceLine);
+                if(!referenceModule.getMethodProcessorModuleData().isModule())
+                    referenceModule.setFieldProcessorModuleData(sourceLine);
+                if(referenceModule.getMethodProcessorModuleData().isModule(sourceLine)){
                     this.commentsFunction.setBeginComments(false);
                     this.commentsFunction.setEndComments(false);
-                    referenceModule.getMdpr().getUltimateMethod().setCommentLocal(this.commentsFunction);
+                    referenceModule.getMethodProcessorModuleData().getUltimateMethod().setCommentLocal(this.commentsFunction);
                     this.commentsFunction = new CommentProcessor();
                 }
             }
         }
     }
     public void setModuleComments(CommentProcessor comments){
-        this.arrayModuleData.get(size-1).setCtpr(comments);
+        this.arrayModuleData.get(size-1).setCommentProcessorModuleData(comments);
     }
     @Override
     public String toString(){

@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A classe MethodData encapsula os dados e os métodos necessarios para 
+ * a modelagem de um método de systemverilog no caso uma função.
  */
 package systemverilogvocabularyextractor;
 
@@ -18,6 +17,11 @@ public class MethodData {
     
     //private EnumProcessor enums;
     
+    /**
+     * O construtor da classe que inicializa todos os campos da classe
+     * @param name noma da função extraida
+     * @param retorno tipo do retorno que a função tem
+     */
     public MethodData(String name, String retorno){
         this.name = name;
         this.retorno = retorno;
@@ -25,24 +29,53 @@ public class MethodData {
         this.localField = new FieldProcessor();
         this.param = new ParamProcessor();
     }
+    /**
+     * O construtor da classe que recebe apenas um argumento mas, também instacia
+     * todos os objetos necessarios para a modelagem
+     * @param name nome da função extraida
+     */
     public MethodData(String name){
         this.name = name;
         this.commentsFunction = new CommentProcessor();
         this.localField = new FieldProcessor();
         this.param = new ParamProcessor();
     }
-    public void setParam(String linha){
-        param.setParametersFormal(linha);
+    /**
+     * O método setParam chama internamente o método setParametersFormal de param
+     * daí todo o processamento é feito internamente ao objeto param que é do 
+     * tipo ParamProcessor
+     * @param sourceLine linha de código que será analisada 
+     */
+    public void setParam(String sourceLine){
+        param.setParametersFormal(sourceLine);
     }
-    public void setLocalField(String linha){
-        localField.setListVariaveis(linha);
+    /**
+     * O método setLocalField vai procesar todas as variaveis que local a determinada
+     * função que está sendo extraida.
+     * @param sourceLine linha de código analisada 
+     */
+    public void setLocalField(String sourceLine){
+        localField.setListVariaveis(sourceLine);
     }
-    public void setCommentLocal(String linha){
-        commentsFunction.setComments(linha);
+    /**
+     * O método setCommentLocal extraí os comentários locais a função que está 
+     * sendo extraida.
+     * @param sourceLine linha de código que será analisada
+     */
+    public void setCommentLocal(String sourceLine){
+        commentsFunction.setComments(sourceLine);
     }
+    /**
+     * O método setCommentLocal (seta) o atributo commentsFunction
+     * @param commentsFunction referencia a um processador de comentarios
+     */
     public void setCommentLocal(CommentProcessor commentsFunction){
         this.commentsFunction = commentsFunction;
     }
+    /**
+     * O método toString retorna uma String formatada
+     * @return retorna uma String formatada
+     */
     public String toString(){
         String metodo ="nome da função: "+this.name+" retorno: "+ this.retorno+"\n";
         metodo += "----------------Functionparameters----------------------------+\n";

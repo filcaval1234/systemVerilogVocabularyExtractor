@@ -58,12 +58,6 @@ public class CommentProcessor {
             this.commentBlock += linha.replace(this.ENDSCOMMENTSBLOCK, "")+"\n";
         }
     }
-    /*public boolean isComment(String linha){
-        boolean state = false;
-        if(state = this.isCommentBlock(linha)){  
-        }
-        return
-    }*/
     /**
      * O método isCommentBlock verifica se no código iniciou um comentário de bloco
      * ou se o comentário terminou

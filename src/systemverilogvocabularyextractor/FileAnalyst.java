@@ -25,9 +25,6 @@ public class FileAnalyst {
      */
     public FileAnalyst(String diretorio){
         srpkg = new SearchPackage(diretorio); 
-        //anlv = new FieldProcessor();
-        //cmt = new CommentProcessor();
-        //clpr = new ClassProcessor(diretorio);
         
     }
     /**

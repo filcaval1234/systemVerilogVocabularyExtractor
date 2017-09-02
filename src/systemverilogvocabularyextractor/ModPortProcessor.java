@@ -16,7 +16,7 @@ public class ModPortProcessor extends Modulo{
     private static final String BEGIMMODPORT = "modport";
     private static final String ENDMODPORT = ");";
 
-    public ModPortProcessor(String begin, String end) {
+    public ModPortProcessor() {
         super(ModPortProcessor.BEGIMMODPORT, ModPortProcessor.ENDMODPORT);
         this.arrayModPorts = new ArrayList<ModPortData>();
         this.fieldProcessorModPort = new FieldProcessor();

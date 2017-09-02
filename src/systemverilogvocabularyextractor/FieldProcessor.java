@@ -30,13 +30,13 @@ public class FieldProcessor {
      * O método setListVariaveis faz toda a filtragem em cima da linha, ela sendo
      * uma variável, daí então chega se há mais de um tipo primitivo ele concatena-os
      * e após isso ele monta a lista de Variaveis.
-     * @param linha linha do arquivo que será analisada
+     * @param sourceLine linha do arquivo que será analisada
      */
-    public void setListVariaveis(String linha){
-        linha = this.filterValuesReturnedFunctions(linha);
-        linha = this.filterComments(linha);
-        if(this.isVariable(linha) || this.isTypeWithVector(linha)){
-            ArrayList<String> wordsFiltrade = this.filtragem(linha);
+    public void setListVariaveis(String sourceLine){
+        sourceLine = this.filterValuesReturnedFunctions(sourceLine);
+        sourceLine = this.filterComments(sourceLine);
+        if(this.isVariable(sourceLine) || this.isTypeWithVector(sourceLine)){
+            ArrayList<String> wordsFiltrade = this.filtragem(sourceLine);
             for(int i=1;i < wordsFiltrade.size();i++){
                 try{
                     String tiposConcatenados = wordsFiltrade.get(0);
@@ -59,12 +59,12 @@ public class FieldProcessor {
     /**
      * O método filtragem executa todos os sub-filtros de forma organizada
      * filtrando assim tudo de desnecessario da linha retornando um array
-     * @param linha linha que será filtrada
+     * @param sourceLine linha que será filtrada
      * @return um array só com tipos e nomes de variáveis
      */
-    private ArrayList<String> filtragem(String linha){
-        linha = this.filterIdentation(linha);
-        String filtradeWord = this.filtroPontoVirgula(this.filtroValores(linha));
+    private ArrayList<String> filtragem(String sourceLine){
+        sourceLine = this.filterIdentation(sourceLine);
+        String filtradeWord = this.filtroPontoVirgula(this.filtroValores(sourceLine));
         ArrayList<String> listFiltradeWord = this.filtroIdentacao(filtradeWord);
         return this.filterComman(listFiltradeWord);
     }
@@ -95,22 +95,22 @@ public class FieldProcessor {
     /**
      * O método filtroIdentacao recebe um argumento e retira toda a identação e
      * também todos os espaços desnecessarios
-     * @param linha linha que será retirado a identação
+     * @param sourceLine linha que será retirado a identação
      * @return um array com nomes sem espaços
      */
-    private ArrayList<String> filtroIdentacao(String linha){
+    private ArrayList<String> filtroIdentacao(String sourceLine){
         int i=0;
         final char TAB = 9;
         final char SPACE = 32;
-        linha = linha.replace(TAB, SPACE);
-        for(;i < linha.length(); i++){
-            char teste = linha.charAt(i);
-            if(linha.charAt(i) == TAB) {
+        sourceLine = sourceLine.replace(TAB, SPACE);
+        for(;i < sourceLine.length(); i++){
+            char teste = sourceLine.charAt(i);
+            if(sourceLine.charAt(i) == TAB) {
                 continue;
             }else break;
         }
-        linha = linha.substring(i);
-        String[] listStrline = linha.split(" ");
+        sourceLine = sourceLine.substring(i);
+        String[] listStrline = sourceLine.split(" ");
         ArrayList<String> withoutIndentation = new ArrayList<String>();
         for(String str: listStrline){
             if(!str.equals("")){
@@ -119,41 +119,48 @@ public class FieldProcessor {
         }
         return withoutIndentation;
     }
-    private String filterIdentation(String linha){
+    /**
+     * O método filterIdentation recebe uma argumento e retira toda a identação
+     * que linha que lhe é passada como parâmetro não importa se é no começo 
+     * meio ou fim
+     * @param sourceLine linha de código que será retirada a identação
+     * @return uma String sem idemtação
+     */
+    private String filterIdentation(String sourceLine){
         final String IDENTATION = "  ";
-        return linha.replace(IDENTATION, "");
+        return sourceLine.replace(IDENTATION, "");
     }
     /**
      * O método filtroPontoVirgula retira o ";" do final de cada linha
      * passada como parâmetro 
-     * @param linha linha que será retirao o ";"
+     * @param SourceLine linha que será retirao o ";"
      * @return uma String onde não há mais ";"
      */
-    private String filtroPontoVirgula(String linha){
-        return linha.replace(";", "");
+    private String filtroPontoVirgula(String SourceLine){
+        return SourceLine.replace(";", "");
     }
     /**
      * O método filtroValores filtra os valores que ha após o símbolo de "="
      * em todas as variaveis da linha
-     * @param linha linha que será retirada os valores
+     * @param sourceLine linha que será retirada os valores
      * @return string só com o tipo e os nomes das variáveis
      */
-    private String filtroValores(String linha){
-        String withoutValues = linha;
+    private String filtroValores(String sourceLine){
+        String withoutValues = sourceLine;
         final String ILLEGALSTRING = "=";
         final char ILLEGALWORDCHAR = '=';
         final char COMMAN = ',';
-        if(linha.contains(ILLEGALSTRING)){
+        if(sourceLine.contains(ILLEGALSTRING)){
             withoutValues = "";
-            for(int i=0;i < linha.length();i++){
-                if(linha.charAt(i) == ILLEGALWORDCHAR){
-                    while(linha.charAt(i) != COMMAN){
-                        if(linha.charAt(i) == ';')
+            for(int i=0;i < sourceLine.length();i++){
+                if(sourceLine.charAt(i) == ILLEGALWORDCHAR){
+                    while(sourceLine.charAt(i) != COMMAN){
+                        if(sourceLine.charAt(i) == ';')
                             break;
                         i++;
                     }
                 }
-                withoutValues += linha.charAt(i);
+                withoutValues += sourceLine.charAt(i);
             }
         }
        return withoutValues; 
@@ -162,17 +169,17 @@ public class FieldProcessor {
      * O método isVariable verifica se a linha passada como parâmetro pode ter ou
      * não uma variável baseada numa lista de símbolos que caracterizam a ausência
      * de variável.
-     * @param linha linha que será averiguada se há ou não variável
+     * @param sourceLine linha que será averiguada se há ou não variável
      * @return true se há uma variável do contrário retorna false
      */
-    private boolean isVariable(String linha){
+    private boolean isVariable(String sourceLine){
         boolean state = true;
         String[] isNotVariable = {"class","#","return","(", "{", "+", "-", "/", "*","-",":", "}", ")", "<"};
-        if(linha.equals(" ")){
+        if(sourceLine.equals(" ")){
             return false;
         }
         for(String i: isNotVariable){
-            if(linha.contains(i)){
+            if(sourceLine.contains(i)){
                 state = false;
                 return state;
             }
@@ -182,39 +189,59 @@ public class FieldProcessor {
     /**
      * O método filterValuesReturnedFunctions filtra as variáveis que estão 
      * recebendo algum valor do retorno de funções/métodos.
-     * @param linha linha que será filtrada
+     * @param sourceLine linha que será filtrada
      * @return uma String só com o tipo e o nome da variável
      */
-    private String filterValuesReturnedFunctions(String linha){
+    private String filterValuesReturnedFunctions(String sourceLine){
         final String EQUALS = "=";
         final String PARENTHESES = "(";
-        String withoutValuesReturnedOfFunctions = linha;
-        if(linha.contains(EQUALS) && linha.contains(PARENTHESES)){
-            withoutValuesReturnedOfFunctions = linha.substring(0, linha.indexOf(EQUALS)-1)+";";
+        String withoutValuesReturnedOfFunctions = sourceLine;
+        if(sourceLine.contains(EQUALS) && sourceLine.contains(PARENTHESES)){
+            withoutValuesReturnedOfFunctions = sourceLine.substring(0, sourceLine.indexOf(EQUALS)-1)+";";
         }
         return withoutValuesReturnedOfFunctions;
     }
-    private String filterComments(String linha){
+    /**
+     * O método filterComments recebe um argumento que é uma linha de código
+     * systemverilog da ele filtra comentarios de linha que podem estar logo
+     * após o final da linha código.
+     * @param sourceLine linha de código que será processada
+     * @return uma String que é somente código systemverilog sem comentários de linha 
+     * presentes nela.
+     */
+    private String filterComments(String sourceLine){
         final String ILLEGALCHARSEQUENCE = "//";
-        if(linha.contains(ILLEGALCHARSEQUENCE))
-            linha = linha.substring(0,linha.indexOf(ILLEGALCHARSEQUENCE));
-        return linha;
+        if(sourceLine.contains(ILLEGALCHARSEQUENCE))
+            sourceLine = sourceLine.substring(0,sourceLine.indexOf(ILLEGALCHARSEQUENCE));
+        return sourceLine;
     }
-    public String getTypeWithVector(String linha){
+    /**
+     * O método getTypeWithVector recebe um argumento que é uma linha de código
+     * daí ele retorna o tipo com sua declaração de vetor junto.
+     * @param sourceLine linha que será analisada
+     * @return uma String que é o tipo com sua declaração de vetor
+     */
+    public String getTypeWithVector(String sourceLine){
         final String ISVECTOR = "]";
-        linha = this.filterIdentation(linha);
-        String typeWithVector = linha.substring(0, linha.indexOf("]"));
-        String nome = linha.substring(linha.indexOf("]"));
+        sourceLine = this.filterIdentation(sourceLine);
+        String typeWithVector = sourceLine.substring(0, sourceLine.indexOf("]"));
+        String nome = sourceLine.substring(sourceLine.indexOf("]"));
         
         return typeWithVector;
     }
-    private boolean isTypeWithVector(String linha){
+    /**
+     * O método isTypeWithVector verifica se a linha passada como parâmetro 
+     * é um tipo com uma declaração de vetor junta a ele.
+     * @param sourceLine linha de código que será analisada
+     * @return um boolean true se o tipo for um array ou false se não for.
+     */
+    private boolean isTypeWithVector(String sourceLine){
         boolean state = false;
-        linha = this.filterIdentation(linha);
+        sourceLine = this.filterIdentation(sourceLine);
         final String ILLEGALCHAR = "=";
         final String[] VECTOR = {"[", "]"};
-        if(linha.contains(VECTOR[0]) && linha.contains(VECTOR[1])){
-            String subLine = linha.substring(linha.indexOf(VECTOR[1]));
+        if(sourceLine.contains(VECTOR[0]) && sourceLine.contains(VECTOR[1])){
+            String subLine = sourceLine.substring(sourceLine.indexOf(VECTOR[1]));
             if(!subLine.startsWith("] ") || !subLine.startsWith("]")){
                 return false;
             }
@@ -222,6 +249,11 @@ public class FieldProcessor {
         }
         return state;
     }
+    /**
+     * O método toString retorna a String formatada de acordo com a necessidade
+     * atual
+     * @return uma String formata.
+     */
     public String toString(){
         String AnalystVariable = "";
         for(Variavel var: listVariaveis){

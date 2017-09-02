@@ -81,8 +81,4 @@ public class VerificationSintax {
     public boolean UVMsintax(String word){
         return word.contains("uvm");
     }
-    /*public static void main(String[] args) {
-        String nome = "uvmParent";
-        System.out.println(nome.contains("uvm"));
-    }*/
 }
