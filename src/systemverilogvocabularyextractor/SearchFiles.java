@@ -5,26 +5,19 @@
 package systemverilogvocabularyextractor;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author fc.corporation
  */
-public class SearchPackage {
-    Package[] packages;
+public class SearchFiles {
     ArrayList<FileReader> allFilesProject;
     ArrayList<BufferedReader> bufferFiles;
     
-    public SearchPackage(String diretorio){
-        this.packages = new Package[1]; 
+    public SearchFiles(String diretorio){
         this.allFilesProject = new ArrayList<FileReader>();
         this.bufferFiles = new ArrayList<BufferedReader>();
         this.setPackages(diretorio);
         
-    }
-    public Package[] getPackage(){
-        return this.packages;
     }
     /**
      * O método setPackages recebe um argumento que é o diretorio daí através de
@@ -36,7 +29,6 @@ public class SearchPackage {
         ArrayList<String> namePackage = new ArrayList<String>();
         this.setPackages(diretorio, namePackage);
         this.inBufferFiles();
-        this.packages[0] = new Package(bufferFiles);
     }
     /**
      * O método inBufferFiles coloca em buffer todos os arquivos do projeto.
@@ -48,6 +40,9 @@ public class SearchPackage {
             bufferFiles.add(bufferFile);
         }
         this.allFilesProject = null;
+    }
+    public ArrayList<BufferedReader> getbufferFiles(){
+        return this.bufferFiles;
     }
     /**
      * O método setPackages recebe dois argumentos que é o diretorio do projeto

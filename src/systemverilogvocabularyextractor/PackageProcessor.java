@@ -13,22 +13,17 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class Package {
-    String nome;
-    ArrayList<BufferedReader> arquivosDoPacote;
-    String caminhoAbsoluto;
-    VerificationSintax vfs;
+public class PackageProcessor {
+    private ArrayList<PackageData> arrayPackage; 
+    private VerificationSintax verificationSimtas;
     /**
-     * O construtor da classe rece dois argumentos e inicializa os campos
-     * nome e o caminhoAbsoluto
-     * @param nome nome do arquivo com final .sv ou .svh para facilatar o processo
-     * @param caminhoAbsoluto caminho absoluto do pacote
+     * O construtor da classe não recebe nemhum argumento e inicializa todos os 
+     * campos da classe
      */
-    public Package( ArrayList<BufferedReader> arquivosDoPacote){
-        this.nome = "";
-        this.arquivosDoPacote = arquivosDoPacote;
-        this.vfs = new VerificationSintax();
-        vfs.setAvlTreeSintax(vfs.setWordsKeys());
+    public PackageProcessor( ){
+        arrayPackage = new ArrayList<PackageData>();
+        this.verificationSimtas = new VerificationSintax();
+        verificationSimtas.setAvlTreeSintax(verificationSimtas.setWordsKeys());
     }
     /**
      * O método getLinhasArquivosDoPacote abre o arquivo e lê suas linhas
@@ -63,7 +58,7 @@ public class Package {
             String[] listWords = linhasDoArquivo.get(i).split(" ");
             for(int j=0;j < listWords.length;j++){
                 try {
-                    if(vfs.sytemVerilogSintax(listWords[j]) == false && vfs.UVMsintax(listWords[j]) == false){
+                    if(verificationSimtas.sytemVerilogSintax(listWords[j]) == false && verificationSimtas.UVMsintax(listWords[j]) == false){
                         if(listWords[j].endsWith(sufixName[0]) || listWords[j].endsWith(sufixName[1]))
                             nomes.add(listWords[j]);
                     }
