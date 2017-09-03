@@ -72,6 +72,9 @@ public class TaskProcessor extends Modulo{
     public boolean isModule(){
         return this.beginStruct;
     }
+    public TaskData getUltimateTaskData(){
+        return this.arrayTaskData.get(this.arrayTaskData.size()-1);
+    }
     public String toString(){
         String task = "";
         for(TaskData tkda: this.arrayTaskData){

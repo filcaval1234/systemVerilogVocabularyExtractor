@@ -26,18 +26,47 @@ public class InterfaceProcessor extends Modulo{
     }   
     /**
      * O método
-     * @param originalLinha 
+     * @param sourceLine 
      */
     @Override
-    void setFields(String originalLinha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void setFields(String sourceLine) {
+        InterfaceData tempInterfece;
+        if(this.isModule(sourceLine)){
+            String[] wordsInline = sourceLine.split(" ");
+            tempInterfece = new InterfaceData(wordsInline[1]);
+            this.size++;
+        }
     }
     /**
      * 
-     * @param linha 
+     * @param sourceLine 
      */
     @Override
-    void setVariableAndCommentlocal(String linha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void setVariableAndCommentlocal(String sourceLine) {
+        if(beginStruct && !endStruct){
+            InterfaceData interfaceTemp = this.arrayInterface.get(size-1);
+            if(this.genericCommentProcessorInterface.isCommentBlock(sourceLine))
+                this.genericCommentProcessorInterface.setComments(sourceLine);
+            else{
+                interfaceTemp.setMethodProcessorInterface(sourceLine);
+                interfaceTemp.setTaskProcessorInterface(sourceLine);
+                interfaceTemp.setModPortProcessorInterface(sourceLine);
+                if(!interfaceTemp.getMethodProcessorInterface().isModule() && 
+                        !interfaceTemp.getTaskProcessorInterface().isModule() &&
+                        !interfaceTemp.getModPortProcessorInterface().isModule())
+                    interfaceTemp.setFieldProcessorInterface(sourceLine);
+                if(interfaceTemp.getMethodProcessorInterface().isModule(sourceLine)){
+                    this.genericCommentProcessorInterface.setBeginComments(false);
+                    this.genericCommentProcessorInterface.setEndComments(false);
+                    interfaceTemp.getMethodProcessorInterface().
+                            getUltimateMethod().setCommentLocal(this.genericCommentProcessorInterface);
+                    this.genericCommentProcessorInterface = new CommentProcessor();
+                }
+            }
+        }
+        else if(endStruct){
+            beginStruct = false;
+            endStruct = false;
+        }
     }
 }

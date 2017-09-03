@@ -50,8 +50,12 @@ abstract class Modulo {
      * será retornado false
      */
     protected boolean isModule(String sourceLine){
+        sourceLine = this.filterAccessMode(sourceLine);
         boolean state = false;
-        if(sourceLine.startsWith(BEGINSTRUCT)){
+        final char STX = 2; //start of text
+        final char SOB = 1;//start of heading
+        if(sourceLine.startsWith(BEGINSTRUCT) || sourceLine.startsWith(STX+BEGINSTRUCT)
+                || sourceLine.startsWith(SOB+BEGINSTRUCT)){
             state = true;
             beginStruct = true;
             endStruct = false;

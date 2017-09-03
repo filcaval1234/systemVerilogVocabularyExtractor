@@ -15,7 +15,7 @@ public class ClassProcessor extends Modulo{
     private int size;
     private ArrayList<ClassData> arrayClassData;
     private VerificationSintax vfs;
-    private CommentProcessor commentsFunction;
+    private CommentProcessor genericsCommentsClassProcessor;
     private static final String BEGINCLASS = "class";
     private static final String ENDCLASS = "endclass";
     
@@ -27,7 +27,7 @@ public class ClassProcessor extends Modulo{
     public ClassProcessor(){
         super(BEGINCLASS, ENDCLASS);
         this.arrayClassData = new ArrayList<ClassData>();
-        this.commentsFunction = new CommentProcessor();
+        this.genericsCommentsClassProcessor = new CommentProcessor();
         vfs = new VerificationSintax();
         vfs.setAvlTreeSintax(vfs.setWordsKeys());
     }
@@ -89,19 +89,27 @@ public class ClassProcessor extends Modulo{
     public void setVariableAndCommentlocal(String sourceLine) {
         if(beginStruct && !endStruct){
             ClassData classTemp = this.arrayClassData.get(this.arrayClassData.size()-1);
-            if(this.commentsFunction.isCommentBlock(sourceLine))
-                this.commentsFunction.setComments(sourceLine);
+            if(this.genericsCommentsClassProcessor.isCommentBlock(sourceLine))
+                this.genericsCommentsClassProcessor.setComments(sourceLine);
             else{
                 classTemp.setMethodProcessorClassData(sourceLine);
                 classTemp.setTaskProcessorClassData(sourceLine);
                 if(!classTemp.getMethodProcessorClassData().isModule() && 
                         !classTemp.getTaskProcessorClassData().isModule())
                     classTemp.setFieldProcessorClassData(sourceLine);
-                if(classTemp.getMethodProcessorClassData().isModule(sourceLine)){
-                    this.commentsFunction.setBeginComments(false);
-                    this.commentsFunction.setEndComments(false);
-                    classTemp.getMethodProcessorClassData().getUltimateMethod().setCommentLocal(this.commentsFunction);
-                    this.commentsFunction = new CommentProcessor();
+                else if(classTemp.getMethodProcessorClassData().isModule(sourceLine)){
+                    this.genericsCommentsClassProcessor.setBeginComments(false);
+                    this.genericsCommentsClassProcessor.setEndComments(false);
+                    classTemp.getMethodProcessorClassData().getUltimateMethod()
+                            .setCommentLocal(this.genericsCommentsClassProcessor);
+                    this.genericsCommentsClassProcessor = new CommentProcessor();
+                }
+                else if(classTemp.getTaskProcessorClassData().isModule(sourceLine)){
+                    this.genericsCommentsClassProcessor.setBeginComments(false);
+                    this.genericsCommentsClassProcessor.setEndComments(false);
+                    classTemp.getTaskProcessorClassData().getUltimateTaskData()
+                            .setCommentLocal(genericsCommentsClassProcessor);
+                    this.genericsCommentsClassProcessor = new CommentProcessor();
                 }
             }
         }

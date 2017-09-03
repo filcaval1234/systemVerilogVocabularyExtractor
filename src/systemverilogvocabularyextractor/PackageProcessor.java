@@ -31,18 +31,7 @@ public class PackageProcessor {
      * @return um ArrayList<String> contendo as linhas do arquivo. 
      */
     private ArrayList<String> getLinhasArquivosDoPacote(){
-        ArrayList<String> lines = new ArrayList<String>();
-        try {
-            FileReader file = new FileReader(this.caminhoAbsoluto);
-            BufferedReader arq = new BufferedReader(file);
-            while(arq.ready()){
-                lines.add(arq.readLine());
-            }
-            arq.close();
-        } catch(IOException ioe){
-            ioe.printStackTrace();
-        }
-        return lines;
+        return new ArrayList<>();
     }
     /**
      * O método nameFilesInPackage faz uma filtragem das palavras reservadas de
@@ -84,16 +73,7 @@ public class PackageProcessor {
      * @param nomesDosArquivos array com o nome dos arquivos 
      */
     private void setArquivosDoPacote(ArrayList<String> nomesDosArquivos){
-        nomesDosArquivos = this.filtroAspas(nomesDosArquivos);
-        for(int i=0;i < nomesDosArquivos.size();i++){
-            String filePath = this.caminhoAbsoluto.replace(nome, nomesDosArquivos.get(i));
-            try{
-                BufferedReader fl = new BufferedReader( new FileReader(filePath));
-                this.arquivosDoPacote.add(fl);
-            }catch(IOException ioe){
-                ioe.printStackTrace();
-            }
-        }
+        
     }
     /**
      * O método filtroAspas recebe um array contendo o nome dos arquivos, no entanto
@@ -111,16 +91,6 @@ public class PackageProcessor {
     }
     public String toString(){
         String pacote = "";
-        pacote += "Nome do pacote: "+ nome+"\n";
-        pacote += "Caminho absoluto do pacote: "+ caminhoAbsoluto+"\n";
         return pacote;
-    }
-    /**
-     * O método getFile retorna um array contendo todos os arquivos do pacote 
-     * abertos
-     * @return array com todos os arquivos abertos
-     */
-    public ArrayList<BufferedReader> getFile(){
-        return this.arquivosDoPacote;
     }
 }

@@ -15,7 +15,7 @@ public class InterfaceData {
     private ParamProcessor paramProcessorInterface;
     private MethodProcessor methodProcessorInterface;
     private TaskProcessor taskProcessorInterface;
-    private ModPortProcessor arrayModPort;
+    private ModPortProcessor modPortProcessorInterface;
     
     /**
      * O contrutor da classe recebe uma String que é o nome da interface
@@ -29,8 +29,9 @@ public class InterfaceData {
         this.paramProcessorInterface = new ParamProcessor();
         this.methodProcessorInterface = new MethodProcessor();
         this.taskProcessorInterface = new TaskProcessor();
-        this.arrayModPort = new ModPortProcessor();
+        this.modPortProcessorInterface = new ModPortProcessor();
     }
+
     /**
      * O método getMethodProcessorInterface retorna o processador de métodos
      * da interface.
@@ -47,6 +48,9 @@ public class InterfaceData {
     public void setMethodProcessorInterface(MethodProcessor methodProcessorInterface) {
         this.methodProcessorInterface = methodProcessorInterface;
     }
+    public void setMethodProcessorInterface(String sourceLine){
+        this.methodProcessorInterface.setFields(sourceLine);
+    }
     /**
      * O método getTaskProcessorInterface retorna o processador de tasks da interface.
      * @return o processador de método da interface.
@@ -61,6 +65,9 @@ public class InterfaceData {
      */
     public void setTaskProcessorInterface(TaskProcessor taskProcessorInterface) {
         this.taskProcessorInterface = taskProcessorInterface;
+    }
+    public void setTaskProcessorInterface(String sourceLine){
+        this.taskProcessorInterface.setFields(sourceLine);
     }
     /**
      * O método getCommentsProcessorInterface retorna o processador de
@@ -77,6 +84,9 @@ public class InterfaceData {
     public void setCommentsProcessorInterface(CommentProcessor commentsProcessorInterface) {
         this.commentsProcessorInterface = commentsProcessorInterface;
     }
+    public void setCommentsProcessorInterface(String sourceLine){
+        this.commentsProcessorInterface.setComments(sourceLine);
+    }
     /**
      * O método getFieldProcessorInterface retorna o processador de atributos
      * da interface
@@ -92,6 +102,9 @@ public class InterfaceData {
     public void setFieldProcessorInterface(FieldProcessor fieldProcessorInterface) {
         this.fieldProcessorInterface = fieldProcessorInterface;
     }
+    public void setFieldProcessorInterface(String sourceLine){
+        this.fieldProcessorInterface.setListVariaveis(sourceLine);
+    }
     /**
      * O método getParamProcessorInterface retorna o processador de parâmetos 
      * da interface
@@ -106,5 +119,22 @@ public class InterfaceData {
      */
     public void setParamProcessorInterface(ParamProcessor paramProcessorInterface) {
         this.paramProcessorInterface = paramProcessorInterface;
+    }
+    public void setParamProcessorInterface(String sourceLine){
+        this.paramProcessorInterface.setParametersFormal(sourceLine);
+    }
+    public ModPortProcessor getModPortProcessorInterface() {
+        return modPortProcessorInterface;
+    }
+
+    public void setModPortProcessorInterface(ModPortProcessor modPortProcessorInterface) {
+        this.modPortProcessorInterface = modPortProcessorInterface;
+    }
+    public void setModPortProcessorInterface(String sourceLine){
+        this.modPortProcessorInterface.setFields(sourceLine);
+    }
+    public String toString(){
+        String interfaces = this.modPortProcessorInterface.toString();
+        return interfaces;
     }
 }

@@ -57,7 +57,8 @@ public class ModPortData {
      * @return retorna uma String formatada
      */
     public String toString(){
-        String modPort = "name modPort: "+ this.nome+"\n";
+        String modPort = "-----------------------------\n";
+        modPort += "name modPort: "+ this.nome+"\n";
         modPort += "---------param modPort----------\n";
         modPort += this.fieldsModPort;
         return modPort;
