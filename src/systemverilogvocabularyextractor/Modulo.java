@@ -97,6 +97,8 @@ abstract class Modulo {
     protected String filterIndentation(String sourceLine){
         int i=0;
         final char TAB = 9;
+        final String INDENTATIONMAKEWITHSPACES = "  ";
+        sourceLine = sourceLine.replace(INDENTATIONMAKEWITHSPACES, "");
         sourceLine = sourceLine.replace(TAB, ' ');
         for(;i < sourceLine.length(); i++){
             char teste = sourceLine.charAt(i);

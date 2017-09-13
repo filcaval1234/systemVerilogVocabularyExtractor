@@ -45,8 +45,10 @@ public class SystemVerilogVocabularyExtractor {
             String sourceLine = this.projectSource.get(index);
             if(sourceLine.equals(" ") || sourceLine.equals(""))
                 continue;
-            //this.modPort.setFields(sourceLine);
-            this.genericsComments.setComments(sourceLine);
+            
+            this.interfaceProcessor.setFields(sourceLine);
+            
+            /*this.genericsComments.setComments(sourceLine);
             this.classProcessor.setClassesProperties(sourceLine);
             this.moduleProcessor.setModuleProperties(sourceLine);
             if(this.classProcessor.isModule(sourceLine)){
@@ -58,13 +60,13 @@ public class SystemVerilogVocabularyExtractor {
             else if(this.moduleProcessor.isModule(sourceLine)){
                 this.moduleProcessor.setModuleComments(genericsComments);
                 this.genericsComments = new CommentProcessor();
-            }
+            }*/
         }
     }
     public String toString(){
         String svve;// = this.classProcessor.toString();
         svve = this.moduleProcessor.toString();
-        svve = this.modPort.toString();
+        svve += this.interfaceProcessor;
         svve += this.classProcessor;
         
         //svve += packageProcessor.toString();
@@ -93,8 +95,8 @@ public class SystemVerilogVocabularyExtractor {
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)");        
-        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
-        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
+        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves\\testesSeparados");
+        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
         
         System.out.println(svve);
         

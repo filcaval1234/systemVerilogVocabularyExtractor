@@ -134,7 +134,13 @@ public class InterfaceData {
         this.modPortProcessorInterface.setFields(sourceLine);
     }
     public String toString(){
-        String interfaces = this.modPortProcessorInterface.toString();
+        String interfaces = "nomeInterface    "+this.nome+"\n";
+        interfaces += "fildes     "+"\n"+this.fieldProcessorInterface+"\n";
+        interfaces += this.modPortProcessorInterface.toString();
+        interfaces += "tasks\n";
+        interfaces += this.taskProcessorInterface;
+        interfaces += "functions\n";
+        interfaces += this.methodProcessorInterface;
         return interfaces;
     }
 }

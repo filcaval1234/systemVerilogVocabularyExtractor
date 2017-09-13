@@ -33,6 +33,7 @@ public class ModPortProcessor extends Modulo{
             String name = sourceLine.substring(sourceLine.indexOf(" "), 
                     sourceLine.indexOf("("));
             TempModPort = new ModPortData(name);
+            TempModPort.setFieldsModPort(this.getFieldsOnSameLine(sourceLine));
             this.arrayModPorts.add(TempModPort);
             this.size = arrayModPorts.size();
         }
@@ -54,6 +55,7 @@ public class ModPortProcessor extends Modulo{
     }
     @Override
     public boolean isModule(String sourceLine){
+        this.filterIndentation(sourceLine);
         boolean state = false;
         if(sourceLine.startsWith(BEGINSTRUCT)){
             state = true;
@@ -68,6 +70,17 @@ public class ModPortProcessor extends Modulo{
     }
     public ModPortData getUltimateModPort(){
         return this.arrayModPorts.get(size-1);
+    }
+    public FieldProcessor getFieldsOnSameLine(String sourceLine){
+        FieldProcessor fieldsInSameLine = new FieldProcessor();
+        final String[] LIMITES = {"(", ")"};
+        String fieldsOnSameLine = "";
+        if(sourceLine.contains(LIMITES[1])){
+            fieldsOnSameLine = sourceLine.substring(sourceLine.indexOf(LIMITES[0])+1,
+                    sourceLine.indexOf(LIMITES[1]))+";";
+        }
+        fieldsInSameLine.setListVariaveis(fieldsOnSameLine);
+        return fieldsInSameLine;
     }
     @Override
     public String toString(){

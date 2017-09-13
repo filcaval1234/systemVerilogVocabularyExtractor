@@ -34,8 +34,10 @@ public class InterfaceProcessor extends Modulo{
         if(this.isModule(sourceLine)){
             String[] wordsInline = sourceLine.split(" ");
             tempInterfece = new InterfaceData(wordsInline[1]);
+            this.arrayInterface.add(tempInterfece);
             this.size++;
         }
+        this.setVariableAndCommentlocal(sourceLine);
     }
     /**
      * 
@@ -48,25 +50,57 @@ public class InterfaceProcessor extends Modulo{
             if(this.genericCommentProcessorInterface.isCommentBlock(sourceLine))
                 this.genericCommentProcessorInterface.setComments(sourceLine);
             else{
-                interfaceTemp.setMethodProcessorInterface(sourceLine);
                 interfaceTemp.setTaskProcessorInterface(sourceLine);
                 interfaceTemp.setModPortProcessorInterface(sourceLine);
+                interfaceTemp.setMethodProcessorInterface(sourceLine);
                 if(!interfaceTemp.getMethodProcessorInterface().isModule() && 
-                        !interfaceTemp.getTaskProcessorInterface().isModule() &&
+                        interfaceTemp.getTaskProcessorInterface().isModule() &&
                         !interfaceTemp.getModPortProcessorInterface().isModule())
                     interfaceTemp.setFieldProcessorInterface(sourceLine);
-                if(interfaceTemp.getMethodProcessorInterface().isModule(sourceLine)){
+                /*if(interfaceTemp.getMethodProcessorInterface().isModule(sourceLine)){
                     this.genericCommentProcessorInterface.setBeginComments(false);
                     this.genericCommentProcessorInterface.setEndComments(false);
                     interfaceTemp.getMethodProcessorInterface().
                             getUltimateMethod().setCommentLocal(this.genericCommentProcessorInterface);
                     this.genericCommentProcessorInterface = new CommentProcessor();
-                }
+                }*/
+                this.genericCommentProcessorInterface = this.assginGenericsComments(
+                        this.genericCommentProcessorInterface, interfaceTemp, sourceLine);
             }
         }
         else if(endStruct){
             beginStruct = false;
             endStruct = false;
         }
+    }
+    public CommentProcessor assginGenericsComments(CommentProcessor genericComments, 
+            InterfaceData tempInterfaceData, String sourceLine){
+        CommentProcessor retornsComment = genericComments;
+        if(tempInterfaceData.getMethodProcessorInterface().isModule(sourceLine)){
+            tempInterfaceData.getMethodProcessorInterface().getUltimateMethod().setCommentLocal(genericComments);
+            genericComments.setBeginComments(false);
+            genericComments.setEndComments(false);
+            retornsComment = new CommentProcessor();
+        }
+        else if(tempInterfaceData.getTaskProcessorInterface().isModule(sourceLine)){
+            tempInterfaceData.getTaskProcessorInterface().getUltimateTaskData().setCommentLocal(genericComments);
+            genericComments.setBeginComments(false);
+            genericComments.setEndComments(false);
+            retornsComment = new CommentProcessor();
+        }
+        else if(tempInterfaceData.getModPortProcessorInterface().isModule(sourceLine)){
+            tempInterfaceData.getModPortProcessorInterface().getUltimateModPort().setCommentsProcesorModPort(genericComments);
+            genericComments.setBeginComments(false);
+            genericComments.setEndComments(false);
+            retornsComment = new CommentProcessor();
+        }
+        return retornsComment;
+    }
+    public String toString(){
+        String interfaceProcesor = "";
+        for(InterfaceData interfaceData: this.arrayInterface){
+            interfaceProcesor += interfaceData;
+        }
+        return interfaceProcesor;
     }
 }

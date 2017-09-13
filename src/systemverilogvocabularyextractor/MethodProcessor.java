@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author fc.corporation
  */
 public class MethodProcessor extends Modulo{
-    private ArrayList<MethodData> mtsd;
+    private ArrayList<MethodData> arrayMethodData;
     private int size;
     
     /**
@@ -19,7 +19,7 @@ public class MethodProcessor extends Modulo{
      */
     public MethodProcessor(){
         super("function", "endfunction");
-        this.mtsd = new ArrayList<MethodData>();
+        this.arrayMethodData = new ArrayList<MethodData>();
         this.size = 0;
     }
     
@@ -46,8 +46,8 @@ public class MethodProcessor extends Modulo{
             if(listWord.length == 3){
                 methodData = new MethodData(listWord[listWord.length-1], this.getReturn(listWord));
                 methodData.setParam(sourceLine);
-                this.mtsd.add(methodData);
-                this.size= this.mtsd.size()-1;
+                this.arrayMethodData.add(methodData);
+                this.size= this.arrayMethodData.size()-1;
             }
         }
         this.setVariableAndCommentlocal(sourceLine);
@@ -87,7 +87,7 @@ public class MethodProcessor extends Modulo{
      * @return retorna o ultimo MethodData do array
      */
     public MethodData getUltimateMethod(){
-        return this.mtsd.get(size);
+        return this.arrayMethodData.get(size);
     }
     /**
      * O método isModule diferentemente do que recebe argumentos ele não checa
@@ -106,8 +106,8 @@ public class MethodProcessor extends Modulo{
     @Override
     public void setVariableAndCommentlocal(String sourceLine){
         if(beginStruct && !endStruct){
-            this.mtsd.get(mtsd.size()-1).setLocalField(sourceLine);
-            this.mtsd.get(mtsd.size()-1).setCommentLocal(sourceLine);
+            this.arrayMethodData.get(arrayMethodData.size()-1).setLocalField(sourceLine);
+            this.arrayMethodData.get(arrayMethodData.size()-1).setCommentLocal(sourceLine);
         }
         else if(endStruct){
             beginStruct = false;
@@ -135,7 +135,7 @@ public class MethodProcessor extends Modulo{
      */
     public String toString(){
         String methodProcessor = "";
-        for(MethodData mtd: this.mtsd){
+        for(MethodData mtd: this.arrayMethodData){
             methodProcessor += mtd+"\n";
         }
         return methodProcessor;

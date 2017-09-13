@@ -61,6 +61,8 @@ public class ModPortData {
         modPort += "name modPort: "+ this.nome+"\n";
         modPort += "---------param modPort----------\n";
         modPort += this.fieldsModPort;
+        modPort += "--------commentsModPort----------\n";
+        modPort += this.commentsProcesorModPort;
         return modPort;
     }
 }
