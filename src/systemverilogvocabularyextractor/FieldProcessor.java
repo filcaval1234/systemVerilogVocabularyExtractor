@@ -33,7 +33,7 @@ public class FieldProcessor {
      * @param sourceLine linha do arquivo que será analisada
      */
     public void setListVariaveis(String sourceLine){
-        sourceLine = this.filterValuesReturnedFunctions(sourceLine);
+        sourceLine = this.filtroValores(sourceLine);
         sourceLine = this.filterComments(sourceLine);
         if(this.isVariable(sourceLine) || this.isTypeWithVector(sourceLine)){
             ArrayList<String> wordsFiltrade = this.filtragem(sourceLine);
@@ -155,7 +155,7 @@ public class FieldProcessor {
             for(int i=0;i < sourceLine.length();i++){
                 if(sourceLine.charAt(i) == ILLEGALWORDCHAR){
                     while(sourceLine.charAt(i) != COMMAN){
-                        if(sourceLine.charAt(i) == ';')
+                        if(sourceLine.charAt(i) == ';' || i+1 == sourceLine.length())
                             break;
                         i++;
                     }
@@ -174,7 +174,8 @@ public class FieldProcessor {
      */
     private boolean isVariable(String sourceLine){
         boolean state = true;
-        String[] isNotVariable = {"class","#","return","(", "{", "+", "-", "/", "*","-",":", "}", ")", "<"};
+        String[] isNotVariable = {"class","#","return","(", "{",
+            ":", "}", ")", "<", "`include", "package"};
         if(sourceLine.equals(" ")){
             return false;
         }
@@ -248,6 +249,18 @@ public class FieldProcessor {
             else return true;
         }
         return state;
+    }
+    public boolean isNativeTypeAndUserType(String sourceLine){
+        boolean result = false;
+        final char COMMAN = ',';
+        
+        return result;
+    }
+    public void mergerTypes(String sourceLine){
+        final String COMMAN = ",";
+        if(sourceLine.contains(COMMAN)){
+            
+        }
     }
     /**
      * O método toString retorna a String formatada de acordo com a necessidade

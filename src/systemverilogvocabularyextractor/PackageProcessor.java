@@ -13,25 +13,81 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class PackageProcessor {
+public class PackageProcessor extends Modulo{
+    private CommentProcessor genericsCommentProcessor;
     private ArrayList<PackageData> arrayPackage; 
-    private VerificationSintax verificationSimtas;
+    private ArrayList<String> nameInPackage;
+    private final static String BEGINPACKAGE = "package";
+    private final static String ENDPACKAGE = "endpackage";
+    private VerificationSintax verificationSimtax;
+    private int size;
     /**
      * O construtor da classe não recebe nemhum argumento e inicializa todos os 
      * campos da classe
      */
     public PackageProcessor( ){
-        arrayPackage = new ArrayList<PackageData>();
-        this.verificationSimtas = new VerificationSintax();
-        verificationSimtas.setAvlTreeSintax(verificationSimtas.setWordsKeys());
+        super(PackageProcessor.BEGINPACKAGE, PackageProcessor.ENDPACKAGE);
+        this.genericsCommentProcessor = new CommentProcessor();
+        arrayPackage = new ArrayList<>();
+        this.nameInPackage = new ArrayList<>();
+        this.verificationSimtax = new VerificationSintax();
+        verificationSimtax.setAvlTreeSintax(verificationSimtax.setWordsKeys());
     }
-    /**
-     * O método getLinhasArquivosDoPacote abre o arquivo e lê suas linhas
-     * retornand o um ArrayList<String>
-     * @return um ArrayList<String> contendo as linhas do arquivo. 
-     */
-    private ArrayList<String> getLinhasArquivosDoPacote(){
-        return new ArrayList<>();
+    @Override
+    void setFields(String sourceLine) {
+        final char SPACE = ' ';
+        PackageData packageTemp;
+        String name;
+        if(this.isModule(sourceLine)){
+            name = sourceLine.substring(sourceLine.indexOf(SPACE));
+            packageTemp = new PackageData(name);
+            this.arrayPackage.add(packageTemp);
+            this.size++;
+        }
+        this.setVariableAndCommentlocal(sourceLine);
+    }
+    @Override
+    void setVariableAndCommentlocal(String sourceLine) {
+        if(this.beginStruct && !this.endStruct){
+            PackageData tempPackage = this.getUltimatePackageData();
+            this.nameFilesInPackage(sourceLine);
+            if(this.genericsCommentProcessor.isCommentBlock(sourceLine)){
+                this.genericsCommentProcessor.setComments(sourceLine);
+            }
+            else{
+                tempPackage.setMethodProcessorPackageData(sourceLine);
+                tempPackage.setTaskProcessorPackageData(sourceLine);
+               if(!tempPackage.getMethodProcessorPackageData().isModule() &&
+                    !tempPackage.getTaskProcessorPackageData().isModule()){
+                    this.getUltimatePackageData().setFieldProcessorPackageData(sourceLine);
+                }
+            }
+            this.genericsCommentProcessor = this.assginGenericsComments(genericsCommentProcessor, tempPackage, sourceLine);
+        }
+        else if(this.endStruct){
+            this.getUltimatePackageData().setFilesInPackage(this.filtroAspas(nameInPackage));
+            this.nameInPackage = new ArrayList<>();
+            this.beginStruct = false;
+            this.endStruct = false;
+        }
+    }
+    public CommentProcessor assginGenericsComments(CommentProcessor genericComments, 
+            PackageData tempPackageData, String sourceLine){
+        CommentProcessor retornsComment = genericComments;
+        if(tempPackageData.getMethodProcessorPackageData().isModule(sourceLine)){
+            tempPackageData.getMethodProcessorPackageData().getUltimateMethod().setCommentLocal(genericComments);
+            retornsComment = this.resetCommentsConfig(genericComments, false);
+        }
+        else if(tempPackageData.getTaskProcessorPackageData().isModule(sourceLine)){
+            tempPackageData.getTaskProcessorPackageData().getUltimateTaskData().setCommentLocal(genericComments);
+            retornsComment = this.resetCommentsConfig(genericComments, false);
+        }
+        return retornsComment;
+    }
+    public CommentProcessor resetCommentsConfig(CommentProcessor genericComments, boolean state){
+        genericComments.setBeginComments(state);
+        genericComments.setEndComments(state);
+        return new CommentProcessor();
     }
     /**
      * O método nameFilesInPackage faz uma filtragem das palavras reservadas de
@@ -40,40 +96,20 @@ public class PackageProcessor {
      * @param linhasDoArquivo array com todas as linhas do arquivo pkg.sv/svh.
      * @return um array com os nomes dos arquivos.
      */
-    private ArrayList<String> nameFilesInPackage(ArrayList<String> linhasDoArquivo){
+    private void nameFilesInPackage(String sourceLine){
         String[] sufixName = {".sv\"", ".svh\""};
-        ArrayList<String> nomes = new ArrayList<String>();
-        for(int i=0;i < linhasDoArquivo.size();i++){
-            String[] listWords = linhasDoArquivo.get(i).split(" ");
+        //ArrayList<String> nomes = new ArrayList<String>();
+            String[] listWords = sourceLine.split(" ");
             for(int j=0;j < listWords.length;j++){
                 try {
-                    if(verificationSimtas.sytemVerilogSintax(listWords[j]) == false && verificationSimtas.UVMsintax(listWords[j]) == false){
+                    if(verificationSimtax.sytemVerilogSintax(listWords[j]) == false && verificationSimtax.UVMsintax(listWords[j]) == false){
                         if(listWords[j].endsWith(sufixName[0]) || listWords[j].endsWith(sufixName[1]))
-                            nomes.add(listWords[j]);
+                            this.nameInPackage.add(listWords[j]);
                     }
                 }catch(StringIndexOutOfBoundsException ioe){
                     continue;
                 }
-            }
         }
-        return nomes;
-    }
-    /**
-     * O método setArquivosDoPacote atráves de seus métodos privates
-     * e abre todos os arquivos contidos no pacote e salva-os em um array.
-     */
-    public void setArquivosDoPacote(){
-        ArrayList<String> linhasDoFilePackage = this.getLinhasArquivosDoPacote();
-        ArrayList<String> nomeDosArquivos = this.nameFilesInPackage(linhasDoFilePackage);
-        this.setArquivosDoPacote(nomeDosArquivos);
-    }
-    /**
-     * O método setArquivosDoPacote recebe os nomes dos arquivos e a partir do 
-     * caminho absoluto do arquivo nome_pkg.sv/svh abre os arquivos 
-     * @param nomesDosArquivos array com o nome dos arquivos 
-     */
-    private void setArquivosDoPacote(ArrayList<String> nomesDosArquivos){
-        
     }
     /**
      * O método filtroAspas recebe um array contendo o nome dos arquivos, no entanto
@@ -89,8 +125,14 @@ public class PackageProcessor {
         }
         return wordsFiltrade;
     }
+    public PackageData getUltimatePackageData(){
+        return this.arrayPackage.get(size-1);
+    }
     public String toString(){
         String pacote = "";
+        for(PackageData pack: this.arrayPackage){
+            pacote += pack;
+        }
         return pacote;
     }
 }

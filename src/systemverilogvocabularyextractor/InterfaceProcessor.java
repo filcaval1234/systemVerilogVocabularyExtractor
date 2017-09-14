@@ -54,16 +54,9 @@ public class InterfaceProcessor extends Modulo{
                 interfaceTemp.setModPortProcessorInterface(sourceLine);
                 interfaceTemp.setMethodProcessorInterface(sourceLine);
                 if(!interfaceTemp.getMethodProcessorInterface().isModule() && 
-                        interfaceTemp.getTaskProcessorInterface().isModule() &&
+                        !interfaceTemp.getTaskProcessorInterface().isModule() &&
                         !interfaceTemp.getModPortProcessorInterface().isModule())
                     interfaceTemp.setFieldProcessorInterface(sourceLine);
-                /*if(interfaceTemp.getMethodProcessorInterface().isModule(sourceLine)){
-                    this.genericCommentProcessorInterface.setBeginComments(false);
-                    this.genericCommentProcessorInterface.setEndComments(false);
-                    interfaceTemp.getMethodProcessorInterface().
-                            getUltimateMethod().setCommentLocal(this.genericCommentProcessorInterface);
-                    this.genericCommentProcessorInterface = new CommentProcessor();
-                }*/
                 this.genericCommentProcessorInterface = this.assginGenericsComments(
                         this.genericCommentProcessorInterface, interfaceTemp, sourceLine);
             }
@@ -78,23 +71,23 @@ public class InterfaceProcessor extends Modulo{
         CommentProcessor retornsComment = genericComments;
         if(tempInterfaceData.getMethodProcessorInterface().isModule(sourceLine)){
             tempInterfaceData.getMethodProcessorInterface().getUltimateMethod().setCommentLocal(genericComments);
-            genericComments.setBeginComments(false);
-            genericComments.setEndComments(false);
-            retornsComment = new CommentProcessor();
+            retornsComment = this.resetCommentsConfig(genericComments, false);
         }
         else if(tempInterfaceData.getTaskProcessorInterface().isModule(sourceLine)){
             tempInterfaceData.getTaskProcessorInterface().getUltimateTaskData().setCommentLocal(genericComments);
-            genericComments.setBeginComments(false);
-            genericComments.setEndComments(false);
-            retornsComment = new CommentProcessor();
+            retornsComment = this.resetCommentsConfig(genericComments, false);
         }
         else if(tempInterfaceData.getModPortProcessorInterface().isModule(sourceLine)){
             tempInterfaceData.getModPortProcessorInterface().getUltimateModPort().setCommentsProcesorModPort(genericComments);
-            genericComments.setBeginComments(false);
-            genericComments.setEndComments(false);
-            retornsComment = new CommentProcessor();
+            retornsComment = this.resetCommentsConfig(genericComments, false);
         }
         return retornsComment;
+    }
+    public CommentProcessor resetCommentsConfig(CommentProcessor genericComments, boolean state){
+        genericComments.setBeginComments(state);
+        genericComments.setEndComments(state);
+        return new CommentProcessor();
+        
     }
     public String toString(){
         String interfaceProcesor = "";

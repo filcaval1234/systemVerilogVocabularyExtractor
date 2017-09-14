@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class TaskProcessor extends Modulo{
     private ArrayList<TaskData> arrayTaskData;
+    private int size;
     private String delay;
     
     /**
@@ -44,6 +45,7 @@ public class TaskProcessor extends Modulo{
                 taskdata.setParam(sourceLine);
                 this.arrayTaskData.add(taskdata);
             }
+            this.size++;
         }
         this.setVariableAndCommentlocal(sourceLine);
     }
@@ -73,7 +75,7 @@ public class TaskProcessor extends Modulo{
         return this.beginStruct;
     }
     public TaskData getUltimateTaskData(){
-        return this.arrayTaskData.get(this.arrayTaskData.size()-1);
+        return this.arrayTaskData.get(this.size-1);
     }
     public String toString(){
         String task = "";

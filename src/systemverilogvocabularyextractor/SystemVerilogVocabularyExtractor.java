@@ -17,8 +17,11 @@ public class SystemVerilogVocabularyExtractor {
     private ModuleProcessor moduleProcessor;
     private ArrayList<String> projectSource;
     private InterfaceProcessor interfaceProcessor;
-    ModPortProcessor modPort;
-    //private PackageProcessor packageProcessor;
+    private ModPortProcessor modPort;
+    private PackageProcessor packageProcessor;
+    //*********************************inserir testes aqui******************************
+        FieldProcessor fd = new FieldProcessor();
+    //*********************************fim da inserção**********************************
     
     /**
      * O construtor da classe recebe um argumento que é o diretorio do projeto
@@ -33,8 +36,9 @@ public class SystemVerilogVocabularyExtractor {
         this.moduleProcessor = new ModuleProcessor();
         this.interfaceProcessor = new InterfaceProcessor();
         this.modPort = new ModPortProcessor();
+        this.packageProcessor = new PackageProcessor();
         this.run();
-        //this.packageProcessor = new PackageProcessor();
+        
     }
     /**
      * O métedo run, é nele que é executado tudo.
@@ -45,12 +49,13 @@ public class SystemVerilogVocabularyExtractor {
             String sourceLine = this.projectSource.get(index);
             if(sourceLine.equals(" ") || sourceLine.equals(""))
                 continue;
-            
+            //fd.setListVariaveis(sourceLine);
+            this.packageProcessor.setFields(sourceLine);
             this.interfaceProcessor.setFields(sourceLine);
-            
-            /*this.genericsComments.setComments(sourceLine);
+            this.genericsComments.setComments(sourceLine);
             this.classProcessor.setClassesProperties(sourceLine);
             this.moduleProcessor.setModuleProperties(sourceLine);
+            //analisar este trecho de codigo...
             if(this.classProcessor.isModule(sourceLine)){
                 if(!sourceLine.contains(";"))
                     this.classProcessor.setSuperClass(this.projectSource.get(index+1));
@@ -60,16 +65,18 @@ public class SystemVerilogVocabularyExtractor {
             else if(this.moduleProcessor.isModule(sourceLine)){
                 this.moduleProcessor.setModuleComments(genericsComments);
                 this.genericsComments = new CommentProcessor();
-            }*/
+            }
         }
     }
     public String toString(){
-        String svve;// = this.classProcessor.toString();
-        svve = this.moduleProcessor.toString();
+        
+        String svve = this.classProcessor.toString();
+        svve += this.moduleProcessor;
         svve += this.interfaceProcessor;
         svve += this.classProcessor;
+        svve += packageProcessor;
         
-        //svve += packageProcessor.toString();
+        //String svve = fd.toString();
         return svve;
     }
     /**
@@ -95,7 +102,7 @@ public class SystemVerilogVocabularyExtractor {
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)");        
-        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves\\testesSeparados");
+        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
         
         System.out.println(svve);

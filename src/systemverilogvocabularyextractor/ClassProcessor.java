@@ -149,6 +149,7 @@ public class ClassProcessor extends Modulo{
      * atual
      * @return uma String que é tudo das classes que foi extraida. 
      */
+    @Override   
     public String toString(){
         String classProc = "";
         for(ClassData str: this.arrayClassData){
