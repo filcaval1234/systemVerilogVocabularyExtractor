@@ -19,9 +19,6 @@ public class SystemVerilogVocabularyExtractor {
     private InterfaceProcessor interfaceProcessor;
     private ModPortProcessor modPort;
     private PackageProcessor packageProcessor;
-    //*********************************inserir testes aqui******************************
-        FieldProcessor fd = new FieldProcessor();
-    //*********************************fim da inserção**********************************
     
     /**
      * O construtor da classe recebe um argumento que é o diretorio do projeto
@@ -49,7 +46,6 @@ public class SystemVerilogVocabularyExtractor {
             String sourceLine = this.projectSource.get(index);
             if(sourceLine.equals(" ") || sourceLine.equals(""))
                 continue;
-            //fd.setListVariaveis(sourceLine);
             this.packageProcessor.setFields(sourceLine);
             this.interfaceProcessor.setFields(sourceLine);
             this.genericsComments.setComments(sourceLine);
@@ -59,24 +55,21 @@ public class SystemVerilogVocabularyExtractor {
             if(this.classProcessor.isModule(sourceLine)){
                 if(!sourceLine.contains(";"))
                     this.classProcessor.setSuperClass(this.projectSource.get(index+1));
-                this.classProcessor.setClassComents(genericsComments);
+                /*this.classProcessor.setClassComents(genericsComments);
                 this.genericsComments = new CommentProcessor();
             }
             else if(this.moduleProcessor.isModule(sourceLine)){
                 this.moduleProcessor.setModuleComments(genericsComments);
-                this.genericsComments = new CommentProcessor();
+                this.genericsComments = new CommentProcessor();*/
             }
         }
     }
     public String toString(){
-        
         String svve = this.classProcessor.toString();
         svve += this.moduleProcessor;
         svve += this.interfaceProcessor;
         svve += this.classProcessor;
         svve += packageProcessor;
-        
-        //String svve = fd.toString();
         return svve;
     }
     /**
@@ -101,7 +94,7 @@ public class SystemVerilogVocabularyExtractor {
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
-        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)");        
+        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");        
         SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
         

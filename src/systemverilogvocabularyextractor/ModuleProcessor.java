@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class ModuleProcessor extends Modulo{
+public class ModuleProcessor extends AbstractModuleLanguage{
     private ArrayList<ModuleData> arrayModuleData;
     private CommentProcessor commentsFunction;
     private int size;

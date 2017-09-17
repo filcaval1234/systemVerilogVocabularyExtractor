@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class TaskProcessor extends Modulo{
+public class TaskProcessor extends AbstractModuleLanguage{
     private ArrayList<TaskData> arrayTaskData;
     private int size;
     private String delay;

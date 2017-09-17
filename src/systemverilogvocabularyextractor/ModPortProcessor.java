@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class ModPortProcessor extends Modulo{
+public class ModPortProcessor extends AbstractModuleLanguage{
     private ArrayList<ModPortData> arrayModPorts;
     private int size;
     private FieldProcessor fieldProcessorModPort;

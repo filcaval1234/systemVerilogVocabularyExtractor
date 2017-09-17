@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class InterfaceProcessor extends Modulo{
+public class InterfaceProcessor extends AbstractModuleLanguage{
     private ArrayList<InterfaceData> arrayInterface;
     private CommentProcessor genericCommentProcessorInterface;
     private static final String BEGIMINTERFACE = "interface";

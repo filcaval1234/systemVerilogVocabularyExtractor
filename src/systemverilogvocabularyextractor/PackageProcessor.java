@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class PackageProcessor extends Modulo{
+public class PackageProcessor extends AbstractModuleLanguage{
     private CommentProcessor genericsCommentProcessor;
     private ArrayList<PackageData> arrayPackage; 
     private ArrayList<String> nameInPackage;

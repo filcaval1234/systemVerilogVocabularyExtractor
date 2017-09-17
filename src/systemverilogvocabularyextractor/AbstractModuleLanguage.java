@@ -9,7 +9,7 @@ package systemverilogvocabularyextractor;
  *
  * @author fc.corporation
  */
-abstract class Modulo {
+abstract class AbstractModuleLanguage {
     protected boolean beginStruct;
     protected boolean endStruct;
     protected String BEGINSTRUCT;
@@ -21,7 +21,7 @@ abstract class Modulo {
      * @param begin começo do modulo
      * @param end fim do modulo
      */
-    public Modulo(String begin, String end){
+    public AbstractModuleLanguage(String begin, String end){
         this.BEGINSTRUCT = begin;
         this.ENDSTRUCT = end;
         this.beginStruct = false;

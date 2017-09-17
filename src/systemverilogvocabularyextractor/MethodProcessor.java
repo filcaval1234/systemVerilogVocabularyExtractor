@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class MethodProcessor extends Modulo{
+public class MethodProcessor extends AbstractModuleLanguage{
     private ArrayList<MethodData> arrayMethodData;
     private int size;
     

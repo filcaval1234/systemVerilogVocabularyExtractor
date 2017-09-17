@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author fc.corporation
  */
-public class ClassProcessor extends Modulo{
+public class ClassProcessor extends AbstractModuleLanguage{
     private int size;
     private ArrayList<ClassData> arrayClassData;
     private VerificationSintax vfs;

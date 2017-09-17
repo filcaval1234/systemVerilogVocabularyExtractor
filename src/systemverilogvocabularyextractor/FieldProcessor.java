@@ -13,7 +13,7 @@ import java.lang.ArrayIndexOutOfBoundsException;
  * @author fc.corporation
  */
 public class FieldProcessor {
-    ArrayList<Variavel> listVariaveis;
+    ArrayList<FieldData> listVariaveis;
     VerificationSintax vfs;
     
     /**
@@ -22,7 +22,7 @@ public class FieldProcessor {
      * com a sintaxe Systemverilog.
      */
     public FieldProcessor(){
-        listVariaveis = new ArrayList<Variavel>();
+        listVariaveis = new ArrayList<FieldData>();
         vfs = new VerificationSintax();
         vfs.setAvlTreeSintax(vfs.setWordsKeys());
     }
@@ -35,23 +35,28 @@ public class FieldProcessor {
     public void setListVariaveis(String sourceLine){
         sourceLine = this.filtroValores(sourceLine);
         sourceLine = this.filterComments(sourceLine);
+        ArrayList<String> wordsFiltrade = new ArrayList<>();
         if(this.isVariable(sourceLine) || this.isTypeWithVector(sourceLine)){
-            ArrayList<String> wordsFiltrade = this.filtragem(sourceLine);
+            try{
+                wordsFiltrade = this.getAllTypesVariable(sourceLine);
+            }catch(java.lang.StringIndexOutOfBoundsException sioe){}
             for(int i=1;i < wordsFiltrade.size();i++){
-                try{
-                    String tiposConcatenados = wordsFiltrade.get(0);
-                    while(vfs.sytemVerilogSintax(wordsFiltrade.get(i)) == true){
-                        tiposConcatenados += " "+wordsFiltrade.get(i);
-                        i++;
+                if(wordsFiltrade.get(0) != ""){
+                    try{
+                        String tiposConcatenados = wordsFiltrade.get(0);
+                        while(vfs.sytemVerilogSintax(wordsFiltrade.get(i)) == true){
+                            tiposConcatenados += " "+wordsFiltrade.get(i);
+                            i++;
+                        }
+                        if(wordsFiltrade.get(i).contains("[")){
+                            tiposConcatenados +=" "+wordsFiltrade.get(i);
+                            i+=1;
+                        }
+                        FieldData tempVar = new FieldData(tiposConcatenados, wordsFiltrade.get(i));
+                        this.listVariaveis.add(tempVar);
+                    }catch(IndexOutOfBoundsException ioe){
+                        break;
                     }
-                    if(wordsFiltrade.get(i).contains("[")){
-                        tiposConcatenados +=" "+wordsFiltrade.get(i);
-                        i+=1;
-                    }
-                    Variavel tempVar = new Variavel(tiposConcatenados, wordsFiltrade.get(i));
-                    this.listVariaveis.add(tempVar);
-                }catch(IndexOutOfBoundsException ioe){
-                    break;
                 }
             }
         }
@@ -102,14 +107,10 @@ public class FieldProcessor {
         int i=0;
         final char TAB = 9;
         final char SPACE = 32;
+        final String ident = "  ";
+        sourceLine = sourceLine.trim();
         sourceLine = sourceLine.replace(TAB, SPACE);
-        for(;i < sourceLine.length(); i++){
-            char teste = sourceLine.charAt(i);
-            if(sourceLine.charAt(i) == TAB) {
-                continue;
-            }else break;
-        }
-        sourceLine = sourceLine.substring(i);
+        sourceLine = sourceLine.replace(ident, "");
         String[] listStrline = sourceLine.split(" ");
         ArrayList<String> withoutIndentation = new ArrayList<String>();
         for(String str: listStrline){
@@ -162,6 +163,8 @@ public class FieldProcessor {
                 }
                 withoutValues += sourceLine.charAt(i);
             }
+            withoutValues = withoutValues.replace(" ,", ",");
+            withoutValues = withoutValues.replace(" ;", ";");
         }
        return withoutValues; 
     }
@@ -174,8 +177,9 @@ public class FieldProcessor {
      */
     private boolean isVariable(String sourceLine){
         boolean state = true;
-        String[] isNotVariable = {"class","#","return","(", "{",
-            ":", "}", ")", "<", "`include", "package"};
+        String[] isNotVariable = {"class","#","return","(", "{",">",
+            ":", "}", ")", "<", "`include", "package", "function", "task", "interface",
+            "modport"};
         if(sourceLine.equals(" ")){
             return false;
         }
@@ -223,7 +227,6 @@ public class FieldProcessor {
      * @return uma String que é o tipo com sua declaração de vetor
      */
     public String getTypeWithVector(String sourceLine){
-        final String ISVECTOR = "]";
         sourceLine = this.filterIdentation(sourceLine);
         String typeWithVector = sourceLine.substring(0, sourceLine.indexOf("]"));
         String nome = sourceLine.substring(sourceLine.indexOf("]"));
@@ -250,17 +253,24 @@ public class FieldProcessor {
         }
         return state;
     }
-    public boolean isNativeTypeAndUserType(String sourceLine){
-        boolean result = false;
-        final char COMMAN = ',';
-        
-        return result;
-    }
-    public void mergerTypes(String sourceLine){
+    public ArrayList<String> getAllTypesVariable (String sourceLine) 
+            throws java.lang.StringIndexOutOfBoundsException{
+        sourceLine = sourceLine.trim();
+        String type = "";
         final String COMMAN = ",";
+        final String FINALSOURCELINE = ";";
         if(sourceLine.contains(COMMAN)){
-            
+            String partialString = sourceLine.substring(0, sourceLine.indexOf(COMMAN));
+            type = partialString.substring(0, partialString.lastIndexOf(" "));
         }
+        else if(sourceLine.contains(FINALSOURCELINE)){
+            String partialString = sourceLine.substring(0, sourceLine.indexOf(FINALSOURCELINE));
+            type = partialString.substring(0, partialString.lastIndexOf(" "));
+        }
+        type = type.trim();
+        ArrayList<String> result = this.filtragem(sourceLine.substring(type.length()));
+        result.add(0, type);
+        return result;
     }
     /**
      * O método toString retorna a String formatada de acordo com a necessidade
@@ -269,7 +279,7 @@ public class FieldProcessor {
      */
     public String toString(){
         String AnalystVariable = "";
-        for(Variavel var: listVariaveis){
+        for(FieldData var: listVariaveis){
             AnalystVariable += var;
         }
         return AnalystVariable;
