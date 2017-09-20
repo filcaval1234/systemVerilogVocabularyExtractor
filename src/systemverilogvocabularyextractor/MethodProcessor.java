@@ -149,4 +149,11 @@ public class MethodProcessor extends AbstractModuleLanguage{
     public String filterIdentation(String sourceLine){
         return sourceLine.trim();
     }
+    public String toXMl(String identation){
+        String toXMl = "";
+        for(MethodData methods: arrayMethodData){
+            toXMl += methods.toXML(identation);
+        }
+        return toXMl;
+    }
 }

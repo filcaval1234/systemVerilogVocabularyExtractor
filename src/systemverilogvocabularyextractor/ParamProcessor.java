@@ -42,4 +42,10 @@ public class ParamProcessor {
     public String toString(){
         return this.parametersFormal.toString();
     }   
+    public String toXML(String identation){
+        final String IDENTATION = "    ";
+        String toXML = identation+"<param>\n"+this.parametersFormal.toXML(identation+IDENTATION);
+        toXML += identation+"</param>\n";
+        return toXML;
+    }
 }

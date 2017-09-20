@@ -4,6 +4,9 @@
  */
 package systemverilogvocabularyextractor;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -72,6 +75,24 @@ public class SystemVerilogVocabularyExtractor {
         svve += packageProcessor;
         return svve;
     }
+    public String toXML(){
+        FileWriter arquivo;
+        String toXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+        toXML += this.classProcessor.toXML();
+        toXML += this.interfaceProcessor.toXML();
+        toXML += this.moduleProcessor.toXML();
+        toXML += this.packageProcessor.toXML();
+        try {
+            arquivo = new FileWriter(new File("Arquivo.XML"));
+            arquivo.write(toXML);
+            arquivo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return toXML;
+    }
     /**
      * O main do projeto
      * @param args argumentos caso o projeto for executado da linha de comando
@@ -94,11 +115,11 @@ public class SystemVerilogVocabularyExtractor {
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
-        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");        
-        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
+        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)");        
+        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
         
-        System.out.println(svve);
+        System.out.println(svve.toXML());
         
     }
 }

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?><class name="bvm_comparator" superClass="uvm_scoreboard;">
+    <comments comm=""/>
+    <field type="event" name="compared"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="bit" name="try_put">
+        <param>
+            <field type="T" name="t"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="bit" name="can_put">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="write">
+        <param>
+            <field type="T" name="rec"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="put">
+        <param>
+            <field type="T" name="t"/>
+        </param>
+        <comments comm=""/>
+    </task>
+</class>
+<class name="diff_refmod" superClass="uvm_component;">
+    <comments comm=""/>
+    <field type="out_t" name="result"/>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="int" name="diff">
+        <param>
+            <field type="int" name="prev"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </task>
+</class>
+<class name="valid_ready_sink_agent" superClass="uvm_agent;">
+    <comments comm=""/>
+    <field type="monitor_type" name="monitor"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="connect_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+</class>
+<class name="valid_ready_sink_driver" superClass="uvm_driver">
+    <comments comm=""/>
+    <field type="int unsigned" name="counter_to_ready"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// default// abort// abort"/>
+        <field type="logic" name="reset"/>
+    </task>
+</class>
+<class name="valid_ready_sink_monitor" superClass="uvm_monitor;">
+    <comments comm=""/>
+    <field type="int unsigned" name="counter_to_ready"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// abort"/>
+        <field type="bit" name="ready_prev"/>
+    </task>
+</class>
+<class name="valid_ready_sink_uniform_tx" superClass="valid_ready_sink_tx">
+    <comments comm=""/>
+    <field type="int unsigned" name="min_timeout"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+</class>
+<class name="valid_ready_sink_simple_seq" superClass="uvm_sequence">
+    <comments comm=""/>
+    <field type="int unsigned" name="min_length"/>
+    <task name="body">
+        <param>
+        </param>
+        <comments comm=""/>
+    </task>
+</class>
+<class name="valid_ready_sink_tx" superClass="uvm_sequence_item;">
+    <comments comm=""/>
+    <field type="int unsigned" name="delay_total"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="convert2string">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+</class>
+<class name="valid_ready_source_agent" superClass="uvm_agent;">
+    <comments comm=""/>
+    <field type="monitor_type" name="monitor"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="connect_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+</class>
+<class name="valid_ready_source_driver" superClass="uvm_driver">
+    <comments comm=""/>
+    <field type="bit" name="item_done"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// default// abort// see below for signals update if item_done."/>
+        <field type="logic" name="reset"/>
+    </task>
+</class>
+<class name="valid_ready_source_monitor" superClass="uvm_monitor;">
+    <comments comm=""/>
+    <field type="transaction_type" name="tx"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// abort"/>
+    </task>
+</class>
+<class name="valid_ready_source_uniform_tx" superClass="valid_ready_source_tx">
+    <comments comm=""/>
+    <field type="int unsigned" name="min_delay_valid"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+</class>
+<class name="valid_ready_source_simple_seq" superClass="uvm_sequence">
+    <comments comm=""/>
+    <field type="int unsigned" name="min_length"/>
+    <task name="body">
+        <param>
+        </param>
+        <comments comm=""/>
+    </task>
+</class>
+<class name="valid_ready_source_tx" superClass="uvm_sequence_item;">
+    <comments comm=""/>
+    <field type="int unsigned" name="delay_total"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="convert2string">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+</class>
+<interface nome="valid_ready_if#(int">
+    <comments comm=""/>
+    <field type="logic" name="ready"/>
+    <modport name=" source">
+        <field type="input" name="clk"/>
+    </modport>
+    <modport name=" sink">
+        <field type="input" name="clk"/>
+    </modport>
+    <modport name=" monitor">
+        <field type="input" name="clk"/>
+    </modport>
+</interface>
+<interface nome="">
+    <comments comm=""/>
+    <field type="int unsigned" name="counter_to_ready"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// default// abort// abort"/>
+        <field type="logic" name="reset"/>
+    </task>
+</interface>
+<interface nome="">
+    <comments comm=""/>
+    <field type="bit" name="item_done"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="convert2string">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="connect_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// abort"/>
+        <field type="bit" name="ready_prev"/>
+    </task>
+    <task name="body">
+        <param>
+        </param>
+        <comments comm=""/>
+    </task>
+</interface>
+<interface nome="">
+    <comments comm=""/>
+    <field type="transaction_type" name="tx"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="void" name="build_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// default// abort// see below for signals update if item_done."/>
+        <field type="logic" name="reset"/>
+    </task>
+</interface>
+<interface nome="">
+    <comments comm=""/>
+    <field type="int unsigned" name="delay_total"/>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="get_type_name">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <function return="string" name="convert2string">
+        <param>
+        </param>
+        <comments comm=""/>
+    </function>
+    <task name="run_phase">
+        <param>
+            <field type="uvm_phase" name="phase"/>
+        </param>
+        <comments comm="// abort"/>
+    </task>
+    <task name="body">
+        <param>
+        </param>
+        <comments comm=""/>
+    </task>
+</interface>
+<module nome=" top;">
+    <comments comm=""/>
+    <field type="logic" name="reset"/>
+</module>

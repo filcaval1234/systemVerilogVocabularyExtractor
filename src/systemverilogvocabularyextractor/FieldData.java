@@ -29,10 +29,10 @@ public class FieldData {
         return this.tipo;
     }
     public String toString(){
-        String variavel = "tipo: "+tipo+" Nome: "+nome+"\n";
+        String variavel = "tipo: \'"+tipo+"\\' Nome: "+"\\'"+nome+"\'\n";
         return variavel;
     }
     public String toXml(String identation){
-        return 
+        return identation+"<field type=\""+this.tipo+"\" name=\""+this.nome+"\"/>\n";
     }
 }

@@ -162,5 +162,15 @@ public class ClassData {
            classData += "------------Classtasks---------------------\n";
            classData += this.taskProcessorClassData;
            return classData;
-    }            
+    }  
+    public String toXML(){
+        final String identation = "    ";
+        String toXML = "<class name=\""+this.name+"\" superClass=\""+superclass+"\">\n";
+        toXML += this.commentProcessorClassData.toXML(identation);
+        toXML += this.fieldProcessorClassData.toXML(identation);
+        toXML += this.methodProcessorClassData.toXMl(identation);
+        toXML += this.taskProcessorClassData.toXML(identation);
+        toXML += "</class>\n";
+        return toXML;
+    }
 }

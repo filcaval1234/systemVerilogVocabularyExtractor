@@ -284,4 +284,11 @@ public class FieldProcessor {
         }
         return AnalystVariable;
     }
+    public String toXML(String identation){
+        String toXml = "";
+        for(FieldData fields: listVariaveis){
+            toXml = fields.toXml(identation);
+        }
+        return toXml;
+    }
 }

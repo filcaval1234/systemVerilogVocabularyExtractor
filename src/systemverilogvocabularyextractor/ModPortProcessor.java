@@ -90,4 +90,12 @@ public class ModPortProcessor extends AbstractModuleLanguage{
         }
         return modPortProcessor;
     }
+    public String toXML(String identation){
+        final String IDENTATION = "    ";
+        String toXML = "";
+        for(ModPortData modport: arrayModPorts){
+            toXML += modport.toXML(IDENTATION);
+        }
+        return toXML;
+    }
 }

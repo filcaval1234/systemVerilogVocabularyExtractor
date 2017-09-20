@@ -143,4 +143,15 @@ public class InterfaceData {
         interfaces += this.methodProcessorInterface;
         return interfaces;
     }
+    public String toXML(){
+        final String IDENTATION = "    ";
+        String toXML = "<interface nome=\""+this.nome+"\">\n";
+        toXML += this.commentsProcessorInterface.toXML(IDENTATION);
+        toXML += this.fieldProcessorInterface.toXML(IDENTATION);
+        toXML += this.methodProcessorInterface.toXMl(IDENTATION);
+        toXML += this.taskProcessorInterface.toXML(IDENTATION);
+        toXML += this.modPortProcessorInterface.toXML(IDENTATION);
+        toXML += "</interface>\n";
+        return toXML;
+    }
 }

@@ -87,4 +87,13 @@ public class MethodData {
         metodo += "-----------------------------------------------------\n";
         return metodo;
     }
+    public String toXML(String identation){
+        final String IDENTATION = "    ";
+        String toXml = identation+"<function return=\""+this.retorno+"\" name=\""+this.name+"\">\n";
+        toXml += this.param.toXML(IDENTATION+identation);
+        toXml += this.commentsFunction.toXML(IDENTATION+identation);
+        toXml += this.localField.toXML(IDENTATION+identation);
+        toXml += IDENTATION+"</function>\n";
+        return toXml;
+    }
 }

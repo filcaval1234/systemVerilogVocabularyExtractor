@@ -65,4 +65,11 @@ public class ModPortData {
         modPort += this.commentsProcesorModPort;
         return modPort;
     }
+    public String toXML(String identation){
+        final String IDENTATAION = "    ";
+        String toXML = identation+"<modport name=\""+this.nome+"\">\n";
+        toXML += this.fieldsModPort.toXML(identation+IDENTATAION);
+        toXML += identation+"</modport>\n";
+        return toXML;
+    }
 }

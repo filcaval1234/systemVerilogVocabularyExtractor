@@ -50,12 +50,12 @@ public class CommentProcessor {
     private void setCommentBlock(String linha){
         this.isCommentBlock(linha);
         if(this.beginComments && !this.endsComments){
-            this.commentBlock += linha.replace(this.BEGINCOMMENTSBLOCK, "")+"\n";
+            this.commentBlock += linha.replace(this.BEGINCOMMENTSBLOCK, "");
         }
         else if(this.endsComments){
             this.beginComments = false;
             this.endsComments = false;
-            this.commentBlock += linha.replace(this.ENDSCOMMENTSBLOCK, "")+"\n";
+            this.commentBlock += linha.replace(this.ENDSCOMMENTSBLOCK, "");
         }
     }
     /**
@@ -82,7 +82,7 @@ public class CommentProcessor {
      */
     private void setCommentLine(String linha){
         if(linha.contains(this.LINECOMMENT)){
-            this.commentLine += linha.substring(linha.indexOf(LINECOMMENT))+"\n";
+            this.commentLine += linha.substring(linha.indexOf(LINECOMMENT));
         }
     }
     public boolean getBeginComments(){
@@ -93,5 +93,9 @@ public class CommentProcessor {
     }
     public String toString(){
         return this.commentBlock+"\n"+commentLine+"\n";
+    }
+    public String toXML(String identation){
+        String toXML = identation+"<comments comm=\""+this.commentBlock+this.commentLine+"\"/>\n";
+        return toXML;
     }
 }

@@ -135,4 +135,12 @@ public class PackageProcessor extends AbstractModuleLanguage{
         }
         return pacote;
     }
+    public String toXML(){
+        final String IDENTATION = "    ";
+        String toXML = "";
+        for(PackageData pkg: arrayPackage){
+            toXML += pkg.toXML();
+        }
+        return toXML;
+    }
 }

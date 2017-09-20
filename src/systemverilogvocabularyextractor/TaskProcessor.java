@@ -84,4 +84,11 @@ public class TaskProcessor extends AbstractModuleLanguage{
         }
         return task;
     }
+    public String toXML(String identation){
+        String toXML = "";
+        for(TaskData tasks: this.arrayTaskData){
+            toXML += tasks.toXML(identation);
+        }
+        return toXML;
+    }
 }

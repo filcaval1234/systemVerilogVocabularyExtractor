@@ -157,4 +157,12 @@ public class ClassProcessor extends AbstractModuleLanguage{
         }
         return classProc;
     }
+    public String toXML(){
+        final String IDENTATION = "    ";
+        String toXML = "";
+        for(ClassData cls: this.arrayClassData){
+            toXML += cls.toXML();
+        }
+        return toXML;
+    }
 }

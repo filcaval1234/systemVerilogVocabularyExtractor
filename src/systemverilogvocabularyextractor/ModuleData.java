@@ -111,4 +111,13 @@ public class ModuleData {
         module += this.commentProcessorModuleData;
         return module;
     }
+    public String toXML(){
+        final String IDENTATION = "    ";
+        String toXML = "<module nome=\""+this.nome+"\">\n";
+        toXML += this.commentProcessorModuleData.toXML(IDENTATION);
+        toXML += this.fieldProcessorModuleData.toXML(IDENTATION);
+        toXML += this.methodProcessorModuleData.toXMl(IDENTATION);
+        toXML += "</module>\n";
+        return toXML;
+    }
 }

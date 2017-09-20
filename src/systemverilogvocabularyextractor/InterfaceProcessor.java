@@ -96,4 +96,12 @@ public class InterfaceProcessor extends AbstractModuleLanguage{
         }
         return interfaceProcesor;
     }
+    public String toXML(){
+        final String IDENTATION = "    ";
+        String toXML = "";
+        for(InterfaceData intf: this.arrayInterface){
+            toXML += intf.toXML();
+        }
+        return toXML;
+    }
 }

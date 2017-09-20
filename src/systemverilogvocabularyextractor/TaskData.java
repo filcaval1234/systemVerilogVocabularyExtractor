@@ -29,4 +29,14 @@ public class TaskData extends MethodData{
         metodo += "-----------------------------------------------------\n";
         return metodo;
     }   
+    @Override
+    public String toXML(String identation){
+        final String IDENTATION = "    ";
+        String toXML = identation+"<task name=\""+this.name+"\">\n";
+        toXML += this.param.toXML(IDENTATION+identation);
+        toXML += this.commentsFunction.toXML(IDENTATION+identation);
+        toXML += this.localField.toXML(IDENTATION+identation);
+        toXML += identation+"</task>\n";
+        return toXML;
+    }
 }

@@ -64,4 +64,11 @@ public class ModuleProcessor extends AbstractModuleLanguage{
         }
         return modules;
     }
+    public String toXML() {
+        String toXML = "";
+        for(ModuleData m: this.arrayModuleData){
+            toXML += m.toXML();
+        }
+        return toXML;
+    }
 }
