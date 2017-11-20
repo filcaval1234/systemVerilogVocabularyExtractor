@@ -118,6 +118,7 @@ public class ModuleData {
         final String IDENTATION = "    ";
         String toXML = "<mdl nome=\""+this.nome+"\">\n";
         toXML += this.commentProcessorModuleData.toXML(IDENTATION);
+        toXML += this.paramProcessorModuleData.toXML(IDENTATION);
         toXML += this.fieldProcessorModuleData.fldToXml(IDENTATION);
         toXML += this.methodProcessorModuleData.toXMl(IDENTATION);
         toXML += "</mdl>\n";

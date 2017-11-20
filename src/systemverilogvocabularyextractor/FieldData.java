@@ -39,7 +39,6 @@ public class FieldData {
         return identation+"<prm type=\""+this.tipo+"\" name=\""+this.nome+"\"/>\n";
     }
     public String lvrToXml(String identation){
-        
         return identation+"<lvr type=\""+this.tipo+"\" name=\""+this.nome+"\"/>\n";
     }
 }

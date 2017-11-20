@@ -70,13 +70,6 @@ public class SystemVerilogVocabularyExtractor {
                     index += 1;
                 }
             }
-            
-            //System.err.println(sourceLine);
-            
-            this.methodProcessor.setFields(sourceLine);
-            //this.fieldProcessor.setListVariaveis(sourceLine);
-            //this.taskProcessor.setFields(sourceLine);
-            /*
             this.packageProcessor.setFields(sourceLine);
             this.interfaceProcessor.setFields(sourceLine);
             this.genericsComments.setComments(sourceLine);
@@ -93,18 +86,16 @@ public class SystemVerilogVocabularyExtractor {
                 this.moduleProcessor.setModuleComments(genericsComments);
                 this.genericsComments = new CommentProcessor();
             }*/
+            }
         }
     }
     public String toString(){
-        /*String svve = this.classProcessor.toString();
+        String svve = this.classProcessor.toString();
         svve += this.moduleProcessor;
         svve += this.interfaceProcessor;
         svve += this.classProcessor;
-        svve += packageProcessor;*/
-        return this.methodProcessor.toString();
-        //return this.fieldProcessor.toString();
-        //return this.taskProcessor.toString();
-        
+        svve += packageProcessor;
+        return svve;
     }
     public String toXML(){
         FileWriter arquivo;
@@ -162,14 +153,13 @@ public class SystemVerilogVocabularyExtractor {
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
-        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("/home/filipe/SystemVerilogProject2/");        
-        System.out.println(svve);
-        System.err.println("teste"+svve.fieldProcessor.listVariaveis.size());
+        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("/home/filipe/Documentos/arquivostestbenchfelipegonalves/");        
+        //System.out.println(svve.toXML());
 
 //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
         
-        //System.out.println(svve.toXML());
+        System.out.println(svve.toXML());
         
     }
 }

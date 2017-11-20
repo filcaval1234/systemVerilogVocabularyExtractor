@@ -10,6 +10,7 @@ package systemverilogvocabularyextractor;
  */
 public class ModPortData {
     private String nome;
+    private ParamProcessor paramProcessorModport;
     private CommentProcessor commentsProcesorModPort;
     private FieldProcessor fieldsModPort;
     
@@ -20,6 +21,7 @@ public class ModPortData {
      */
     public ModPortData(String nome){
         this.nome = nome;
+        this.paramProcessorModport = new ParamProcessor();
         this.commentsProcesorModPort = new CommentProcessor();
         this.fieldsModPort = new FieldProcessor();
     }
@@ -60,16 +62,27 @@ public class ModPortData {
         String modPort = "-----------------------------\n";
         modPort += "name modPort: "+ this.nome+"\n";
         modPort += "---------param modPort----------\n";
-        modPort += this.fieldsModPort;
+        modPort += this.paramProcessorModport;
         modPort += "--------commentsModPort----------\n";
         modPort += this.commentsProcesorModPort;
         return modPort;
     }
     public String toXML(String identation){
         final String IDENTATAION = "    ";
-        String toXML = identation+"<modport name=\""+this.nome+"\">\n";
-        toXML += this.fieldsModPort.fldToXml(identation+IDENTATAION);
-        toXML += identation+"</modport>\n";
+        String toXML = identation+"<mdp name=\""+this.nome+"\">\n";
+        toXML += this.paramProcessorModport.toXML(identation+IDENTATAION);
+        toXML += identation+"</mdp>\n";
         return toXML;
+    }
+
+    public ParamProcessor getParamProcessorModport() {
+        return paramProcessorModport;
+    }
+
+    public void setParamProcessorModport(ParamProcessor paramProcessorModport) {
+        this.paramProcessorModport = paramProcessorModport;
+    }
+    public void setParamProcessorModport(String sourceLine){
+        this.paramProcessorModport.setParametersFormal(sourceLine);
     }
 }

@@ -22,8 +22,10 @@ public class ModuleProcessor extends AbstractModuleLanguage{
         this.commentsFunction = new CommentProcessor();
     }
     public void setModuleProperties(String sourceLine){
-        if(this.isModule(sourceLine))
+        if(this.isModule(sourceLine)){
             this.setFields(sourceLine);
+            this.arrayModuleData.get(size-1).setParamProcessorModuleData(sourceLine);
+        }
         this.setVariableAndCommentlocal(sourceLine);
     }
     @Override

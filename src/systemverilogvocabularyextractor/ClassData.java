@@ -165,12 +165,12 @@ public class ClassData {
     }  
     public String toXML(){
         final String identation = "    ";
-        String toXML = "<class name=\""+this.name+"\" superClass=\""+superclass+"\">\n";
+        String toXML = "<cls name=\""+this.name+"\" superClass=\""+superclass+"\">\n";
         toXML += this.commentProcessorClassData.toXML(identation);
         toXML += this.fieldProcessorClassData.fldToXml(identation);
         toXML += this.methodProcessorClassData.toXMl(identation);
         toXML += this.taskProcessorClassData.toXML(identation);
-        toXML += "</class>\n";
+        toXML += "</cls>\n";
         return toXML;
     }
 }

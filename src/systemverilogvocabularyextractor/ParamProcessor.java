@@ -44,6 +44,6 @@ public class ParamProcessor {
     }   
     public String toXML(String identation){
         final String IDENTATION = "    ";
-        return identation+this.parametersFormal.prmToXml(identation+IDENTATION);
+        return this.parametersFormal.prmToXml(IDENTATION);
     }
 }

@@ -41,7 +41,7 @@ public class FieldProcessor {
                 wordsFiltrade = this.getAllTypesVariable(sourceLine);
             }catch(java.lang.StringIndexOutOfBoundsException sioe){}
             for(int i=1;i < wordsFiltrade.size();i++){
-                if(wordsFiltrade.get(0) != ""){
+                if(wordsFiltrade.get(i) != ""){
                     try{
                         String tiposConcatenados = wordsFiltrade.get(0);
                         while(vfs.sytemVerilogSintax(wordsFiltrade.get(i)) == true){
@@ -177,7 +177,7 @@ public class FieldProcessor {
      */
     private boolean isVariable(String sourceLine){
         boolean state = true;
-        String[] isNotVariable = {"class","#","return","(", "{",">", "else",
+        String[] isNotVariable = {"class","#","return","(", "{",">", "else","if",
             ":", "}", ")", "<", "`include", "package", "function", "task", "interface",
             "modport"};
         if(sourceLine.equals(" ")){
@@ -301,7 +301,7 @@ public class FieldProcessor {
     public String prmToXml(String identation){
         String prmToXml = "";
         for(FieldData fields: listVariaveis){
-            prmToXml = fields.prmToXml(identation);
+            prmToXml += fields.prmToXml(identation);
         }
         return prmToXml;
     }

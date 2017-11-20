@@ -145,13 +145,14 @@ public class InterfaceData {
     }
     public String toXML(){
         final String IDENTATION = "    ";
-        String toXML = "<interface nome=\""+this.nome+"\">\n";
+        String toXML = "<intfc nome=\""+this.nome+"\">\n";
         toXML += this.commentsProcessorInterface.toXML(IDENTATION);
+        toXML += this.paramProcessorInterface.toXML(IDENTATION);
         toXML += this.fieldProcessorInterface.fldToXml(IDENTATION);
         toXML += this.methodProcessorInterface.toXMl(IDENTATION);
         toXML += this.taskProcessorInterface.toXML(IDENTATION);
         toXML += this.modPortProcessorInterface.toXML(IDENTATION);
-        toXML += "</interface>\n";
+        toXML += "</intfc>\n";
         return toXML;
     }
 }

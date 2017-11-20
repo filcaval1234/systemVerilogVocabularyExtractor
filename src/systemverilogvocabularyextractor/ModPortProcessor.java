@@ -28,13 +28,14 @@ public class ModPortProcessor extends AbstractModuleLanguage{
     @Override
     void setFields(String sourceLine) {
         sourceLine = this.filterIndentation(sourceLine);
-        ModPortData TempModPort;
+        ModPortData tempModPort;
         if(this.isModule(sourceLine)){
             String name = sourceLine.substring(sourceLine.indexOf(" "), 
                     sourceLine.indexOf("("));
-            TempModPort = new ModPortData(name);
-            TempModPort.setFieldsModPort(this.getFieldsOnSameLine(sourceLine));
-            this.arrayModPorts.add(TempModPort);
+            tempModPort = new ModPortData(name);
+            tempModPort.setParamProcessorModport(sourceLine);
+            System.out.println(tempModPort.toString());
+            this.arrayModPorts.add(tempModPort);
             this.size = arrayModPorts.size();
         }
         this.setVariableAndCommentlocal(sourceLine);
@@ -79,6 +80,7 @@ public class ModPortProcessor extends AbstractModuleLanguage{
             fieldsOnSameLine = sourceLine.substring(sourceLine.indexOf(LIMITES[0])+1,
                     sourceLine.indexOf(LIMITES[1]))+";";
         }
+        System.out.println(fieldsOnSameLine);
         fieldsInSameLine.setListVariaveis(fieldsOnSameLine);
         return fieldsInSameLine;
     }

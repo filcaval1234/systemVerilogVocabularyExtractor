@@ -35,6 +35,7 @@ public class InterfaceProcessor extends AbstractModuleLanguage{
             String[] wordsInline = sourceLine.split(" ");
             tempInterfece = new InterfaceData(wordsInline[1]);
             this.arrayInterface.add(tempInterfece);
+            this.arrayInterface.get(size).setParamProcessorInterface(sourceLine);
             this.size++;
         }
         this.setVariableAndCommentlocal(sourceLine);
