@@ -167,7 +167,7 @@ public class ClassData {
         final String identation = "    ";
         String toXML = "<class name=\""+this.name+"\" superClass=\""+superclass+"\">\n";
         toXML += this.commentProcessorClassData.toXML(identation);
-        toXML += this.fieldProcessorClassData.toXML(identation);
+        toXML += this.fieldProcessorClassData.fldToXml(identation);
         toXML += this.methodProcessorClassData.toXMl(identation);
         toXML += this.taskProcessorClassData.toXML(identation);
         toXML += "</class>\n";

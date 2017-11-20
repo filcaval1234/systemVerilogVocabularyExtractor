@@ -20,8 +20,14 @@ public class SystemVerilogVocabularyExtractor {
     private ModuleProcessor moduleProcessor;
     private ArrayList<String> projectSource;
     private InterfaceProcessor interfaceProcessor;
-    private ModPortProcessor modPort;
+    private ModPortProcessor modPortProcessor;
     private PackageProcessor packageProcessor;
+    
+    //##########################teste de unidades##############################
+        private MethodProcessor methodProcessor;
+        private TaskProcessor taskProcessor;
+        private FieldProcessor fieldProcessor;
+    //#########################################################################
     
     /**
      * O construtor da classe recebe um argumento que é o diretorio do projeto
@@ -35,20 +41,42 @@ public class SystemVerilogVocabularyExtractor {
         this.classProcessor = new ClassProcessor();
         this.moduleProcessor = new ModuleProcessor();
         this.interfaceProcessor = new InterfaceProcessor();
-        this.modPort = new ModPortProcessor();
+        this.modPortProcessor = new ModPortProcessor();
         this.packageProcessor = new PackageProcessor();
+        //##################testes de unidades###########################
+        this.methodProcessor = new MethodProcessor();
+        this.taskProcessor = new TaskProcessor();
+        this.fieldProcessor = new FieldProcessor();
+        //###############################################################
         this.run();
-        
     }
     /**
      * O métedo run, é nele que é executado tudo.
      */
     public void run(){
         int index = 0;
+        final String[] PARENTESES = {"(", ")"};
+        boolean stateParam = false;
         for(;index < this.projectSource.size();index++){
             String sourceLine = this.projectSource.get(index);
             if(sourceLine.equals(" ") || sourceLine.equals(""))
                 continue;
+            if (sourceLine.contains(PARENTESES[0]) && !sourceLine.contains(PARENTESES[1]) || stateParam){
+                stateParam = true;
+                while(stateParam){
+                    sourceLine += this.concatGenericParam(this.projectSource.get(index+1), true);
+                    if(sourceLine.contains(PARENTESES[1]))
+                        stateParam = false;
+                    index += 1;
+                }
+            }
+            
+            //System.err.println(sourceLine);
+            
+            this.methodProcessor.setFields(sourceLine);
+            //this.fieldProcessor.setListVariaveis(sourceLine);
+            //this.taskProcessor.setFields(sourceLine);
+            /*
             this.packageProcessor.setFields(sourceLine);
             this.interfaceProcessor.setFields(sourceLine);
             this.genericsComments.setComments(sourceLine);
@@ -63,17 +91,20 @@ public class SystemVerilogVocabularyExtractor {
             }
             else if(this.moduleProcessor.isModule(sourceLine)){
                 this.moduleProcessor.setModuleComments(genericsComments);
-                this.genericsComments = new CommentProcessor();*/
-            }
+                this.genericsComments = new CommentProcessor();
+            }*/
         }
     }
     public String toString(){
-        String svve = this.classProcessor.toString();
+        /*String svve = this.classProcessor.toString();
         svve += this.moduleProcessor;
         svve += this.interfaceProcessor;
         svve += this.classProcessor;
-        svve += packageProcessor;
-        return svve;
+        svve += packageProcessor;*/
+        return this.methodProcessor.toString();
+        //return this.fieldProcessor.toString();
+        //return this.taskProcessor.toString();
+        
     }
     public String toXML(){
         FileWriter arquivo;
@@ -92,6 +123,22 @@ public class SystemVerilogVocabularyExtractor {
             e.printStackTrace();
         }
         return toXML;
+    }
+    /**
+     * O método concatGenericParam concatena parâmetros que estiverem em varias
+     * linhas
+     * @param sourceLine linha de código original
+     * @param sourceLineToConcat linha de código que talvez será concatenada
+     * @param permissionConcat se true permite a concatenação, caso contrário não
+     * @return a string original (sourceLine) caso não seja dado permissão ou a 
+     * concatenação das duas Strings passadas como parâmetro
+     */
+    private String concatGenericParam(String sourceLineToConcat,
+            boolean permissionConcat){
+        String concatString = "";
+        if(permissionConcat)
+            concatString += sourceLineToConcat.trim();
+        return concatString;
     }
     /**
      * O main do projeto
@@ -115,11 +162,14 @@ public class SystemVerilogVocabularyExtractor {
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
         //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
-        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)");        
-        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
+        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("/home/filipe/SystemVerilogProject2/");        
+        System.out.println(svve);
+        System.err.println("teste"+svve.fieldProcessor.listVariaveis.size());
+
+//SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
         //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
         
-        System.out.println(svve.toXML());
+        //System.out.println(svve.toXML());
         
     }
 }

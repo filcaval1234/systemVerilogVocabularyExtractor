@@ -38,19 +38,25 @@ public class MethodProcessor extends AbstractModuleLanguage{
         final String PARENTESES = "(";
         String[] listWord;
         MethodData methodData = null;
+        final int CORRECTNUMBERWORDS = 3;
         String linha = this.filterIndentation(sourceLine);
         linha = this.filterAccessMode(linha);
         if(isModule(linha)){
-            linha = linha.substring(0, linha.indexOf(PARENTESES));
+            try{
+                linha = linha.substring(0, linha.indexOf(PARENTESES));
+            }catch(Exception ex){
+                linha = linha.substring(0, linha.length());
+            }
             listWord = linha.split(SPACE);
-            if(listWord.length == 3){
+            if(listWord.length == CORRECTNUMBERWORDS){
                 methodData = new MethodData(listWord[listWord.length-1], this.getReturn(listWord));
                 methodData.setParam(sourceLine);
                 this.arrayMethodData.add(methodData);
                 this.size= this.arrayMethodData.size()-1;
             }
         }
-        this.setVariableAndCommentlocal(sourceLine);
+        else
+            this.setVariableAndCommentlocal(sourceLine);
     }
     /**
      * O método isModule verifica se inicio-se uma nova função systemverilog
@@ -116,7 +122,7 @@ public class MethodProcessor extends AbstractModuleLanguage{
     }
     /**
      * O método getReturn concatena as String do array passado como parâmetro
-     * fazendo um retorno completo ou seja não somente o tipo como junções de
+     * fazendo um retorno completo, ou seja, não somente o tipo como junções de
      * tipos também serão processados EX.: function long int nameExample(),
      * function logic[x:0] nameExample()
      * @param listWord lista de tipos que serão concatenados

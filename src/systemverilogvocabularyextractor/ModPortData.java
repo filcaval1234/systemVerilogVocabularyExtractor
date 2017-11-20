@@ -68,7 +68,7 @@ public class ModPortData {
     public String toXML(String identation){
         final String IDENTATAION = "    ";
         String toXML = identation+"<modport name=\""+this.nome+"\">\n";
-        toXML += this.fieldsModPort.toXML(identation+IDENTATAION);
+        toXML += this.fieldsModPort.fldToXml(identation+IDENTATAION);
         toXML += identation+"</modport>\n";
         return toXML;
     }

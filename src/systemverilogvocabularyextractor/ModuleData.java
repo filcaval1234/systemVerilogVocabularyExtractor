@@ -11,13 +11,12 @@ package systemverilogvocabularyextractor;
  */
 public class ModuleData {
     private String nome;
+    private ParamProcessor paramProcessorModuleData;
     private MethodProcessor methodProcessorModuleData;
     private FieldProcessor fieldProcessorModuleData;
     private CommentProcessor commentProcessorModuleData;
     private static final String BEGINMODULE = "module";
     private static final String ENDMODULE = "endmodule";
-    //private EnumProcessor empr;
-    //private InterfaceProcessor iepr;
     
     /**
      * O construtor da classe recebe um argumento que é o nome do module
@@ -26,6 +25,7 @@ public class ModuleData {
      */
     public ModuleData(String nome){
         this.nome = nome;
+        this.paramProcessorModuleData = new ParamProcessor();
         this.methodProcessorModuleData = new MethodProcessor();
         this.fieldProcessorModuleData = new FieldProcessor();
         this.commentProcessorModuleData = new CommentProcessor();
@@ -94,6 +94,9 @@ public class ModuleData {
     public void setCommentProcessorModuleData(CommentProcessor commentProcessorModuleData) {
         this.commentProcessorModuleData = commentProcessorModuleData;
     }
+    public void setParamProcessorModuleData(String sourceLine){
+        this.paramProcessorModuleData.setParametersFormal(sourceLine);
+    }
     /**
      * O método toString retorna uma String formatada de acordo com 
      * necessidades
@@ -113,11 +116,11 @@ public class ModuleData {
     }
     public String toXML(){
         final String IDENTATION = "    ";
-        String toXML = "<module nome=\""+this.nome+"\">\n";
+        String toXML = "<mdl nome=\""+this.nome+"\">\n";
         toXML += this.commentProcessorModuleData.toXML(IDENTATION);
-        toXML += this.fieldProcessorModuleData.toXML(IDENTATION);
+        toXML += this.fieldProcessorModuleData.fldToXml(IDENTATION);
         toXML += this.methodProcessorModuleData.toXMl(IDENTATION);
-        toXML += "</module>\n";
+        toXML += "</mdl>\n";
         return toXML;
     }
 }

@@ -32,7 +32,14 @@ public class FieldData {
         String variavel = "tipo: \'"+tipo+"\\' Nome: "+"\\'"+nome+"\'\n";
         return variavel;
     }
-    public String toXml(String identation){
-        return identation+"<field type=\""+this.tipo+"\" name=\""+this.nome+"\"/>\n";
+    public String fldToXml(String identation){
+        return identation+"<fld type=\""+this.tipo+"\" name=\""+this.nome+"\"/>\n";
+    }
+    public String prmToXml(String identation){
+        return identation+"<prm type=\""+this.tipo+"\" name=\""+this.nome+"\"/>\n";
+    }
+    public String lvrToXml(String identation){
+        
+        return identation+"<lvr type=\""+this.tipo+"\" name=\""+this.nome+"\"/>\n";
     }
 }

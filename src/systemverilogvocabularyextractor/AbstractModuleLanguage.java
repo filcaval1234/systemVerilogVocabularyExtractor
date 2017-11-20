@@ -95,14 +95,14 @@ abstract class AbstractModuleLanguage {
      * @return retorna a linha de código sem identação
      */
     protected String filterIndentation(String sourceLine){
-        int i=0;
+        int i = 0;
         final char TAB = 9;
         final String INDENTATIONMAKEWITHSPACES = "  ";
         sourceLine = sourceLine.replace(INDENTATIONMAKEWITHSPACES, "");
         sourceLine = sourceLine.replace(TAB, ' ');
         for(;i < sourceLine.length(); i++){
             char teste = sourceLine.charAt(i);
-            if(sourceLine.charAt(i) == ' ' || sourceLine.charAt(i) == 9) {
+            if(sourceLine.charAt(i) == ' ' || sourceLine.charAt(i) == TAB) {
                 continue;
             }else break;
         }

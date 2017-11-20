@@ -38,7 +38,11 @@ public class TaskProcessor extends AbstractModuleLanguage{
         String linha = this.filterIndentation(sourceLine);
         linha = this.filterAccessMode(linha);
         if(isModule(linha)){
-            linha = linha.substring(0, linha.indexOf(PARENTESES));
+            try{
+                linha = linha.substring(0, linha.indexOf(PARENTESES));
+            }catch(Exception ex){
+                linha = linha.substring(0, linha.length());
+            }
             listWord = linha.split(SPACE);
             if(listWord.length == 2){
                 taskdata = new TaskData(listWord[listWord.length-1]);

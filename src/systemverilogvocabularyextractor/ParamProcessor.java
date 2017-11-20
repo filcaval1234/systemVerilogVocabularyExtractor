@@ -1,6 +1,6 @@
 /**
  * A classe ParamProcessor encapsula os dados e os métodos para poder processar
- * parâmetros em modulos de systemverilog
+ * parâmetros em módulos de systemverilog
  */
 package systemverilogvocabularyextractor;
 
@@ -44,8 +44,6 @@ public class ParamProcessor {
     }   
     public String toXML(String identation){
         final String IDENTATION = "    ";
-        String toXML = identation+"<param>\n"+this.parametersFormal.toXML(identation+IDENTATION);
-        toXML += identation+"</param>\n";
-        return toXML;
+        return identation+this.parametersFormal.prmToXml(identation+IDENTATION);
     }
 }

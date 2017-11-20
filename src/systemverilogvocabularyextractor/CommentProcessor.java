@@ -95,7 +95,7 @@ public class CommentProcessor {
         return this.commentBlock+"\n"+commentLine+"\n";
     }
     public String toXML(String identation){
-        String toXML = identation+"<comments comm=\""+this.commentBlock+this.commentLine+"\"/>\n";
+        String toXML = identation+"<cmt cntt=\""+this.commentBlock+this.commentLine+"\"/>\n";
         return toXML;
     }
 }

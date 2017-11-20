@@ -147,7 +147,7 @@ public class InterfaceData {
         final String IDENTATION = "    ";
         String toXML = "<interface nome=\""+this.nome+"\">\n";
         toXML += this.commentsProcessorInterface.toXML(IDENTATION);
-        toXML += this.fieldProcessorInterface.toXML(IDENTATION);
+        toXML += this.fieldProcessorInterface.fldToXml(IDENTATION);
         toXML += this.methodProcessorInterface.toXMl(IDENTATION);
         toXML += this.taskProcessorInterface.toXML(IDENTATION);
         toXML += this.modPortProcessorInterface.toXML(IDENTATION);

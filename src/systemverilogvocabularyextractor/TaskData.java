@@ -32,11 +32,11 @@ public class TaskData extends MethodData{
     @Override
     public String toXML(String identation){
         final String IDENTATION = "    ";
-        String toXML = identation+"<task name=\""+this.name+"\">\n";
-        toXML += this.param.toXML(IDENTATION+identation);
+        String toXML = identation+"<tsk name=\""+this.name+"\">\n";
         toXML += this.commentsFunction.toXML(IDENTATION+identation);
-        toXML += this.localField.toXML(IDENTATION+identation);
-        toXML += identation+"</task>\n";
+        toXML += this.param.toXML(IDENTATION+identation);
+        toXML += this.localField.lvrToXml(IDENTATION+identation);
+        toXML += identation+"</tsk>\n";
         return toXML;
     }
 }

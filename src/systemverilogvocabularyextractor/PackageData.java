@@ -93,10 +93,10 @@ public class PackageData {
         final String IDENTATION = "    ";
         String toXML = "<pkg name=\""+this.namePackage+"\">\n";
         toXML += this.commentProcessorPackageData.toXML(IDENTATION);
-        toXML += this.fieldProcessorPackageData.toXML(IDENTATION);
+        toXML += this.fieldProcessorPackageData.fldToXml(IDENTATION);
         toXML += this.methodProcessorPackageData.toXMl(IDENTATION);
         toXML += this.taskProcessorPackageData.toXML(IDENTATION);
-        toXML +=this.filesInPackageToXML();
+        toXML += this.filesInPackageToXML();
         toXML += "</pkg>";
         return toXML;
     }

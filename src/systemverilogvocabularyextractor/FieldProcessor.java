@@ -177,7 +177,7 @@ public class FieldProcessor {
      */
     private boolean isVariable(String sourceLine){
         boolean state = true;
-        String[] isNotVariable = {"class","#","return","(", "{",">",
+        String[] isNotVariable = {"class","#","return","(", "{",">", "else",
             ":", "}", ")", "<", "`include", "package", "function", "task", "interface",
             "modport"};
         if(sourceLine.equals(" ")){
@@ -284,11 +284,25 @@ public class FieldProcessor {
         }
         return AnalystVariable;
     }
-    public String toXML(String identation){
-        String toXml = "";
+    public String fldToXml(String identation){
+        String fldToXml = "";
         for(FieldData fields: listVariaveis){
-            toXml = fields.toXml(identation);
+            fldToXml = fields.fldToXml(identation);
         }
-        return toXml;
+        return fldToXml;
+    }
+    public String lvrToXml(String identation){
+        String lvrToXml = "";
+        for(FieldData fields: listVariaveis){
+            lvrToXml = fields.lvrToXml(identation);
+        }
+        return lvrToXml;
+    }
+    public String prmToXml(String identation){
+        String prmToXml = "";
+        for(FieldData fields: listVariaveis){
+            prmToXml = fields.prmToXml(identation);
+        }
+        return prmToXml;
     }
 }
