@@ -49,7 +49,9 @@ public class ModuleProcessor extends AbstractModuleLanguage{
                 if(referenceModule.getMethodProcessorModuleData().isModule(sourceLine)){
                     this.commentsFunction.setBeginComments(false);
                     this.commentsFunction.setEndComments(false);
-                    referenceModule.getMethodProcessorModuleData().getUltimateMethod().setCommentLocal(this.commentsFunction);
+                    //#######################tem um erro aqui!!!!############################
+                    //referenceModule.getMethodProcessorModuleData().getUltimateMethod().setCommentLocal(this.commentsFunction);
+                    //#######################################################################
                     this.commentsFunction = new CommentProcessor();
                 }
             }

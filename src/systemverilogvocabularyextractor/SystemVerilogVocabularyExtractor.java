@@ -24,9 +24,7 @@ public class SystemVerilogVocabularyExtractor {
     private PackageProcessor packageProcessor;
     
     //##########################teste de unidades##############################
-        private MethodProcessor methodProcessor;
-        private TaskProcessor taskProcessor;
-        private FieldProcessor fieldProcessor;
+
     //#########################################################################
     
     /**
@@ -44,10 +42,6 @@ public class SystemVerilogVocabularyExtractor {
         this.modPortProcessor = new ModPortProcessor();
         this.packageProcessor = new PackageProcessor();
         //##################testes de unidades###########################
-        this.methodProcessor = new MethodProcessor();
-        this.taskProcessor = new TaskProcessor();
-        this.fieldProcessor = new FieldProcessor();
-        //###############################################################
         this.run();
     }
     /**
@@ -97,7 +91,7 @@ public class SystemVerilogVocabularyExtractor {
         svve += packageProcessor;
         return svve;
     }
-    public String toXML(){
+    public String toXML(String saveDir, String nameProject){
         FileWriter arquivo;
         String toXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
         toXML += this.classProcessor.toXML();
@@ -105,7 +99,7 @@ public class SystemVerilogVocabularyExtractor {
         toXML += this.moduleProcessor.toXML();
         toXML += this.packageProcessor.toXML();
         try {
-            arquivo = new FileWriter(new File("Arquivo.XML"));
+            arquivo = new FileWriter(new File(saveDir+nameProject));
             arquivo.write(toXML);
             arquivo.close();
         } catch (IOException e) {
@@ -141,25 +135,9 @@ public class SystemVerilogVocabularyExtractor {
                     + " absolute path your project.");
             System.err.println("ERROR: Unknown absolute path");
             System.exit(-1);
-        }
-        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor(args[0]);*/
-        //D:\\Nova pasta (2)\\Testes_Extractor\\apb_test
-        //D:\\Nova pasta (2)\\Testes_Extractor\\ahb2_uvm_tb
-        //D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\result (9)");
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\apb_test");
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb2_uvm_tb");
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\ahb_apb_bridge_uvm_tb");
-        //FileAnalyst fa = new FileAnalyst("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
-        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\Testes_Extractor\\sha3_uvm_tb");
-        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("/home/filipe/Documentos/arquivostestbenchfelipegonalves/");        
-        //System.out.println(svve.toXML());
-
-//SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\arquivostestbenchfelipegonalves");
-        //SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor("D:\\Nova pasta (2)\\result (9)\\diff_pkg\\testeClass");
-        
-        System.out.println(svve.toXML());
+        }*/
+        SystemVerilogVocabularyExtractor svve = new SystemVerilogVocabularyExtractor(args[0]);
+        svve.toXML(args[1], args[2]);
         
     }
 }

@@ -112,8 +112,10 @@ public class MethodProcessor extends AbstractModuleLanguage{
     @Override
     public void setVariableAndCommentlocal(String sourceLine){
         if(beginStruct && !endStruct){
-            this.arrayMethodData.get(arrayMethodData.size()-1).setLocalField(sourceLine);
-            this.arrayMethodData.get(arrayMethodData.size()-1).setCommentLocal(sourceLine);
+            try {
+                this.arrayMethodData.get(arrayMethodData.size() - 1).setLocalField(sourceLine);
+                this.arrayMethodData.get(arrayMethodData.size() - 1).setCommentLocal(sourceLine);
+            }catch (ArrayIndexOutOfBoundsException ai){}
         }
         else if(endStruct){
             beginStruct = false;
@@ -131,7 +133,9 @@ public class MethodProcessor extends AbstractModuleLanguage{
     private String getReturn(String[] listWord){
         String returnOfFunction = "";
         for(int i=1;i < listWord.length-1;i++){
-            returnOfFunction += listWord[i];
+            try {
+                returnOfFunction += listWord[i];
+            }catch (ArrayIndexOutOfBoundsException ai){System.out.println(listWord.length-1);}
         }
         return returnOfFunction;
     }
