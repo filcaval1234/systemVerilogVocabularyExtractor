@@ -32,8 +32,8 @@ public class InterfaceProcessor extends AbstractModuleLanguage{
     void setFields(String sourceLine) {
         InterfaceData tempInterfece;
         if(this.isModule(sourceLine)){
-            String[] wordsInline = sourceLine.split(" ");
-            tempInterfece = new InterfaceData(wordsInline[1]);
+            String interfaceName = this.getNameAbstractModuleLanguage(sourceLine);
+            tempInterfece = new InterfaceData(interfaceName);
             this.arrayInterface.add(tempInterfece);
             this.arrayInterface.get(size).setParamProcessorInterface(sourceLine);
             this.size++;

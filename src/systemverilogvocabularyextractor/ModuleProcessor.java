@@ -5,6 +5,7 @@
  */
 package systemverilogvocabularyextractor;
 import java.util.ArrayList;
+import handleEventesVocabularyExtractor.HandleEventsComments;
 /**
  *
  * @author fc.corporation
@@ -15,23 +16,38 @@ public class ModuleProcessor extends AbstractModuleLanguage{
     private int size;
     private static final String BEGINMODULE = "module";
     private static final String ENDMODULE = "endmodule";
+    private HandleEventsComments handleEventsComment;
+    
+    public ModuleProcessor(){
+        super(ModuleProcessor.BEGINMODULE, ModuleProcessor.BEGINMODULE);
+        this.arrayModuleData = new ArrayList<>();
+        this.commentsFunction = new CommentProcessor();
+    }
 
-    public ModuleProcessor() {
+    public ModuleProcessor(HandleEventsComments handleEventsComments) {
         super(ModuleProcessor.BEGINMODULE, ModuleProcessor.ENDMODULE);
-        this.arrayModuleData = new ArrayList<ModuleData>();
+        this.handleEventsComment = handleEventsComments;
+        this.arrayModuleData = new ArrayList<>();
         this.commentsFunction = new CommentProcessor();
     }
     public void setModuleProperties(String sourceLine){
         if(this.isModule(sourceLine)){
             this.setFields(sourceLine);
+            //this.handleEventsComment.setGenericComments(this);
             this.arrayModuleData.get(size-1).setParamProcessorModuleData(sourceLine);
         }
-        this.setVariableAndCommentlocal(sourceLine);
+        else{
+            this.setVariableAndCommentlocal(sourceLine);
+        }
     }
     @Override
     void setFields(String sourceLine) {
-        sourceLine = this.filtration(sourceLine, false);
-        String nameModule = sourceLine.substring(sourceLine.indexOf(" "));
+        try{
+            sourceLine = this.filtration(sourceLine, true);
+        }catch(StringIndexOutOfBoundsException stie){
+            sourceLine = sourceLine.replace(";", "");
+        }
+        String nameModule = this.getNameAbstractModuleLanguage(sourceLine);
         ModuleData tempModuleData = new ModuleData(nameModule);
         this.arrayModuleData.add(tempModuleData);
         this.size+=1;
@@ -48,10 +64,7 @@ public class ModuleProcessor extends AbstractModuleLanguage{
                     referenceModule.setFieldProcessorModuleData(sourceLine);
                 if(referenceModule.getMethodProcessorModuleData().isModule(sourceLine)){
                     this.commentsFunction.setBeginComments(false);
-                    this.commentsFunction.setEndComments(false);
-                    //#######################tem um erro aqui!!!!############################
-                    //referenceModule.getMethodProcessorModuleData().getUltimateMethod().setCommentLocal(this.commentsFunction);
-                    //#######################################################################
+                    this.commentsFunction.setEndComments(false);                    
                     this.commentsFunction = new CommentProcessor();
                 }
             }

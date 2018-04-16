@@ -6,6 +6,7 @@
  */
 package systemverilogvocabularyextractor;
 import java.util.ArrayList;
+import handleEventesVocabularyExtractor.HandleEventsComments;
 /**
  *
  * @author fc.corporation
@@ -13,12 +14,14 @@ import java.util.ArrayList;
 public class MethodProcessor extends AbstractModuleLanguage{
     private ArrayList<MethodData> arrayMethodData;
     private int size;
+    private HandleEventsComments handleEventsComments;
     
     /**
      * O construtor da classe  inicializa os atributos da classe.
      */
     public MethodProcessor(){
         super("function", "endfunction");
+        //this.handleEventsComments = handleEventsComments;
         this.arrayMethodData = new ArrayList<MethodData>();
         this.size = 0;
     }
@@ -47,6 +50,7 @@ public class MethodProcessor extends AbstractModuleLanguage{
             }catch(Exception ex){
                 linha = linha.substring(0, linha.length());
             }
+            //this.handleEventsComments.setGenericComments(this);
             listWord = linha.split(SPACE);
             if(listWord.length == CORRECTNUMBERWORDS){
                 methodData = new MethodData(listWord[listWord.length-1], this.getReturn(listWord));
@@ -135,7 +139,7 @@ public class MethodProcessor extends AbstractModuleLanguage{
         for(int i=1;i < listWord.length-1;i++){
             try {
                 returnOfFunction += listWord[i];
-            }catch (ArrayIndexOutOfBoundsException ai){System.out.println(listWord.length-1);}
+            }catch (ArrayIndexOutOfBoundsException ai){}
         }
         return returnOfFunction;
     }

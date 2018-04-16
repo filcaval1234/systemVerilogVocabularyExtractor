@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import avltree.*;
+import wordKeysSystemVerilog.WordKeys;
 
 /**
  *
@@ -16,7 +17,7 @@ import avltree.*;
 public class VerificationSintax {
     static private final String WORDSKEYSVALUES = "`abcdefghijklmnopqrstuvwx_01";
     private AvlTree avlBody;
-
+    
     VerificationSintax() {
         this.avlBody = new AvlTree();
     }
@@ -26,21 +27,7 @@ public class VerificationSintax {
      * @return uma lista de Strings que são as palavras reservadas da linguagem
      */
     public String[] setWordsKeys(){
-        final int QUANTWORDSKEYS = 222;
-        String[] wordsKeys = new String[QUANTWORDSKEYS];
-        int i = 0;
-        try {
-            FileReader file = new FileReader("wordKeys/keysWordsSystemverilog.txt");
-            BufferedReader arq = new BufferedReader(file);
-            while(arq.ready()){
-                wordsKeys[i] = arq.readLine();
-                i++;
-            }
-            arq.close();
-        } catch(IOException ioe){
-            ioe.printStackTrace();
-        }
-        return wordsKeys;
+        return new WordKeys().getWordKeysList();
     }
     /**
      * O método setAvlTreeSintax monta primeiramente sub-árvores onde cada sub-árvore dessas

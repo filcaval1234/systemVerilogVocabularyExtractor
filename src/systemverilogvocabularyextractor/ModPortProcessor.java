@@ -34,11 +34,12 @@ public class ModPortProcessor extends AbstractModuleLanguage{
                     sourceLine.indexOf("("));
             tempModPort = new ModPortData(name);
             tempModPort.setParamProcessorModport(sourceLine);
-            System.out.println(tempModPort.toString());
             this.arrayModPorts.add(tempModPort);
             this.size = arrayModPorts.size();
         }
-        this.setVariableAndCommentlocal(sourceLine);
+        else{
+            this.setVariableAndCommentlocal(sourceLine);
+        }
     }
     @Override
     void setVariableAndCommentlocal(String linha) {
@@ -80,7 +81,6 @@ public class ModPortProcessor extends AbstractModuleLanguage{
             fieldsOnSameLine = sourceLine.substring(sourceLine.indexOf(LIMITES[0])+1,
                     sourceLine.indexOf(LIMITES[1]))+";";
         }
-        System.out.println(fieldsOnSameLine);
         fieldsInSameLine.setListVariaveis(fieldsOnSameLine);
         return fieldsInSameLine;
     }

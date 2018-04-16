@@ -98,4 +98,10 @@ public class CommentProcessor {
         String toXML = identation+"<cmt cntt=\""+this.commentBlock+this.commentLine+"\"/>\n";
         return toXML;
     }
+    public void setManualComments (String sourceLine){
+        this.commentBlock += sourceLine;
+    }
+    public void clearComments(){
+        this.commentBlock = "";
+    }
 }

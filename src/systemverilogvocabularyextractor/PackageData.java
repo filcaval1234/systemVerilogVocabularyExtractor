@@ -97,7 +97,7 @@ public class PackageData {
         toXML += this.methodProcessorPackageData.toXMl(IDENTATION);
         toXML += this.taskProcessorPackageData.toXML(IDENTATION);
         toXML += this.filesInPackageToXML();
-        toXML += "</pkg>";
+        toXML += "\n</pkg>";
         return toXML;
     }
 }

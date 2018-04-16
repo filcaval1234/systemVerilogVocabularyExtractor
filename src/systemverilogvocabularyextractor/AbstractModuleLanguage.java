@@ -9,11 +9,12 @@ package systemverilogvocabularyextractor;
  *
  * @author fc.corporation
  */
-abstract class AbstractModuleLanguage {
+abstract public class AbstractModuleLanguage {
     protected boolean beginStruct;
     protected boolean endStruct;
     protected String BEGINSTRUCT;
     protected String ENDSTRUCT;
+    protected CommentProcessor abstractComment;
     
     /**
      * O construtor da classe recebe dois parâmetros que são o começo do modulo
@@ -26,6 +27,7 @@ abstract class AbstractModuleLanguage {
         this.ENDSTRUCT = end;
         this.beginStruct = false;
         this.endStruct = false;
+        this.abstractComment = null;
     }
     /**
      * O método abstrato setFields será o principal da classe, então ha partir
@@ -110,11 +112,11 @@ abstract class AbstractModuleLanguage {
     }
     /**
      * O método filterParameter filtra todo tipo de parâmtros na declaração dos
-     * modulos systemverilo
+     * modulos systemverilog
      * @param sourceLine linha de código que será retirada os parâmetros
      * @return uma linha de código sem parâmetros
      */
-    protected String filterParameter(String sourceLine){
+    protected String filterParameter(String sourceLine)throws StringIndexOutOfBoundsException{
         final String INITIALPARAM = "#";
         final String OTHERINITIALPARAM = "(";
         if(sourceLine.contains(INITIALPARAM))
@@ -122,6 +124,15 @@ abstract class AbstractModuleLanguage {
         else 
             sourceLine = sourceLine.substring(0, sourceLine.indexOf(OTHERINITIALPARAM));
         return sourceLine;
+    }
+    protected void setGeneriComment(String comments){
+        this.abstractComment.setManualComments(comments);
+    }
+    protected String getGeneriComment(){
+        return this.abstractComment.toString();
+    }
+    public void setGenericComment(CommentProcessor genericComment){
+        this.abstractComment = genericComment;
     }
     /**
      * O método filtration junta todos os filtros em um só ligar para facilar
@@ -138,5 +149,22 @@ abstract class AbstractModuleLanguage {
         if(makeFilterParam)
             sourceLine = this.filterParameter(sourceLine);
         return sourceLine;
+    }
+    protected String getNameAbstractModuleLanguage(String sourceLine){
+        final String[] LIMITNAME = {";","(","#"};
+        String abstractName = "";
+        if(sourceLine.contains(LIMITNAME[2])){
+            abstractName = sourceLine.substring(sourceLine.indexOf(" ")+1, sourceLine.indexOf(LIMITNAME[2]));
+        }
+        else if(sourceLine.contains(LIMITNAME[1])){
+            abstractName = sourceLine.substring(sourceLine.indexOf(" ")+1, sourceLine.indexOf(LIMITNAME[1]));
+        }
+        else if(sourceLine.contains(LIMITNAME[0])){
+            abstractName = sourceLine.substring(sourceLine.indexOf(" ")+1, sourceLine.indexOf(LIMITNAME[0]));
+        }
+        else{
+            abstractName = sourceLine.substring(sourceLine.indexOf(" "));
+        }
+        return abstractName;
     }
 }

@@ -1,0 +1,5278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cls name="in" superClass="Author:">
+    <cmt cntt=""/>
+    <fld type="" name="*/"/>
+</cls>
+<cls name="sha3_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="sequencer" name="sequencer_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="in" superClass="Author:">
+    <cmt cntt=""/>
+    <fld type="" name="*/"/>
+</cls>
+<cls name="sha3_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="sha3_coverage" name="coverage"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="sha3_scoreboard" superClass="uvm_scoreboard;">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="transaction_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="in" superClass="Author:">
+    <cmt cntt=""/>
+    <fld type="" name="*/"/>
+</cls>
+<cls name="sha3_driver" superClass="uvm_driver#(sequence_item);">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+        <lvr type="sequence_item" name="cmd"/>
+    </tsk>
+</cls>
+<cls name="sequence_item" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="rand int" name="i"/>
+</cls>
+<cls name="sha3_coverage" superClass="uvm_subscriber">
+    <cmt cntt=""/>
+    <fld type="covergroup" name="sha3_cov"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    <prm type="sequence_item" name="t"/>
+    </fct>
+</cls>
+<cls name="sha3_agent_config;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="is_active"/>
+    <fct return="uvm_active_passive_enum" name="get_is_active">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="reset_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="bit" name="rst"/>
+    </tsk>
+</cls>
+<cls name="msg_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt="//assert(command.randomize());"/>
+        </tsk>
+</cls>
+<cls name="tr2_seq" superClass="base_sequence;">
+    <cmt cntt=""/>
+    <fld type="long_msg_seq" name="s_lmsg"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="long_msg_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="strt_ctrl_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="tr3_seq" superClass="base_sequence;">
+    <cmt cntt=""/>
+    <fld type="empty_msg_seq" name="s_empty_msg"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="finish_ctrl_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="rndmsg_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="tr1_seq" superClass="base_sequence;">
+    <cmt cntt=""/>
+    <fld type="msg_seq" name="s_msg"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="base_sequence" superClass="uvm_sequence">
+    <cmt cntt=""/>
+    <fld type="uvm_component" name="uvm_component_h"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="empty_msg_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="init_seq" superClass="uvm_sequence#(sequence_item);">
+    <cmt cntt=""/>
+    <fld type="sequence_item" name="command"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="tr5_seq" superClass="base_sequence;">
+    <cmt cntt=""/>
+    <fld type="rndmsg_seq" name="s_rmsg"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="in" superClass="Author:">
+    <cmt cntt=""/>
+    <fld type="" name="*/"/>
+</cls>
+<cls name="sha3_write_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="get_transaction">
+        <cmt cntt=""/>
+            <lvr type="sequence_item" name="transaction_h"/>
+    </tsk>
+</cls>
+<cls name="tr3_test" superClass="sha3_base_test;">
+    <cmt cntt=""/>
+    <fld type="tr3_seq" name="tr3_seq_h"/>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="tr1_test" superClass="sha3_base_test;">
+    <cmt cntt=""/>
+    <fld type="tr1_seq" name="tr1_seq_h"/>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="tr5_test" superClass="sha3_base_test;">
+    <cmt cntt=""/>
+    <fld type="tr5_seq" name="tr5_seq_h"/>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="sha3_base_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="sequencer" name="sequencer_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="tr2_test" superClass="sha3_base_test;">
+    <cmt cntt=""/>
+    <fld type="tr2_seq" name="tr2_seq_h"/>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="in" superClass="Author:">
+    <cmt cntt=""/>
+    <fld type="" name="*/"/>
+</cls>
+<cls name="sha3_read_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="get_transaction">
+        <cmt cntt=""/>
+            <lvr type="sequence_item" name="transaction_h"/>
+    </tsk>
+</cls>
+<cls name="env_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="s_is_active"/>
+</cls>
+<cls name="ahb_coverage" superClass="uvm_subscriber#(ahb_mxtn);">
+    <cmt cntt=""/>
+    <fld type="WDATA: coverpoint ahb_xtn.write_data[0]" name="{option.auto_bin_max}"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    <prm type="ahb_mxtn" name="t"/>
+    </fct>
+    <fct return="void" name="extract_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="report_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_vseqr" superClass="uvm_sequencer#(uvm_sequence_item);">
+    <cmt cntt=""/>
+    <fld type="ahb_sseqr" name="sseqr_h"/>
+</cls>
+<cls name="ahb_base_vseq" superClass="uvm_sequence#(uvm_sequence_item);">
+    <cmt cntt=""/>
+    <fld type="ahb_err_sseq" name="err_sseq_h"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_reset_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_set_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_idle_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_ready_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_incrx_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_wrapx_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_crt_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_incrbusy_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_err_vseq" superClass="ahb_base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="ahb_vseqr" name="vseqr_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_magent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="is_active"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_magent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="is_active"/>
+</cls>
+<cls name="ahb_mseqr" superClass="uvm_sequencer#(ahb_mxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_mdriver" superClass="uvm_driver#(ahb_mxtn);">
+    <cmt cntt=""/>
+    <fld type="ahb_magent_config" name="magt_cfg"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="drive">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_mbase_seq" superClass="uvm_sequence#(ahb_mxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_idle_mseq" superClass="ahb_mbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_wrapx_mseq" superClass="ahb_mbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_incrx_mseq" superClass="ahb_mbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_crt_mseq" superClass="ahb_mbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_incrbusy_mseq" superClass="ahb_mbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_mmonitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fld type="ahb_mxtn" name="xtn"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="create_beat">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="monitor_beat">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_mxtn" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="reset_base_seq" superClass="uvm_sequence#(ahb_mxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="reset_seq" superClass="reset_base_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="set_seq" superClass="reset_base_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="reset_seqr" superClass="uvm_sequencer#(ahb_mxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="reset_driver" superClass="uvm_driver#(ahb_mxtn);">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="reset">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="reset_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="reset_seqr" name="reset_seqr_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_sdriver" superClass="uvm_driver#(ahb_sxtn);">
+    <cmt cntt=""/>
+    <fld type="ahb_sagent_config" name="sagt_cfg"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="drive">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="reset_">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_sagent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="is_active"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_sseqr" superClass="uvm_sequencer#(ahb_sxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_sxtn" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="ahb_sagent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="is_active"/>
+</cls>
+<cls name="ahb_smonitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fld type="ahb_sxtn" name="xtn"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="monitor">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_sbase_seq" superClass="uvm_sequence#(ahb_sxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_reset_sseq" superClass="ahb_sbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_ready_sseq" superClass="ahb_sbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_err_sseq" superClass="ahb_sbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_sdriver" superClass="uvm_driver#(ahb_sxtn);">
+    <cmt cntt=""/>
+    <fld type="ahb_sagent_config" name="sagt_cfg"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="drive">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="reset_">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_sagent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="is_active"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_sseqr" superClass="uvm_sequencer#(ahb_sxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_sxtn" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="ahb_sagent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="uvm_active_passive_enum" name="is_active"/>
+</cls>
+<cls name="ahb_smonitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fld type="ahb_sxtn" name="xtn"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="monitor">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_sbase_seq" superClass="uvm_sequence#(ahb_sxtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_reset_sseq" superClass="ahb_sbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_ready_sseq" superClass="ahb_sbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_err_sseq" superClass="ahb_sbase_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_err_test" superClass="ahb_base_test;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="ahb_incrx_test" superClass="ahb_base_test;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="ahb_reset_test" superClass="ahb_base_test;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="ahb_wrapx_test" superClass="ahb_base_test;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="ahb_incrbusy_test" superClass="ahb_base_test;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="ahb_crt_test" superClass="ahb_base_test;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="ahb_base_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="ahb_err_vseq" name="err_vseq_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="sha3_read_monitor;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="sha3_transaction" name="send_h"/>
+    <tsk name="monitor">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="sha3_environment;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="sha3_scoreboard" name="sb"/>
+    <tsk name="build">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="stop">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="run">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="sha3_generator;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="sha3_transaction" name="send_h"/>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="sha3_transaction;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="static int" name="no_of_message"/>
+    <fct return="void" name="post_randomize">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    <prm type="string" name="message"/>
+    </fct>
+</cls>
+<cls name="sha3_write_monitor;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="sha3_transaction" name="send_h"/>
+    <tsk name="monitor">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="sha3_write_bfm;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="sha3_transaction" name="trans_h"/>
+    <tsk name="drive">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="env_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="apb_agent_config" name="apb_cfg_h"/>
+</cls>
+<cls name="env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="vsequencer" name="vsequencer_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="vsequencer" superClass="uvm_sequencer#(ahb_xtn);">
+    <cmt cntt=""/>
+    <fld type="ahb_sequencer" name="ahb_sequencer_h"/>
+</cls>
+<cls name="scoreboard" superClass="uvm_scoreboard;">
+    <cmt cntt=""/>
+    <fld type="covergroup" name="apb_cov"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="base_vseq" superClass="uvm_sequence#(uvm_sequence_item);">
+    <cmt cntt=""/>
+    <fld type="ahb_reset_seq" name="ahb_reset_seq_h"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="reset_vseq" superClass="base_vseq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="apb_driver" superClass="uvm_driver#(apb_xtn);">
+    <cmt cntt=""/>
+    <fld type="apb_xtn" name="xtn"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="apb_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fld type="apb_xtn" name="xtn"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="apb_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="apb_monitor" name="apb_monitor_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="apb_xtn" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="apb_agent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+</cls>
+<cls name="base_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="env_config" name="cfg_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="reset_test" superClass="base_test;">
+    <cmt cntt=""/>
+    <fld type="reset_vseq" name="reset_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+</cls>
+<cls name="ahb_sequencer" superClass="uvm_sequencer#(ahb_xtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_driver" superClass="uvm_driver#(ahb_xtn);">
+    <cmt cntt=""/>
+    <fld type="ahb_xtn" name="xtn"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="drive">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fld type="ahb_xtn" name="xtn"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="ahb_monitor" name="ahb_monitor_h"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="ahb_xtn" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="ahb_base_seq" superClass="uvm_sequence#(ahb_xtn);">
+    <cmt cntt=""/>
+</cls>
+<cls name="ahb_reset_seq" superClass="ahb_base_seq;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="ahb_agent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+</cls>
+<cls name="counter_trans;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="static int" name="trans_id"/>
+    <fct return="void" name="post_randomize">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    <prm type="string" name="message"/>
+    </fct>
+    <fct return="bit" name="compare">
+        <cmt cntt=""/>
+    <prm type="counter_trans" name="rcvd"/>
+    </fct>
+</cls>
+<cls name="counter_gen;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="counter_trans" name="trans2wr_h"/>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="counter_rm;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="int" name="count"/>
+    <tsk name="model">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="counter_rd_mon;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="counter_trans" name="rd2sb_h"/>
+    <tsk name="monitor">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="counter_wr_mon;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="counter_trans" name="wrmon2rm_h"/>
+    <tsk name="monitor">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="counter_env;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="counter_sb" name="sb_h"/>
+    <tsk name="build">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="reset">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="stop">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="run">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="counter_sb;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="covergroup" name="counter_cov"/>
+    <fct return="void" name="report;">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="start;">
+        <cmt cntt="//--------------------//	"/>
+        </tsk>
+    <tsk name="check">
+        <cmt cntt=""/>
+        <prm type="counter_trans" name="rcvd_h"/>
+    </tsk>
+</cls>
+<cls name="counter_wr_bfm;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="counter_trans" name="trans_h"/>
+    <tsk name="drive">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="start">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="counter_trans_load" superClass="counter_trans;">
+    <cmt cntt=""/>
+    <fld type="randc logic [3:0]" name="data"/>
+</cls>
+<cls name="test;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="counter_trans_load" name="trans_ld_h"/>
+    <tsk name="build_and_run;">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="Preamble;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="bit [7:0]" name="value"/>
+</cls>
+<cls name="Packet;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="Preamble" name="pr1"/>
+</cls>
+<cls name="PreambleDC;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="bit [7:0]" name="value"/>
+    <fct return="PreambleDC" name="copy">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="object" superClass="//">
+    <cmt cntt=""/>
+</cls>
+<cls name="PreambleDC" superClass="//">
+    <cmt cntt=""/>
+</cls>
+<cls name="PacketDC;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="PreambleDC" name="pr1"/>
+    <fct return="PacketDC" name="copy">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="PacketDC" superClass="//">
+    <cmt cntt=""/>
+</cls>
+<cls name="field(Preamble::value)" superClass="pkt2.pr1.value">
+    <cmt cntt=""/>
+    <fld type="module" name="test"/>
+</cls>
+<cls name="implementing" superClass="//These">
+    <cmt cntt=""/>
+</cls>
+<cls name="Driver_cbs;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="Driver;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="Driver_cbs" name="drv_cb_h"/>
+    <tsk name="pre_run">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="post_run">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="run">
+        <cmt cntt="//Hook1//Protocol specific logic//Hook2"/>
+        </tsk>
+</cls>
+<cls name="test" superClass="Driver_cbs;">
+    <cmt cntt=""/>
+    <fld type="module" name="polymorphism"/>
+    <tsk name="pre_run">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="A;" superClass="null">
+    <cmt cntt=""/>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="message">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="B" superClass="A;">
+    <cmt cntt=""/>
+</cls>
+<cls name="A," superClass="//">
+    <cmt cntt=""/>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="message">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="C" superClass="B;">
+    <cmt cntt=""/>
+</cls>
+<cls name="A," superClass="//">
+    <cmt cntt=""/>
+    <fld type="C" name="c_h"/>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="message">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="A" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="B" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="constraints_gotcha;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="rand bit[7:0]" name="a"/>
+    <fct return="int" name="get">
+        <cmt cntt=""/>
+    <prm type="bit[7:0]" name="x"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_types;" superClass="null">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit[1:0] {" name="WRITE"/>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_recipe_reg" superClass="uvm_reg;">
+    <cmt cntt=""/>
+    <fld type="" name="Y"/>
+    <fct return="void" name="build">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_taste_reg" superClass="uvm_reg;">
+    <cmt cntt=""/>
+    <fld type="rand uvm_reg_field" name="taste"/>
+    <fct return="void" name="build">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_block" superClass="uvm_reg_block;">
+    <cmt cntt=""/>
+    <fld type="uvm_reg_map" name="reg_map"/>
+    <fct return="void" name="build">
+        <cmt cntt="// finalize the address mapping"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_adapter" superClass="uvm_reg_adapter;">
+    <cmt cntt=""/>
+    <fct return="uvm_sequence_item" name="reg2bus">
+        <cmt cntt=""/>
+        <lvr type="" name="jb_tx"/>
+    </fct>
+    <fct return="void" name="bus2reg">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_sequence_item"/>
+    <prm type="" name="bus_item"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_agent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="bit" name="has_jb_fc_sub"/>
+</cls>
+<cls name="jelly_bean_env_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_block" name="jb_reg_block"/>
+</cls>
+<cls name="jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_reg_sequence" superClass="uvm_reg_sequence;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="uvm_reg_data_t" name="value"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_adapter" name="jb_reg_adapter"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard" superClass="uvm_scoreboard;">
+    <cmt cntt=""/>
+    <fld type="local jelly_bean_sb_subscriber" name="jb_sb_sub"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_predictor" name="jb_reg_predictor"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt="// if the top-level env"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_base_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_block" name="jb_reg_block"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="start_of_simulation_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_test" superClass="jelly_bean_base_test;">
+    <cmt cntt=""/>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_reg_sequence" name="jb_reg_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_reg_hw_reset_test" superClass="jelly_bean_base_test;">
+    <cmt cntt=""/>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="uvm_reg_hw_reset_seq" name="reg_hw_reset_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_configuration" superClass="uvm_object;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="void" name="do_pack">
+        <cmt cntt="// reserved bit// reserved bits"/>
+        <lvr type="bit [5:0]" name="R6"/>
+    </fct>
+    <fct return="void" name="do_unpack">
+        <cmt cntt="// reserved bit// reserved bits"/>
+        <lvr type="bit [5:0]" name="R6"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(jelly_bean_transaction);">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(jelly_bean_transaction);">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    <prm type="jelly_bean_transaction" name="t"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(jelly_bean_transaction);">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    <prm type="jelly_bean_transaction" name="t"/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard" superClass="uvm_scoreboard;">
+    <cmt cntt=""/>
+    <fld type="local jelly_bean_sb_subscriber" name="jb_sb_sub"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+    <prm type="jelly_bean_transaction" name="jb_tx"/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_scoreboard" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+        <lvr type="" name="e"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt="// copy jb_tx1 to jb_tx2// create jb_tx3 by packing and unpacking jb_tx1// check if jb_tx1, jb_tx2 and jb_tx3 have the same properties// print each object"/>
+            <lvr type="int" name="num_bits"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="this.taster_id&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_partnership_reg_block" name="jb_partnership_reg_block"/>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_predictor" name="jb_reg_predictor"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt="// if the top-level env"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_recipe_reg" superClass="uvm_reg;">
+    <cmt cntt=""/>
+    <fld type="flavor.value" name="!"/>
+    <fct return="void" name="build">
+        <cmt cntt="// for back-door access"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_taste_reg" superClass="uvm_reg;">
+    <cmt cntt=""/>
+    <fld type="rand uvm_reg_field" name="taste"/>
+    <fct return="void" name="build">
+        <cmt cntt="// for back-door access"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_block" superClass="uvm_reg_block;">
+    <cmt cntt=""/>
+    <fld type="uvm_reg_map" name="reg_map"/>
+    <fct return="void" name="build">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_partnership_reg_block" superClass="uvm_reg_block;">
+    <cmt cntt=""/>
+    <fld type="uvm_reg_map" name="reg_map"/>
+    <fct return="void" name="build">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_adapter" superClass="uvm_reg_adapter;">
+    <cmt cntt=""/>
+    <fct return="uvm_sequence_item" name="reg2bus">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </fct>
+    <fct return="void" name="bus2reg">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_sequence_item"/>
+    <prm type="" name="bus_item"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_base_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_partnership_reg_block" name="jb_partnership_reg_block"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt="// shorthand// finalize the address mapping"/>
+        <lvr type="jelly_bean_recipe_reg" name="jb_recipe_reg"/>
+    </fct>
+    <fct return="void" name="start_of_simulation_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_test" superClass="jelly_bean_base_test;">
+    <cmt cntt=""/>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_reg_sequence" name="jb_reg_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_reg_hw_reset_test" superClass="jelly_bean_base_test;">
+    <cmt cntt=""/>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="uvm_reg_hw_reset_seq" name="reg_hw_reset_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="bit" name="has_jb_fc_sub"/>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_adapter" name="jb_reg_adapter"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_beans_con { num_jelly_beans inside { [2:4]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="flavor_e" name="jb_flavor"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_bean_flavors_con { num_jelly_bean_flavors inside { [2:3]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="same_flavored_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_reg_sequence" superClass="uvm_reg_sequence;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt="// for debug// for ( int k = 0; k < 2; k++ )// shorthand// back-door writes"/>
+            <lvr type=" pathc[i]" name=")"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt="    "/>
+        <lvr type="" name="*/"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt="        s = { s, $sformatf( "\nname      : %s", get_name() ) };    s = { s, $sformatf( "\nflavor    : %s", flavor.name() ) };    s = { s, $sformatf( "\ncolor     : %s", color.name() ) };    s = { s, $sformatf( "\nsugar_free: %b", sugar_free ) };    s = { s, $sformatf( "\nsour      : %b", sour ) };    s = { s, $sformatf( "\ntaste     : %s", taste.name() ) };"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_sb_subscriber" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt="//jb_env.jb_agent.jb_seqr.set_arbitration( UVM_SEQ_ARB_FIFO ); // default//jb_env.jb_agent.jb_seqr.set_arbitration( UVM_SEQ_ARB_RANDOM );//jb_env.jb_agent.jb_seqr.set_arbitration( UVM_SEQ_ARB_STRICT_FIFO );//jb_env.jb_agent.jb_seqr.set_arbitration( UVM_SEQ_ARB_STRICT_RANDOM );//jb_env.jb_agent.jb_seqr.set_arbitration( UVM_SEQ_ARB_WEIGHTED );//jb_env.jb_agent.jb_seqr.set_arbitration( UVM_SEQ_ARB_USER );// default priority"/>
+            <lvr type="jelly_bean_order_sequence" name="overnight_order_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_sequencer" superClass="uvm_sequencer#(">
+    <cmt cntt=""/>
+    <fct return="integer" name="user_priority_arbitration">
+        <cmt cntt="// second entry"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_order_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="rand flavor_e" name="jb_flavor"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_order_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_sb_subscriber" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="rand int unsigned" name="num_jelly_beans"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="flavor_e" name="jb_flavor"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="rand int unsigned" name="num_jelly_bean_flavors"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt="//`uvm_info( get_name(), jb_seq.convert2string(), UVM_NONE )"/>
+            <lvr type="same_flavored_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_configuration" superClass="uvm_object;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_beans_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_beans_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="same_flavored_jelly_beans_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard" superClass="uvm_scoreboard;">
+    <cmt cntt=""/>
+    <fld type="local jelly_bean_sb_subscriber" name="jb_sb_sub"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_scoreboard" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_configuration" name="jb_cfg"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_sb_subscriber" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_beans_con { num_jelly_beans inside { [2:4]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="flavor_e" name="jb_flavor"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_bean_flavors_con { num_jelly_bean_flavors inside { [2:3]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="same_flavored_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_sb_subscriber" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_beans_con { num_jelly_beans inside { [2:4]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt="//  flavor_e               jb_flavor;//  jb_tx = jelly_bean_transaction::type_id::create( .name( "jb_tx" ) );//  assert( jb_tx.randomize() );//  jb_flavor = jb_tx.flavor;"/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_bean_flavors_con { num_jelly_bean_flavors inside { [2:3]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt="//    jb_seq = same_flavored_jelly_bean_sequence::type_id::create( .name( "jb_seq" ) );"/>
+            <lvr type="same_flavored_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_configuration" superClass="uvm_object;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_req"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_put_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_req"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_master" superClass="uvm_component;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_rsp"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_slave" superClass="uvm_component;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="try_put">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="can_put">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="try_get">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="can_get">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="try_peek">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="can_peek">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_rsp"/>
+    </tsk>
+    <tsk name="put">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="get">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="peek">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_transporter" superClass="uvm_component;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="nb_transport">
+        <cmt cntt=""/>
+    <prm type="" name="inputjelly_bean_transaction"/>
+    <prm type="" name="jb_req"/>
+    </fct>
+    <tsk name="transport">
+        <cmt cntt=""/>
+        <prm type="" name="inputjelly_bean_transaction"/>
+    <prm type="" name="jb_req"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_subscriber" name="jb_sub"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_agent" name="jb_agent"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_configuration" name="jb_cfg"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt="//    `uvm_info( "jelly_bean_test", { "\n", jb_seq.sprint() }, UVM_LOW )"/>
+            <lvr type="one_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="this.command&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_block" name="jb_reg_block"/>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_predictor" name="jb_reg_predictor"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt="// if the top-level env"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_recipe_reg" superClass="uvm_reg;">
+    <cmt cntt=""/>
+    <fld type="flavor.value" name="!"/>
+    <fct return="void" name="build">
+        <cmt cntt="// for back-door access"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_taste_reg" superClass="uvm_reg;">
+    <cmt cntt=""/>
+    <fld type="rand uvm_reg_field" name="taste"/>
+    <fct return="void" name="build">
+        <cmt cntt="// for back-door access"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_block" superClass="uvm_reg_block;">
+    <cmt cntt=""/>
+    <fld type="uvm_reg_map" name="reg_map"/>
+    <fct return="void" name="build">
+        <cmt cntt="// for back-door access// finalize the address mapping"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_adapter" superClass="uvm_reg_adapter;">
+    <cmt cntt=""/>
+    <fct return="uvm_sequence_item" name="reg2bus">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </fct>
+    <fct return="void" name="bus2reg">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_sequence_item"/>
+    <prm type="" name="bus_item"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_base_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_block" name="jb_reg_block"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="start_of_simulation_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_reg_test" superClass="jelly_bean_base_test;">
+    <cmt cntt=""/>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_reg_sequence" name="jb_reg_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_reg_hw_reset_test" superClass="jelly_bean_base_test;">
+    <cmt cntt=""/>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="uvm_reg_hw_reset_seq" name="reg_hw_reset_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="bit" name="has_jb_fc_sub"/>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_adapter" name="jb_reg_adapter"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_beans_con { num_jelly_beans inside { [2:4]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="flavor_e" name="jb_flavor"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_bean_flavors_con { num_jelly_bean_flavors inside { [2:3]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="same_flavored_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_reg_sequence" superClass="uvm_reg_sequence;">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt="// for debug// front-door write// front-door read// back-door writes// back-door reads"/>
+            <lvr type=" pathc[i]" name=")"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="bit" name="has_jb_fc_sub"/>
+</cls>
+<cls name="jelly_bean_env_config" superClass="uvm_object;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_agent_config" name="jb_agent_cfg2"/>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+</cls>
+<cls name="same_flavored_jelly_beans_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_recipe_virtual_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="" name="`uvm_object_utils_end"/>
+    <tsk name="body">
+        <cmt cntt="// case ( recipe )"/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_fc_subscriber" name="jb_fc_sub"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_scoreboard" superClass="uvm_scoreboard;">
+    <cmt cntt=""/>
+    <fld type="local int unsigned" name="num_failed"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="report_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_scoreboard" name="jb_sb2"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_base_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_agent_config" name="jb_agent_cfg2"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_recipe_test" superClass="jelly_bean_base_test;">
+    <cmt cntt=""/>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_recipe_virtual_sequence" name="jb_vseq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="bit" name="check_taste_in_c">
+        <cmt cntt=""/>
+    <prm type="" name="flavor_e"/>
+    <prm type="" name="flavor"/>
+    <prm type=" bit" name="sour"/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_sb_subscriber" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_beans_con { num_jelly_beans inside { [2:4]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="flavor_e" name="jb_flavor"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_bean_flavors_con { num_jelly_bean_flavors inside { [2:3]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="same_flavored_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="void" name="do_print">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="json_printer" superClass="uvm_printer;">
+    <cmt cntt=""/>
+    <fct return="string" name="emit">
+        <cmt cntt="// begin JSON// last row// not last row// next level is deepr// begin nested JSON object// name-value pair// next level is shallower// end nested JSON object// foreach ( m_rows[i] )// end JSON"/>
+        <lvr type="uvm_printer_row_info" name="row"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="json_printer" name="json_p"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_sb_subscriber" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+        </tsk>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_monitor" name="jb_mon"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_beans_con { num_jelly_beans inside { [2:4]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="same_flavored_jelly_bean_sequence" name="that"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="flavor_e" name="jb_flavor"/>
+    </tsk>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+    <fld type="constraint num_jelly_bean_flavors_con { num_jelly_bean_flavors inside { [2:3]" name="}"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="same_flavored_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+</cls>
+<cls name="jelly_bean_transaction" superClass="uvm_sequence_item;">
+    <cmt cntt=""/>
+    <fld type="flavor" name="!"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+</cls>
+<cls name="sugar_free_jelly_bean_transaction" superClass="jelly_bean_transaction;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_fc_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fld type="cross" name="sour_cp"/>
+    <fct return="void" name="write">
+        <cmt cntt="//            _ID__  ___________________MESSAGE____________________"/>
+    </fct>
+</cls>
+<cls name="jelly_bean_sb_subscriber" superClass="uvm_subscriber#(">
+    <cmt cntt=""/>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_env" superClass="uvm_env;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_sb_subscriber" name="jb_sb"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_test" superClass="uvm_test;">
+    <cmt cntt=""/>
+    <fld type="protected int" name="warning_id1_fd"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="start_of_simulation_phase">
+        <cmt cntt=""/>
+    </fct>
+</cls>
+<cls name="jelly_bean_driver" superClass="uvm_driver#(">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_monitor" superClass="uvm_monitor;">
+    <cmt cntt=""/>
+</cls>
+<cls name="jelly_bean_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+</cls>
+<cls name="one_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+</cls>
+<cls name="same_flavored_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+</cls>
+<cls name="gift_boxed_jelly_bean_sequence" superClass="uvm_sequence#(">
+    <cmt cntt=""/>
+</cls>
+<cls name="uvm_boat_anchor;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_object_virtuals" superClass="uvm_object;">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_object_wrapper" superClass="uvm_object_wrapper;">
+    <cmt cntt=""/>
+</cls>
+<cls name="__m_uvm_field_automation_t;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="comparer_state;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_object" superClass="uvm_object;">
+    <cmt cntt=""/>
+</cls>
+<cls name="mock_uvm_comparer" superClass="uvm_comparer;">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_component" superClass="uvm_component;">
+    <cmt cntt=""/>
+</cls>
+<cls name="print_args_t;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="print_object_header_args_t;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="print_generic_args_t;" superClass="null">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_printer" superClass="uvm_printer();">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_phase" superClass="uvm_phase();">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_agent" superClass="uvm_agent;">
+    <cmt cntt=""/>
+</cls>
+<cls name="mock_uvm_packer" superClass="uvm_packer;">
+    <cmt cntt=""/>
+</cls>
+<cls name="test_uvm_printer_virtuals" superClass="uvm_printer;">
+    <cmt cntt=""/>
+</cls>
+<cls name="mock_uvm_printer" superClass="uvm_printer();">
+    <cmt cntt=""/>
+</cls>
+<intfc nome="#(DATA_WIDTH)">
+    <cmt cntt=""/>
+    <prm type="" name="DATA_WIDTH"/>
+    <fld type="module" name="top"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt="	Description: Agent class in UVM environment.	Author: Mayur Kubavat	Date: 20 Feb 2015	Purpose:	-> Connects Driver to Sequencer using seq_item_port/export,	-> Connects Monitor Analysis Port to Agent Analysis Port,	which will be connected to Score Board Analysis Export."/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt="	Description: Env class in UVM environment.	Author: Mayur Kubavat	Date: 22 Feb 2015	Purpose:	-> Extends uvm_env base class,	-> Conects Agent to Score Board via Analysis Port/Export."/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt="	Description: Scoreboard in UVM environment.	Author: Mayur Kubavat	Date: 03 March 2015	Purpose:	-> Subscribes to Agent's Analysis Port,	-> Implements Keccak SHA-3 Reference Model,	-> Implements Self-Checking functionality in Testbench"/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt="	Description: Driver class in UVM environment.	Author: Mayur Kubavat	Date: 17 Feb 2015	Purpose:	-> Extends UVM Driver base class,	-> Accepts Sequence Item as parameter argument,	-> Perform Pin Wiggle to Keccak SHA-3 DUT through 	Virtual Interface."/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt="	Description: Sequence Item in UVM environment.	Author: Mayur Kubavat	Date: 26 Feb 2015	Purpose:	-> Extends uvm_sequence_item base class,	-> Defies variable items to make transactions."/>
+    <prm type="sequence_item" name="t"/>
+    </fct>
+    <fct return="uvm_active_passive_enum" name="get_is_active">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt="	Description: Monitor class in UVM environment.	Author: Mayur Kubavat	Date: 20 Feb 2015	Purpose:	-> Observes stimulus on Virtual Interface,	-> Convert Signal Level activity to transactions,	-> Implement Monitor Stimulus Analysis Port,	-> Send transactions to scoreboard via analysis port."/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt="	Description: Base Test in UVM environment. It is virtual class,	So, sha3_base_test must me extended to implement various test.	Author: Mayur Kubavat	Date: 28 Feb 2015	Purpose:	-> Extends uvm_test base class,	-> Instantiate Env and Sequencer,	-> Build Env."/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="end_of_elaboration_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt="	Description: Monitor class in UVM environment.	Author: Mayur Kubavat	Date: 20 Feb 2015	Purpose:	-> Observes stimulus on Virtual Interface,	-> Convert Signal Level activity to transactions,	-> Implement Monitor Stimulus Analysis Port,	-> Send transactions to scoreboard via analysis port."/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <tsk name="run">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+        <lvr type="sequence_item" name="cmd"/>
+    </tsk>
+    <tsk name="body">
+        <cmt cntt="	Description: Reset Sequence in UVM environment.	Author: Mayur Kubavat	Date: 26 Feb 2015	Purpose:	-> Implements body() method to toggle reset signal."/>
+            <lvr type="bit" name="rst"/>
+    </tsk>
+    <tsk name="body">
+        <cmt cntt="//assert(command.randomize());"/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt="	Description: Control Sequence in UVM environment.	Author: Mayur Kubavat	Date: 05 March 2015	Purpose:	-> Configures Keccak SHA-3 Signals before sending Input String. "/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt="	Description: Control Sequence in UVM environment.	Author: Mayur Kubavat	Date: 05 March 2015	Purpose:	-> Configures Keccak SHA-3 Signals before sending Input String. "/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="get_transaction">
+        <cmt cntt=""/>
+            <lvr type="sequence_item" name="transaction_h"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+    </tsk>
+    <tsk name="get_transaction">
+        <cmt cntt=""/>
+            <lvr type="sequence_item" name="transaction_h"/>
+    </tsk>
+</intfc>
+<intfc nome="Defines">
+    <cmt cntt=""/>
+    <prm type="" name="Low"/>
+    <prm type="" name="Throughput"/>
+    <prm type="" name="Core"/>
+    <fld type="" name="20"/>
+</intfc>
+<intfc nome="sha3_intf;">
+    <cmt cntt=""/>
+    <fld type="logic" name="out_ready"/>
+    <tsk name="send_bfm">
+        <cmt cntt="	Description: Top module in UVM environment.	Author: Mayur Kubavat	Date: 15 Feb 2015	Purpose:	-> Connects Keccak SHA-3 DUT and Interface,	-> Implement Virtual Interface,	-> Run test specified by +UVM_TESTNAME	Description: Bus Functton Model(BFM) in UVM environment.	Author: Mayur Kubavat	Date: 03 Apr 2015	Purpose:	-> Defines interface to Keccak SHA-3 DUT, Low Throughput Core	-> Meets timing specification of the Core.	-> Defines clock.//always block"/>
+        <prm type=" input bit" name="reset_t"/>
+    <prm type=" input logic [31:0]" name="in_t"/>
+    <prm type=" input logic" name="in_ready_t"/>
+    <prm type=" input logic" name="is_last_t"/>
+    <prm type=" input logic" name="byte_num_t"/>
+    <prm type=" output logic" name="buffer_full_t"/>
+    <prm type=" output logic [511:0]" name="out_t"/>
+    <prm type="output logic" name="out_ready_t"/>
+        <lvr type="task send_bfm(input bit output logic" name="out_ready_t)"/>
+    </tsk>
+</intfc>
+<intfc nome="Defines">
+    <cmt cntt=""/>
+    <prm type="" name="High"/>
+    <prm type="" name="Throughput"/>
+    <prm type="" name="Core."/>
+    <fld type="" name="*/"/>
+</intfc>
+<intfc nome="sha3_intf;">
+    <cmt cntt=""/>
+    <fld type="logic" name="out_ready"/>
+</intfc>
+<intfc nome="Defines">
+    <cmt cntt=""/>
+    <prm type="" name="Low"/>
+    <prm type="" name="Throughput"/>
+    <prm type="" name="Core"/>
+    <fld type="" name="*/"/>
+</intfc>
+<intfc nome="sha3_intf;">
+    <cmt cntt=""/>
+    <fld type="logic" name="out_ready"/>
+</intfc>
+<intfc nome="ahb_intf(input">
+    <cmt cntt=""/>
+    <prm type="input logic" name="HCLK"/>
+    <fld type="input" name="HRDATA"/>
+    <mdp name=" MDRV_MP">
+    <prm type=" clocking" name="mdrv_cb"/>
+    <prm type="input" name="HRESETn"/>
+    </mdp>
+    <mdp name=" MMON_MP">
+    <prm type=" clocking" name="mmon_cb"/>
+    <prm type="input" name="HRESETn"/>
+    </mdp>
+    <mdp name=" SDRV_MP">
+    <prm type=" clocking" name="sdrv_cb"/>
+    <prm type="input" name="HRESETn"/>
+    </mdp>
+    <mdp name=" SMON_MP">
+    <prm type=" clocking" name="smon_cb"/>
+    <prm type="input" name="HRESETn"/>
+    </mdp>
+</intfc>
+<intfc nome="sha3_if(input">
+    <cmt cntt=""/>
+    <prm type="input logic" name="clock"/>
+    <fld type="input" name="out"/>
+    <mdp name=" WR_BFM">
+    <prm type="clocking" name="wr_cb"/>
+    </mdp>
+    <mdp name=" WR_MON">
+    <prm type="clocking" name="wrmon_cb"/>
+    </mdp>
+    <mdp name=" RD_MON">
+    <prm type="clocking" name="rdmon_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="apb_if();">
+    <cmt cntt=""/>
+    <fld type="logic [31:0]" name="PRDATA"/>
+    <mdp name=" DRV_MP">
+    <prm type=" input" name="PENABLE"/>
+    <prm type=" input" name="PSELx"/>
+    <prm type=" input" name="PWRITE"/>
+    <prm type=" input" name="PADDR"/>
+    <prm type=" input" name="PWDATA"/>
+    <prm type="output" name="PRDATA"/>
+    </mdp>
+    <mdp name=" MON_MP">
+    <prm type=" input" name="PENABLE"/>
+    <prm type=" input" name="PSELx"/>
+    <prm type=" input" name="PWRITE"/>
+    <prm type=" input" name="PADDR"/>
+    <prm type=" input" name="PWDATA"/>
+    <prm type="input" name="PRDATA"/>
+    </mdp>
+</intfc>
+<intfc nome="ahb_if(input">
+    <cmt cntt=""/>
+    <prm type="input" name="HCLK"/>
+    <fld type="input" name="HREADYout"/>
+    <mdp name=" DRV_MP">
+    <prm type="clocking" name="ahb_drv_cb"/>
+    </mdp>
+    <mdp name=" MON_MP">
+    <prm type="clocking" name="ahb_mon_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="counter_if(input">
+    <cmt cntt=""/>
+    <prm type="input logic" name="clk"/>
+    <fld type="input" name="data_out"/>
+    <mdp name=" WR_BFM">
+    <prm type="clocking" name="wr_cb"/>
+    </mdp>
+    <mdp name=" WR_MON">
+    <prm type="clocking" name="wrmon_cb"/>
+    </mdp>
+    <mdp name=" RD_MON">
+    <prm type="clocking" name="rdmon_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" slave_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    <prm type="" name="command"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp">
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(input">
+    <cmt cntt=""/>
+    <prm type="input bit" name="clk"/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    <prm type="output" name="taste"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    <prm type="clocking" name="master_cb"/>
+    </mdp>
+    <mdp name=" slave_sync_mp">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    <prm type="" name="command"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    <prm type="" name="command"/>
+    <prm type="" name="taster_id"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    <prm type="" name="command"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="jelly_bean_if(">
+    <cmt cntt=""/>
+    <fld type="output" name="taste"/>
+    <mdp name=" master_mp">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="taste"/>
+    <prm type=" output" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    </mdp>
+    <mdp name=" slave_mp ">
+    <prm type=" input" name="clk"/>
+    <prm type="" name="flavor"/>
+    <prm type="" name="color"/>
+    <prm type="" name="sugar_free"/>
+    <prm type="" name="sour"/>
+    </mdp>
+    <mdp name=" master_sync_mp">
+    </mdp>
+    <mdp name=" slave_sync_mp ">
+    <prm type="clocking" name="slave_cb"/>
+    </mdp>
+</intfc>
+<intfc nome="reg_ifc;">
+    <cmt cntt=""/>
+    <fld type="logic" name="wr"/>
+    <mdp name=" master ">
+    <prm type=" output" name="raddr"/>
+    <prm type="" name="waddr"/>
+    <prm type="" name="rd"/>
+    <prm type="" name="wr"/>
+    <prm type="" name="wdata"/>
+    <prm type="input" name="rdata"/>
+    </mdp>
+    <mdp name=" slave ">
+    <prm type=" input" name="raddr"/>
+    <prm type="" name="waddr"/>
+    <prm type="" name="rd"/>
+    <prm type="" name="wr"/>
+    <prm type="" name="wdata"/>
+    <prm type="output" name="rdata"/>
+    </mdp>
+</intfc>
+<intfc nome="eth_capture(//">
+    <cmt cntt=""/>
+    <prm type=" input" name="rxsop"/>
+    <prm type=" input" name="rxeop"/>
+    <prm type=" input" name="rxvalid"/>
+    <prm type=" input" name="reset"/>
+    <prm type=" input" name="enable"/>
+    <fld type="" name="1ns/1ps"/>
+</intfc>
+<intfc nome="axi_ifc;">
+    <cmt cntt=""/>
+    <fld type="logic" name="rlast"/>
+    <mdp name=" master ">
+    <prm type=" output" name="awid"/>
+    <prm type="" name="awaddr"/>
+    <prm type="" name="awvalid"/>
+    <prm type="" name="wdata"/>
+    <prm type="" name="wstrb"/>
+    <prm type="" name="wvalid"/>
+    <prm type="" name="bready"/>
+    <prm type=" output" name="awburst"/>
+    <prm type="" name="awcache"/>
+    <prm type="" name="awlen"/>
+    <prm type="" name="awsize"/>
+    <prm type="" name="awlock"/>
+    <prm type="" name="wlast"/>
+    <prm type=" output" name="arid"/>
+    <prm type="" name="araddr"/>
+    <prm type="" name="arvalid"/>
+    <prm type="" name="rready"/>
+    <prm type=" output" name="arburst"/>
+    <prm type="" name="arcache"/>
+    <prm type="" name="arlen"/>
+    <prm type="" name="arsize"/>
+    <prm type="" name="arlock"/>
+    <prm type=" input" name="awready"/>
+    <prm type="" name="wready"/>
+    <prm type="" name="bid"/>
+    <prm type="" name="bresp"/>
+    <prm type="" name="bvalid"/>
+    <prm type=" input" name="arready"/>
+    <prm type="" name="rid"/>
+    <prm type="" name="rdata"/>
+    <prm type="" name="rresp"/>
+    <prm type="" name="rvalid"/>
+    </mdp>
+    <mdp name=" writer ">
+    <prm type=" output" name="awid"/>
+    <prm type="" name="awaddr"/>
+    <prm type="" name="awvalid"/>
+    <prm type="" name="wdata"/>
+    <prm type="" name="wstrb"/>
+    <prm type="" name="wvalid"/>
+    <prm type="" name="bready"/>
+    <prm type=" output" name="awburst"/>
+    <prm type="" name="awcache"/>
+    <prm type="" name="awlen"/>
+    <prm type="" name="awsize"/>
+    <prm type="" name="awlock"/>
+    <prm type="" name="wlast"/>
+    <prm type=" input" name="awready"/>
+    <prm type="" name="wready"/>
+    <prm type="" name="bid"/>
+    <prm type="" name="bresp"/>
+    </mdp>
+    <mdp name=" reader ">
+    <prm type=" output" name="arid"/>
+    <prm type="" name="araddr"/>
+    <prm type="" name="arvalid"/>
+    <prm type="" name="rready"/>
+    <prm type=" output" name="arburst"/>
+    <prm type="" name="arcache"/>
+    <prm type="" name="arlen"/>
+    <prm type="" name="arsize"/>
+    <prm type="" name="arlock"/>
+    <prm type=" input" name="arready"/>
+    <prm type="" name="rid"/>
+    <prm type="" name="rdata"/>
+    <prm type="" name="rresp"/>
+    <prm type="" name="rvalid"/>
+    </mdp>
+    <mdp name=" slave ">
+    <prm type=" input" name="awid"/>
+    <prm type="" name="awaddr"/>
+    <prm type="" name="awvalid"/>
+    <prm type="" name="wdata"/>
+    <prm type="" name="wstrb"/>
+    <prm type="" name="wvalid"/>
+    <prm type="" name="bready"/>
+    <prm type=" input" name="awburst"/>
+    <prm type="" name="awcache"/>
+    <prm type="" name="awlen"/>
+    <prm type="" name="awsize"/>
+    <prm type="" name="awlock"/>
+    <prm type="" name="wlast"/>
+    <prm type=" input" name="arid"/>
+    <prm type="" name="araddr"/>
+    <prm type="" name="arvalid"/>
+    <prm type="" name="rready"/>
+    <prm type=" input" name="arburst"/>
+    <prm type="" name="arcache"/>
+    <prm type="" name="arlen"/>
+    <prm type="" name="arsize"/>
+    <prm type="" name="arlock"/>
+    <prm type=" output" name="awready"/>
+    <prm type="" name="wready"/>
+    <prm type="" name="bid"/>
+    <prm type="" name="bresp"/>
+    <prm type="" name="bvalid"/>
+    <prm type=" output" name="arready"/>
+    <prm type="" name="rid"/>
+    <prm type="" name="rdata"/>
+    <prm type="" name="rresp"/>
+    <prm type="" name="rvalid"/>
+    </mdp>
+</intfc>
+<mdl nome=" is enabled.">
+    <cmt cntt=""/>
+    <prm type="" name="*being"/>
+    <prm type="" name="read"/>
+    <prm type="" name="out"/>
+    <prm type=" while module" name="is"/>
+    <prm type="" name="enabled."/>
+    <fld type="" name="*/"/>
+</mdl>
+<mdl nome=" fast_serial_sort">
+    <cmt cntt=""/>
+    <prm type=" module" name="fast_serial_sort"/>
+    <fld type="assign" name="sorted_data"/>
+</mdl>
+<mdl nome=" that both receives input values and clocks out">
+    <cmt cntt=""/>
+    <prm type="" name="*"/>
+    <prm type="" name="\brief"/>
+    <prm type="" name="an"/>
+    <prm type="" name="spi"/>
+    <prm type="" name="slave"/>
+    <prm type=" module" name="that"/>
+    <prm type="" name="both"/>
+    <prm type="" name="receives"/>
+    <prm type=" input" name="values"/>
+    <prm type=" and" name="clocks"/>
+    <prm type="" name="out"/>
+    <fld type="" name="*/"/>
+</mdl>
+<mdl nome=" spi_slave_interface">
+    <cmt cntt=""/>
+    <fld type="assign" name="miso"/>
+</mdl>
+<mdl nome=" synchronizer">
+    <cmt cntt=""/>
+    <prm type=" module" name="synchronizer"/>
+    <fld type="synced_data[DATA_WIDTH - 1:0]" name="<"/>
+</mdl>
+<mdl nome=" and parses">
+    <cmt cntt=""/>
+    <prm type="" name="*"/>
+    <prm type="" name="\brief"/>
+    <prm type="" name="handles"/>
+    <prm type="" name="when"/>
+    <prm type="" name="data"/>
+    <prm type="" name="should"/>
+    <prm type="" name="be"/>
+    <prm type="" name="loaded"/>
+    <prm type="" name="into"/>
+    <prm type="" name="the"/>
+    <prm type="" name="spi"/>
+    <prm type=" module and" name="parses"/>
+    <fld type="*        signal. If a write is being signaled by the" name="master"/>
+</mdl>
+<mdl nome=" also asserts the writeEnable signal. Finally,">
+    <cmt cntt=""/>
+    <prm type="" name="*the"/>
+    <prm type="" name="dataCtrl"/>
+    <prm type=" module" name="also"/>
+    <prm type="" name="asserts"/>
+    <prm type="" name="the"/>
+    <prm type="" name="writeEnable"/>
+    <prm type="" name="signal."/>
+    <prm type="" name="Finally"/>
+    <fld type="" name="*/"/>
+</mdl>
+<mdl nome=" spi_data_ctrl">
+    <cmt cntt=""/>
+    <prm type=" module" name="spi_data_ctrl"/>
+    <fld type="logic" name="byteOutNegEdge"/>
+</mdl>
+<mdl nome=" sorting_cell">
+    <cmt cntt=""/>
+    <prm type=" module" name="sorting_cell"/>
+    <fld type="" name="?"/>
+</mdl>
+<mdl nome=" spi_wrapper_main">
+    <cmt cntt=""/>
+    <prm type=" module" name="spi_wrapper_main"/>
+    <fld type="new_data_pulse_gen[1]" name="<"/>
+</mdl>
+<mdl nome=" in UVM environment.">
+    <cmt cntt=""/>
+    <fld type="" name="*/"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="module" name="top"/>
+</mdl>
+<mdl nome=" sha3_assertion( clk,reset,in,in_ready,is_last,byte_num,buffer_full,out,out_ready);">
+    <cmt cntt=""/>
+    <prm type="" name="clk"/>
+    <prm type="" name="reset"/>
+    <prm type="" name="in"/>
+    <prm type="" name="in_ready"/>
+    <prm type="" name="is_last"/>
+    <prm type="" name="byte_num"/>
+    <prm type="" name="buffer_full"/>
+    <prm type="" name="out"/>
+    <fld type="" name="*/"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="logic" name="clock"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="test" name="test_h"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="bit" name="clock"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="test" name="test_h"/>
+</mdl>
+<mdl nome=" counter_assertion(clk, rst, data, updown, load, count);">
+    <cmt cntt=""/>
+    <prm type="" name="clk"/>
+    <prm type="" name="rst"/>
+    <prm type="" name="data"/>
+    <prm type="" name="updown"/>
+    <prm type="" name="load"/>
+    <fld type="property" name="load_prpty"/>
+</mdl>
+<mdl nome=" to test">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" test;">
+    <cmt cntt=""/>
+    <prm type="module" name="test"/>
+    <fld type="PacketDC" name="pkt_dc2"/>
+</mdl>
+<mdl nome=" test;">
+    <cmt cntt=""/>
+    <prm type="module" name="test"/>
+    <fld type="test" name="t_h"/>
+</mdl>
+<mdl nome=" polymorphism;">
+    <cmt cntt=""/>
+    <prm type="module" name="polymorphism"/>
+    <fld type="C" name="c_h"/>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="message">
+        <cmt cntt="// class A, no need to explicitly diclare// it virtual here"/>
+    </fct>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="message">
+        <cmt cntt="// class A, hece class B as well, no // need to explicitly diclare it virtual here"/>
+    </fct>
+    <fct return="void" name="display">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="message">
+        <cmt cntt=""/>
+    </fct>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="constraints_gotcha" name="cg_h"/>
+</mdl>
+<mdl nome=" test;">
+    <cmt cntt=""/>
+    <prm type="module" name="test"/>
+    <fld type="int" name="result"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_slave_if );">
+    <cmt cntt=""/>
+    <fld type="reg [1:0]" name="taste"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster(jelly_bean_if.slave_mp jb_slave_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_partnership( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+    <fld type=" always" name="@*"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+    <fld type="reg [1:0]" name="command"/>
+</mdl>
+<mdl nome=" jelly_bean_partner( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+    <fld type="reg [1:0]" name="command"/>
+</mdl>
+<mdl nome=" jelly_bean_extra;">
+    <cmt cntt=""/>
+    <prm type="module" name="jelly_bean_extra"/>
+    <fld type="reg" name="sour"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_slave_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="module" name="top"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+    <fld type="reg [1:0]" name="command"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="module" name="top"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" jelly_bean_subsystem( jelly_bean_if.slave_mp jb_if1,jelly_bean_if.slave_mp jb_if2 );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="reg" name="clk"/>
+</mdl>
+<mdl nome=" jelly_bean_taster( jelly_bean_if.slave_mp jb_if );">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top;">
+    <cmt cntt=""/>
+    <prm type="module" name="top"/>
+    <fld type="" name="*/"/>
+</mdl>
+<mdl nome=" eth_rmii_rx(input clk50,input [1:0]rx,input crs_dv,output reg [7:0]data = 0,output reg valid = 0,output reg eop = 0,// transmit outputs which can drive// an eth_rmii_tx to create a repeateroutput reg [1:0]out_tx = 0,output reg out_txen = 0,// start of packet strobe (for timestamping, etc)">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk50"/>
+    <prm type=" input" name="crs_dv"/>
+    <prm type=" output reg" name="valid"/>
+    <prm type="" name="0"/>
+    <prm type=" output reg" name="eop"/>
+    <prm type="" name="0"/>
+    <prm type=" output reg" name="out_txen"/>
+    <prm type="" name="0"/>
+    <prm type="" name="etc"/>
+    <fld type="reg" name="next_sop"/>
+</mdl>
+<mdl nome=" pkt_bytes_to_words(input clk,input [7:0]rxdata,input rxvalid,input rxeop,output [31:0]data,output [11:0]bytecount,output reg valid = 0,output reg eop = 0,output reg err = 0);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="rxvalid"/>
+    <prm type=" input" name="rxeop"/>
+    <prm type=" output reg" name="valid"/>
+    <prm type="" name="0"/>
+    <prm type=" output reg" name="eop"/>
+    <prm type="" name="0"/>
+    <prm type="output reg" name="err"/>
+    <fld type="assign" name="bytecount"/>
+</mdl>
+<mdl nome=" axi_to_reg_x8(input clk,axi_ifc.slave axi,reg_ifc.master bank0,reg_ifc.master bank1,reg_ifc.master bank2,reg_ifc.master bank3,reg_ifc.master bank4,reg_ifc.master bank5,reg_ifc.master bank6,reg_ifc.master bank7);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <fld type="assign" name="bank7.wdata"/>
+</mdl>
+<mdl nome=" tmds_encoder(input clk,input [7:0]data,input [1:0]ctrl,input active,output reg [9:0]out);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="active"/>
+    <fld type="wire" name="inv"/>
+</mdl>
+<mdl nome=" eth_mdio(input clk,input do_read,input do_write,input [31:0]txdata,output [15:0]rxdata,output reg busy = 0,input i_mdio,output o_mdio,output t_mdio,output reg mdc = 0);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="do_read"/>
+    <prm type=" input" name="do_write"/>
+    <prm type=" output reg" name="busy"/>
+    <prm type="" name="0"/>
+    <prm type=" input" name="i_mdio"/>
+    <prm type=" output" name="o_mdio"/>
+    <prm type=" output" name="t_mdio"/>
+    <prm type="output reg" name="mdc"/>
+    <fld type="assign" name="rxdata"/>
+</mdl>
+<mdl nome=" axi_sram(input clk,axi_ifc.slave s);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <fld type="assign" name="s.rresp"/>
+</mdl>
+<mdl nome=" top(input clk,input [3:0]sw,input [3:0]btn,output reg [3:0]led = 0);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <fld type="wire" name="rd"/>
+</mdl>
+<mdl nome=" axi_hp_dma_writer(input clk,axi_ifc.writer m,// control interfaceinput [31:0]txn_addr, // bits 6:0 ignoredinput [31:0]txn_count, // bits 6:0 ignoredinput txn_start,output reg txn_busy = 0,output reg [31:0]cyc_count = 0,// data interfaceinput [DWIDTH-1:0]data,input valid,output ready);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output reg" name="txn_busy"/>
+    <prm type="" name="0"/>
+    <prm type=" input" name="valid"/>
+    <prm type="output" name="ready"/>
+    <fld type="assign" name="ready"/>
+</mdl>
+<mdl nome=" xilinx_async_fifo(input wrclk,input rdclk,input reset,input [WIDTH-1:0]wr_data,input wr_en,input rd_en,output [WIDTH-1:0]rd_data,output o_empty,output o_ready, // can absorb >= 16 writesoutput o_active);">
+    <cmt cntt=""/>
+    <prm type=" input" name="wrclk"/>
+    <prm type=" input" name="rdclk"/>
+    <prm type=" input" name="reset"/>
+    <prm type=" input" name="wr_en"/>
+    <prm type=" input" name="rd_en"/>
+    <prm type=" output" name="o_empty"/>
+    <prm type=" output" name="o_ready"/>
+    <fld type="assign" name="rd_data"/>
+</mdl>
+<mdl nome=" fifo_reset(input clk1,input clk2,input i_res,output reg o_res = 0,output reg o_act = 1);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk1"/>
+    <prm type=" input" name="clk2"/>
+    <prm type=" input" name="i_res"/>
+    <prm type=" output reg" name="o_res"/>
+    <prm type="" name="0"/>
+    <prm type="output reg" name="o_act"/>
+    <fld type="shift2 shift2[5:1]" name="}"/>
+</mdl>
+<mdl nome=" axi_to_reg_impl (input clk,// AXI Interfaceaxi_ifc.slave s,// Register File Interfaceoutput reg [R_ADDR_WIDTH-1:0]o_rreg = 0,output reg [R_ADDR_WIDTH-1:0]o_wreg = 0,input wire [31:0]i_rdata[0:COUNT-1],output wire [31:0]o_wdata,output wire o_rd[0:COUNT-1],output wire o_wr[0:COUNT-1]);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <fld type="assign" name="s.rid"/>
+</mdl>
+<mdl nome=" decoder3to8(input [2:0]in,output reg [7:0]out);">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top(input clk,output [3:0]led,output phy0_mdc,//output phy0_mdio,output phy0_clk,output phy0_txen,output [1:0]phy0_tx,input phy0_crs,input [1:0]phy0_rx);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output" name="phy0_mdc"/>
+    <prm type=" output" name="phy0_clk"/>
+    <prm type=" output" name="phy0_txen"/>
+    <prm type=" input" name="phy0_crs"/>
+    <fld type="reg" name="txpacket"/>
+</mdl>
+<mdl nome=" packetlogger(input clk50,input [7:0]rxdata,input rxvalid,input rxeop,output reg go = 0);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk50"/>
+    <prm type=" input" name="rxvalid"/>
+    <prm type=" input" name="rxeop"/>
+    <prm type="output reg" name="go"/>
+    <fld type="wire" name="dbg_wr"/>
+</mdl>
+<mdl nome=" ram(input clk,input ren,input [11:0]raddr,output reg [8:0]rdata,input wen,input [11:0]waddr,input [8:0]wdata);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="ren"/>
+    <prm type=" input" name="wen"/>
+    <fld type="memory[waddr]" name="<"/>
+</mdl>
+<mdl nome=" axi_dma_writer(input clk,axi_ifc.master m,input start,input [31:0]addr,input [3:0]burstlen,input [31:0]data,output reg busy = 0,output advance);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="start"/>
+    <prm type=" output reg" name="busy"/>
+    <prm type="" name="0"/>
+    <prm type="output" name="advance"/>
+    <fld type="assign" name="m.rready"/>
+</mdl>
+<mdl nome=" zynq_ps7(output fclk0,input s_axi_hp3_clk,axi_ifc.slave s_axi_hp3,input s_axi_hp2_clk,axi_ifc.slave s_axi_hp2,input s_axi_hp1_clk,axi_ifc.slave s_axi_hp1,input s_axi_hp0_clk,axi_ifc.slave s_axi_hp0,input m_axi_gp0_clk,axi_ifc.master m_axi_gp0);">
+    <cmt cntt=""/>
+    <prm type=" output" name="fclk0"/>
+    <prm type=" input" name="s_axi_hp3_clk"/>
+    <prm type=" input" name="s_axi_hp2_clk"/>
+    <prm type=" input" name="s_axi_hp1_clk"/>
+    <prm type=" input" name="s_axi_hp0_clk"/>
+    <prm type=" input" name="m_axi_gp0_clk"/>
+    <fld type="wire" name="fclk3_i"/>
+</mdl>
+<mdl nome=" top(input clk,input [3:0]sw,input [3:0]btn,input [3:0]ja_p,input [3:0]ja_n,output [3:0]jb_p,output [3:0]jb_n,output reg [3:0]led);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <fld type="" name="*/"/>
+</mdl>
+<mdl nome=" axi_registers (input clk,// AXI Interfaceaxi_ifc.slave s,// Register File Interfacereg_ifc.master rm);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <fld type="assign" name="s.rid"/>
+</mdl>
+<mdl nome=" hdmi_core (input pixclk,input pixclkx5,// TMDS33 outputsoutput [2:0]hdmi_d_p,output [2:0]hdmi_d_n,output hdmi_clk_p,output hdmi_clk_n,// RGB data inputoutput rgb_ready,input [7:0]red,input [7:0]grn,input [7:0]blu,// core statusoutput [10:0]xpixel,output [10:0]ypixel,output vblank);">
+    <cmt cntt=""/>
+    <prm type=" input" name="pixclk"/>
+    <prm type=" input" name="pixclkx5"/>
+    <prm type=" output" name="hdmi_clk_p"/>
+    <prm type=" output" name="hdmi_clk_n"/>
+    <prm type="output" name="vblank"/>
+    <fld type="wire" name="txres"/>
+</mdl>
+<mdl nome=" zynq_ps7(output fclk0,input s_axi_hp0_clk,axi_ifc.slave s_axi_hp0,input m_axi_gp0_clk,axi_ifc.master m_axi_gp0);">
+    <cmt cntt=""/>
+    <prm type=" output" name="fclk0"/>
+    <prm type=" input" name="s_axi_hp0_clk"/>
+    <prm type=" input" name="m_axi_gp0_clk"/>
+    <fld type="wire" name="fclk3_i"/>
+</mdl>
+<mdl nome=" xadc(input clk,input rst,input vp,input vn,input [15:0] aux_channel_n,input [15:0] aux_channel_p,output [3:0] debug_out,axi_ifc.slave axi);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="rst"/>
+    <prm type=" input" name="vp"/>
+    <prm type=" input" name="vn"/>
+    <prm type=" input [15:0]" name="aux_channel_n"/>
+    <prm type=" input [15:0]" name="aux_channel_p"/>
+    <prm type=" output [3:0]" name="debug_out"/>
+    <fld type="reg [ADC_REG_COUNT_BITS-1:0]" name="reg_count"/>
+</mdl>
+<mdl nome=" top(input clk,output [15:0]led,output phy0_mdc,inout phy0_mdio,output phy0_rstn,input phy0_crs,input phy0_rxerr,input [1:0]phy0_rx,output phy0_txen,output [1:0]phy0_tx,output phy0_clk,input phy0_intn,output [3:0]JD);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output" name="phy0_mdc"/>
+    <prm type=" inout" name="phy0_mdio"/>
+    <prm type=" output" name="phy0_rstn"/>
+    <prm type=" input" name="phy0_crs"/>
+    <prm type=" input" name="phy0_rxerr"/>
+    <prm type=" output" name="phy0_txen"/>
+    <prm type=" output" name="phy0_clk"/>
+    <prm type=" input" name="phy0_intn"/>
+</mdl>
+<mdl nome=" packetlogger(input clk50,input [7:0]rxdata,input rxvalid,input rxeop,output reg go = 0,output reg mi_read = 0,output reg mi_write = 0,output [31:0]mi_txdata,input [15:0]mi_rxdata,input mi_busy);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk50"/>
+    <prm type=" input" name="rxvalid"/>
+    <prm type=" input" name="rxeop"/>
+    <prm type=" output reg" name="go"/>
+    <prm type="" name="0"/>
+    <prm type=" output reg" name="mi_read"/>
+    <prm type="" name="0"/>
+    <prm type=" output reg" name="mi_write"/>
+    <prm type="" name="0"/>
+    <prm type="input" name="mi_busy"/>
+</mdl>
+<mdl nome=" ram(input clk,input ren,input [11:0]raddr,output reg [8:0]rdata,input wen,input [11:0]waddr,input [8:0]wdata);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="ren"/>
+    <prm type=" input" name="wen"/>
+</mdl>
+<mdl nome=" zynq_ps7(output fclk0,input s_axi_gp1_clk,axi_ifc.slave s_axi_gp1,input s_axi_gp0_clk,axi_ifc.slave s_axi_gp0,input m_axi_gp0_clk,axi_ifc.master m_axi_gp0);">
+    <cmt cntt=""/>
+    <prm type=" output" name="fclk0"/>
+    <prm type=" input" name="s_axi_gp1_clk"/>
+    <prm type=" input" name="s_axi_gp0_clk"/>
+    <prm type=" input" name="m_axi_gp0_clk"/>
+</mdl>
+<mdl nome=" top(input clk,output [2:0]hdmi_d_p,output [2:0]hdmi_d_n,output hdmi_clk_p,output hdmi_clk_n);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output" name="hdmi_clk_p"/>
+    <prm type="output" name="hdmi_clk_n"/>
+</mdl>
+<mdl nome=" top();">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" top(input clk,output [3:0]led,output phy0_mdc,output phy0_clk,output phy0_txen,output [1:0]phy0_tx,input phy0_crs,input [1:0]phy0_rx,output phy1_mdc,output phy1_clk,output phy1_txen,output [1:0]phy1_tx,input phy1_crs,input [1:0]phy1_rx);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output" name="phy0_mdc"/>
+    <prm type=" output" name="phy0_clk"/>
+    <prm type=" output" name="phy0_txen"/>
+    <prm type=" input" name="phy0_crs"/>
+    <prm type=" output" name="phy1_mdc"/>
+    <prm type=" output" name="phy1_clk"/>
+    <prm type=" output" name="phy1_txen"/>
+    <prm type=" input" name="phy1_crs"/>
+</mdl>
+<mdl nome=" top(input clk,output [2:0]hdmi_d_p,output [2:0]hdmi_d_n,output hdmi_clk_p,output hdmi_clk_n);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output" name="hdmi_clk_p"/>
+    <prm type="output" name="hdmi_clk_n"/>
+</mdl>
+<mdl nome=" axi_registers (input clk,// AXI Interfaceaxi_ifc.slave s,// Register File Interfaceoutput reg [R_ADDR_WIDTH-1:0]o_rreg = 0,output reg [R_ADDR_WIDTH-1:0]o_wreg = 0,input wire [31:0]i_rdata,output wire [31:0]o_wdata,output reg o_rd = 0,output wire o_wr);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output reg" name="o_rd"/>
+    <prm type="" name="0"/>
+    <prm type="output wire" name="o_wr"/>
+</mdl>
+<mdl nome=" eth_rmii_tx(input clk50,output reg [1:0]tx = 0,output reg txen = 0,input [7:0]data,input packet,output reg busy = 0,output reg advance = 0);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk50"/>
+    <prm type=" output reg" name="txen"/>
+    <prm type="" name="0"/>
+    <prm type=" input" name="packet"/>
+    <prm type=" output reg" name="busy"/>
+    <prm type="" name="0"/>
+    <prm type="output reg" name="advance"/>
+</mdl>
+<mdl nome=" serdes_8to1_tx(input clk,input clkx4,input reset,output o_p,output o_n,input [7:0]i_data);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="clkx4"/>
+    <prm type=" input" name="reset"/>
+    <prm type=" output" name="o_p"/>
+    <prm type=" output" name="o_n"/>
+</mdl>
+<mdl nome=" serdes_10to1_tx(input clk,input clkx5,input reset,output o_p,output o_n,input [9:0]i_data);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="clkx5"/>
+    <prm type=" input" name="reset"/>
+    <prm type=" output" name="o_p"/>
+    <prm type=" output" name="o_n"/>
+</mdl>
+<mdl nome=" axi_hp_dma_reader(input clk,axi_ifc.reader m,// control interfaceinput [31:0]txn_addr, // bits 6:0 ignoredinput [31:0]txn_count, // bits 6:0 ignoredinput txn_start,output reg txn_busy = 0,output reg [31:0]cyc_count = 0,// data interfaceoutput [DWIDTH-1:0]data,output valid,input ready);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output reg" name="txn_busy"/>
+    <prm type="" name="0"/>
+    <prm type=" output" name="valid"/>
+    <prm type="input" name="ready"/>
+</mdl>
+<mdl nome=" mmcm_1in_3out(input i_clk,output o_clk0,output o_clk1,output o_clk2);">
+    <cmt cntt=""/>
+    <prm type=" input" name="i_clk"/>
+    <prm type=" output" name="o_clk0"/>
+    <prm type=" output" name="o_clk1"/>
+    <prm type="output" name="o_clk2"/>
+</mdl>
+<mdl nome=" simple_fifo(input clk,input wr,input [WIDTH-1:0]wdata,input rd,output [WIDTH-1:0]rdata,output reg rvalid = 0,output not_empty,output not_full);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="wr"/>
+    <prm type=" input" name="rd"/>
+    <prm type=" output reg" name="rvalid"/>
+    <prm type="" name="0"/>
+    <prm type=" output" name="not_empty"/>
+    <prm type="output" name="not_full"/>
+</mdl>
+<mdl nome=" fifo_memory(input clk,input rd,input [DEPTH-1:0]raddr,output reg [WIDTH-1:0]rdata,input wr,input [DEPTH-1:0]waddr,input [WIDTH-1:0]wdata);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="rd"/>
+    <prm type=" input" name="wr"/>
+</mdl>
+<mdl nome=" eth_capture(// interface from eth_rmii_rxinput clk50,input rxsop,input rxeop,input [7:0]rxdata,input rxvalid,// interface to axiinput clk,input reset,input enable,axi_ifc.master axi_dma);">
+    <cmt cntt=""/>
+    <prm type=" input" name="rxsop"/>
+    <prm type=" input" name="rxeop"/>
+    <prm type=" input" name="rxvalid"/>
+    <prm type=" input" name="reset"/>
+    <prm type=" input" name="enable"/>
+</mdl>
+<mdl nome=" eth_crc32(input clk,input en,input rst,input [7:0]dat,output [31:0]crc);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="en"/>
+    <prm type=" input" name="rst"/>
+</mdl>
+<mdl nome=" axi_dma_reader(input clk,axi_ifc.master m,output reg [31:0]o_data,output reg o_valid,input i_start,input i_ready,input [31:0]i_baseaddr,input [15:0]i_burst_count);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" output reg" name="o_valid"/>
+    <prm type=" input" name="i_start"/>
+    <prm type=" input" name="i_ready"/>
+</mdl>
+<mdl nome=" zynq_ps7(output fclk0,input s_axi_gp0_clk,axi_ifc.slave s_axi_gp0,input m_axi_gp0_clk,axi_ifc.master m_axi_gp0);">
+    <cmt cntt=""/>
+    <prm type=" output" name="fclk0"/>
+    <prm type=" input" name="s_axi_gp0_clk"/>
+    <prm type=" input" name="m_axi_gp0_clk"/>
+</mdl>
+<mdl nome=" sync_oneway(input txclk,input txdat,input rxclk,output rxdat);">
+    <cmt cntt=""/>
+    <prm type=" input" name="txclk"/>
+    <prm type=" input" name="txdat"/>
+    <prm type=" input" name="rxclk"/>
+    <prm type="output" name="rxdat"/>
+</mdl>
+<mdl nome=" axi_pattern_writer(input trigger,input clk,axi_ifc.master m);">
+    <cmt cntt=""/>
+    <prm type=" input" name="trigger"/>
+    <prm type=" input" name="clk"/>
+</mdl>
+<mdl nome=" top();">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" testbench(input clk);">
+    <cmt cntt=""/>
+    <prm type="input" name="clk"/>
+</mdl>
+<mdl nome=" testbench(input clk);">
+    <cmt cntt=""/>
+    <prm type="input" name="clk"/>
+</mdl>
+<mdl nome=" testbench();">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" testbench(input clk);">
+    <cmt cntt=""/>
+    <prm type="input" name="clk"/>
+</mdl>
+<mdl nome=" testbench();">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" testbench(inout clk);">
+    <cmt cntt=""/>
+    <prm type="inout" name="clk"/>
+</mdl>
+<mdl nome=" testbench();">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" testbench(input clk);">
+    <cmt cntt=""/>
+    <prm type="input" name="clk"/>
+</mdl>
+<mdl nome=" testbench(input clk);">
+    <cmt cntt=""/>
+    <prm type="input" name="clk"/>
+</mdl>
+<mdl nome=" eth_packet_gen(input clk50,output [1:0]data,output packet,input start,output reg done = 0);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk50"/>
+    <prm type=" output" name="packet"/>
+    <prm type=" input" name="start"/>
+    <prm type="output reg" name="done"/>
+</mdl>
+<mdl nome=" testbench(input clk);">
+    <cmt cntt=""/>
+    <prm type="input" name="clk"/>
+</mdl>
+<mdl nome=" testbench();">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" axi_rw_engine(input clk,axi_ifc.master m,input rd,input wr,input [31:0]addr,input [31:0]data);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="rd"/>
+    <prm type=" input" name="wr"/>
+</mdl>
+<mdl nome=" jtag_debug_port(output reg o_rd,output reg o_wr,output [RBITS-1:0]o_addr,output [31:0]o_wdata,input [31:0]i_rdata,input clk);">
+    <cmt cntt=""/>
+    <prm type=" output reg" name="o_rd"/>
+    <prm type=" output reg" name="o_wr"/>
+    <prm type="input" name="clk"/>
+</mdl>
+<mdl nome=" sync(input clk_in,input clk_out,input in,output out);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk_in"/>
+    <prm type=" input" name="clk_out"/>
+    <prm type=" input" name="in"/>
+    <prm type="output" name="out"/>
+</mdl>
+<mdl nome=" zynq_ps7(output fclk0,input m_axi_gp0_clk,axi_ifc.master m_axi_gp0);">
+    <cmt cntt=""/>
+    <prm type=" output" name="fclk0"/>
+    <prm type=" input" name="m_axi_gp0_clk"/>
+</mdl>
+<mdl nome=" eth_rmii_bridge(input clk,input rxvalid,input [7:0]rxdata,input rxeop,output reg txpacket = 0,output [7:0]txdata,input txadvance,input txbusy);">
+    <cmt cntt=""/>
+    <prm type=" input" name="clk"/>
+    <prm type=" input" name="rxvalid"/>
+    <prm type=" input" name="rxeop"/>
+    <prm type=" output reg" name="txpacket"/>
+    <prm type="" name="0"/>
+    <prm type=" input" name="txadvance"/>
+    <prm type="input" name="txbusy"/>
+</mdl>
+<mdl nome=" textdisplay(input pixclk,input [10:0]xpixel,input [10:0]ypixel,output reg pixel,input bufclk,input [11:0]bufaddr,input [7:0]bufdata,input bufwe);">
+    <cmt cntt=""/>
+    <prm type=" input" name="pixclk"/>
+    <prm type=" output reg" name="pixel"/>
+    <prm type=" input" name="bufclk"/>
+    <prm type="input" name="bufwe"/>
+</mdl>
+<mdl nome=" jtag_axi_trace_port(axi_ifc.debug axi);">
+    <cmt cntt=""/>
+</mdl>
+<mdl nome=" uvm_object_macros_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_object_macros_unit_test"/>
+</mdl>
+<mdl nome=" uvm_misc_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_misc_unit_test"/>
+</mdl>
+<mdl nome=" uvm_scope_stack_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_scope_stack_unit_test"/>
+</mdl>
+<mdl nome=" uvm_printer_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_printer_unit_test"/>
+</mdl>
+<mdl nome=" uvm_component_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_component_unit_test"/>
+</mdl>
+<mdl nome=" uvm_printer_knobs_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_printer_knobs_unit_test"/>
+</mdl>
+<mdl nome=" uvm_status_container_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_status_container_unit_test"/>
+</mdl>
+<mdl nome=" uvm_phase_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_phase_unit_test"/>
+</mdl>
+<mdl nome=" uvm_object_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_object_unit_test"/>
+</mdl>
+<mdl nome=" uvm_boat_anchor_demo;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_boat_anchor_demo"/>
+</mdl>
+<mdl nome=" uvm_boat_anchor_unit_test;">
+    <cmt cntt=""/>
+    <prm type="module" name="uvm_boat_anchor_unit_test"/>
+</mdl>
+<pkg name=" sha3_pkg;">
+    <cmt cntt=""/>
+<file fl="sequence_item.svh
+sequences/base_sequence.svh
+sequences/reset_seq.svh
+sequences/init_seq.svh
+sequences/strt_ctrl_seq.svh
+sequences/finish_ctrl_seq.svh
+sequences/msg_seq.svh
+sequences/empty_msg_seq.svh
+sequences/rndmsg_seq.svh
+sequences/long_msg_seq.svh
+sequences/tr1_seq.svh
+sequences/tr2_seq.svh
+sequences/tr3_seq.svh
+sequences/tr5_seq.svh
+sha3_driver.svh
+sha3_write_monitor.svh
+sha3_read_monitor.svh
+sha3_agent_config.svh
+sha3_agent.svh
+sha3_scoreboard.svh
+sha3_coverage.svh
+sha3_env.svh
+test/sha3_base_test.svh
+test/tr1_test.svh
+test/tr2_test.svh
+test/tr3_test.svh
+test/tr5_test.svh
+"/></pkg><pkg name=" ahb_test_pkg;">
+    <cmt cntt=""/>
+<file fl="tb_defs.svh
+ahb_mxtn.svh
+ahb_sxtn.svh
+ahb_magent_config.svh
+ahb_mseqr.svh
+ahb_mdriver.svh
+ahb_mmonitor.svh
+ahb_sagent_config.svh
+ahb_sseqr.svh
+ahb_sdriver.svh
+ahb_smonitor.svh
+reset_seqr.svh
+reset_driver.svh
+env_config.svh
+ahb_vseqr.svh
+reset_agent.svh
+ahb_magent.svh
+ahb_sagent.svh
+ahb_coverage.svh
+ahb_env.svh
+reset_seqs.svh
+ahb_mseqs.svh
+ahb_sseqs.svh
+ahb_vseqs.svh
+ahb_base_test.svh
+ahb_reset_test.svh
+ahb_incrx_test.svh
+ahb_wrapx_test.svh
+ahb_crt_test.svh
+ahb_incrbusy_test.svh
+ahb_err_test.svh
+"/></pkg><pkg name=" sha3_pkg;">
+    <cmt cntt=""/>
+    <fld type="int" name="number_of_transaction"/>
+<file fl="sha3_transaction.sv
+sha3_generator.sv
+sha3_write_bfm.sv
+sha3_write_monitor.sv
+sha3_read_monitor.sv
+sha3_model.sv
+sha3_scoreboard.sv
+sha3_environment.sv
+"/></pkg><pkg name=" test_pkg;">
+    <cmt cntt=""/>
+<file fl="ahb_xtn.svh
+apb_xtn.svh
+ahb_agent_config.svh
+apb_agent_config.svh
+env_config.svh
+ahb_seqs.svh
+ahb_sequencer.svh
+ahb_driver.svh
+ahb_monitor.svh
+apb_driver.svh
+apb_monitor.svh
+ahb_agent.svh
+apb_agent.svh
+scoreboard.svh
+vsequencer.svh
+env.svh
+vseqs.svh
+test_base_lib.svh
+"/></pkg><pkg name=" counter_pkg;">
+    <cmt cntt=""/>
+    <fld type="int" name="no_of_transaction"/>
+<file fl="counter_trans.sv
+counter_gen.sv
+counter_wr_bfm.sv
+counter_wr_mon.sv
+counter_rd_mon.sv
+counter_rm.sv
+counter_sb.sv
+counter_env.sv
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_reg_block" name="jb_reg_block"/>
+    <fct return="void" name="build">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build">
+        <cmt cntt="// finalize the address mapping"/>
+    </fct>
+    <fct return="uvm_sequence_item" name="reg2bus">
+        <cmt cntt=""/>
+        <lvr type="" name="jb_tx"/>
+    </fct>
+    <fct return="void" name="bus2reg">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_sequence_item"/>
+    <prm type="" name="bus_item"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt="// if the top-level env"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="start_of_simulation_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="uvm_reg_data_t" name="value"/>
+    </tsk>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_reg_sequence" name="jb_reg_seq"/>
+    </tsk>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="uvm_reg_hw_reset_seq" name="reg_hw_reset_seq"/>
+    </tsk>
+<file fl=""/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="do_copy">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_transaction" name="that"/>
+    </fct>
+    <fct return="bit" name="do_compare">
+        <cmt cntt=""/>
+    <prm type="" name="uvm_object"/>
+    <prm type="" name="rhs"/>
+        <lvr type="" name="&"/>
+    </fct>
+    <fct return="void" name="do_pack">
+        <cmt cntt="// reserved bit// reserved bits"/>
+        <lvr type="bit [5:0]" name="R6"/>
+    </fct>
+    <fct return="void" name="do_unpack">
+        <cmt cntt="// reserved bit// reserved bits"/>
+        <lvr type="bit [5:0]" name="R6"/>
+    </fct>
+    <fct return="string" name="convert2string">
+        <cmt cntt=""/>
+        <lvr type="string" name="s"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    <prm type="jelly_bean_transaction" name="t"/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    <prm type="jelly_bean_transaction" name="t"/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+    <prm type="jelly_bean_transaction" name="jb_tx"/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    <prm type="uvm_phase" name="phase"/>
+        <lvr type="" name="e"/>
+    </fct>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        <prm type="uvm_phase" name="phase"/>
+        <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt="// copy jb_tx1 to jb_tx2// create jb_tx3 by packing and unpacking jb_tx1// check if jb_tx1, jb_tx2 and jb_tx3 have the same properties// print each object"/>
+            <lvr type="int" name="num_bits"/>
+    </tsk>
+<file fl=""/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef bit" name="taster_id_t"/>
+<file fl="transactions.svh
+ral.svh
+sequences.svh
+agent.svh
+env.svh
+tests.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="taste_e"/>
+<file fl="transactions.svh
+sequences.svh
+agent.svh
+env.svh
+test.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="taste_e"/>
+<file fl="transactions.svh
+sequences.svh
+agent.svh
+env.svh
+test.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_configuration" name="jb_cfg"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="same_flavored_jelly_beans_sequence" name="jb_seq"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+        </tsk>
+<file fl=""/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="taste_e"/>
+<file fl="transactions.svh
+sequences.svh
+agent.svh
+env.svh
+test.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="taste_e"/>
+<file fl="transactions.svh
+sequences.svh
+agent.svh
+env.svh
+test.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_env" name="jb_env"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="try_put">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="can_put">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="try_get">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="can_get">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="try_peek">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="can_peek">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="bit" name="nb_transport">
+        <cmt cntt=""/>
+    <prm type="" name="inputjelly_bean_transaction"/>
+    <prm type="" name="jb_req"/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_configuration" name="jb_cfg"/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_req"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_req"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_rsp"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_rsp"/>
+    </tsk>
+    <tsk name="put">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="get">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="peek">
+        <cmt cntt=""/>
+        </tsk>
+    <tsk name="transport">
+        <cmt cntt=""/>
+        <prm type="" name="inputjelly_bean_transaction"/>
+    <prm type="" name="jb_req"/>
+    </tsk>
+    <tsk name="run_phase">
+        <cmt cntt="//    `uvm_info( "jelly_bean_test", { "\n", jb_seq.sprint() }, UVM_LOW )"/>
+            <lvr type="one_jelly_bean_sequence" name="jb_seq"/>
+    </tsk>
+<file fl=""/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="command_e"/>
+<file fl="transactions.svh
+ral.svh
+sequences.svh
+agent.svh
+env.svh
+tests.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="jelly_bean_agent_config" name="jb_agent_cfg2"/>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="write">
+        <cmt cntt=""/>
+        <lvr type="jelly_bean_scoreboard" name="jb_sb"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="report_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="check_jelly_bean_taste">
+        <cmt cntt=""/>
+        <lvr type="uvm_table_printer" name="p"/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="connect_phase">
+        <cmt cntt=""/>
+    </fct>
+    <fct return="void" name="build_phase">
+        <cmt cntt=""/>
+    </fct>
+    <tsk name="body">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="body">
+        <cmt cntt="// case ( recipe )"/>
+        </tsk>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_transaction" name="jb_tx"/>
+    </tsk>
+    <tsk name="main_phase">
+        <cmt cntt=""/>
+            <lvr type="jelly_bean_recipe_virtual_sequence" name="jb_vseq"/>
+    </tsk>
+<file fl=""/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="taste_e"/>
+<file fl="transactions.svh
+sequences.svh
+agent.svh
+env.svh
+test.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="taste_e"/>
+<file fl="transactions.svh
+sequences.svh
+agent.svh
+env.svh
+test.svh
+"/></pkg><pkg name=" jelly_bean_pkg;">
+    <cmt cntt=""/>
+    <fld type="typedef enum bit [1:0] {" name="taste_e"/>
+<file fl="transactions.svh
+sequences.svh
+agent.svh
+env.svh
+test.svh
+"/></pkg>

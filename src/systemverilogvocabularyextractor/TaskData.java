@@ -34,7 +34,7 @@ public class TaskData extends MethodData{
         final String IDENTATION = "    ";
         String toXML = identation+"<tsk name=\""+this.name+"\">\n";
         toXML += this.commentsFunction.toXML(IDENTATION+identation);
-        toXML += IDENTATION+this.param.toXML(IDENTATION+identation);
+        toXML += this.param.toXML(IDENTATION+identation);
         toXML += this.localField.lvrToXml(IDENTATION+identation);
         toXML += identation+"</tsk>\n";
         return toXML;

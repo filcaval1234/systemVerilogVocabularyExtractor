@@ -6,7 +6,6 @@ always_ff
 always_latch
 and
 assert
-`include
 assign
 assume
 automatic

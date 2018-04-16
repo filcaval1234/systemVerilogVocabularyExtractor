@@ -91,7 +91,7 @@ public class MethodData {
         final String IDENTATION = "    ";
         String toXml = identation+"<fct return=\""+this.retorno+"\" name=\""+this.name+"\">\n";
         toXml += this.commentsFunction.toXML(IDENTATION+identation);
-        toXml += this.param.toXML(identation);
+        toXml += this.param.toXML(identation+IDENTATION);
         toXml += this.localField.lvrToXml(IDENTATION+identation);
         toXml += IDENTATION+"</fct>\n";
         return toXml;

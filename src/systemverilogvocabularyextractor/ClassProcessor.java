@@ -4,6 +4,7 @@
  * systemVerilog.
  */
 package systemverilogvocabularyextractor;
+import handleEventesVocabularyExtractor.HandleEventsComments;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class ClassProcessor extends AbstractModuleLanguage{
     private CommentProcessor genericsCommentsClassProcessor;
     private static final String BEGINCLASS = "class";
     private static final String ENDCLASS = "endclass";
+    private HandleEventsComments handleEventesComments;
     
     /**
      * O construtor da classe que inicializa todos os campos e chama o método
@@ -26,6 +28,7 @@ public class ClassProcessor extends AbstractModuleLanguage{
      */
     public ClassProcessor(){
         super(BEGINCLASS, ENDCLASS);
+        //this.handleEventesComments = handleEvents;
         this.arrayClassData = new ArrayList<ClassData>();
         this.genericsCommentsClassProcessor = new CommentProcessor();
         vfs = new VerificationSintax();
@@ -46,7 +49,11 @@ public class ClassProcessor extends AbstractModuleLanguage{
      */
     public void setClassesProperties(String sourceLine){
         if(this.isModule(sourceLine)){
-            this.setFields(sourceLine);
+            try {
+                this.setFields(sourceLine);
+            } catch (ArrayIndexOutOfBoundsException e) {
+            }
+            //this.handleEventesComments.setGenericComments(this);
             size = this.arrayClassData.size()-1;
         }
         this.setVariableAndCommentlocal(sourceLine);
@@ -58,7 +65,7 @@ public class ClassProcessor extends AbstractModuleLanguage{
      * @param lineOrigin linha de código que será analisada.
      */
     @Override
-    public void setFields(String lineOrigin) {
+    public void setFields(String lineOrigin)throws ArrayIndexOutOfBoundsException{
         lineOrigin = this.filterAccessMode(lineOrigin);
         lineOrigin = this.filterIndentation(lineOrigin);
         ClassData csdt = new ClassData();

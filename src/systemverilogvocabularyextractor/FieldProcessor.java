@@ -177,9 +177,9 @@ public class FieldProcessor {
      */
     private boolean isVariable(String sourceLine){
         boolean state = true;
-        String[] isNotVariable = {"class","#","return","(", "{",">", "else","if",
-            ":", "}", ")", "<", "`include", "package", "function", "task", "interface",
-            "modport"};
+        String[] isNotVariable = {"class ","#","return","(", "{",">", "else ","if ",
+            ":", "}", ")", "<", "`include", "package ", "function ", "task ", "interface ",
+            "modport ", "typedef ", "constraint "};
         if(sourceLine.equals(" ")){
             return false;
         }
@@ -287,7 +287,7 @@ public class FieldProcessor {
     public String fldToXml(String identation){
         String fldToXml = "";
         for(FieldData fields: listVariaveis){
-            fldToXml = fields.fldToXml(identation);
+            fldToXml += fields.fldToXml(identation);
         }
         return fldToXml;
     }
